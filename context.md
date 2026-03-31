@@ -120,6 +120,20 @@ Upload, store, and search compliance documents (drug licences, C&F agreements, C
 
 ---
 
+## Recent Changes
+- **2026-03-31**: Initialized Next.js 16.2.1 + Tailwind v4 + shadcn project.
+- **2026-03-31**: Configured `Pharma Teal` (#006868) brand color in `tailwind.config.ts`.
+- **2026-03-31**: Verified initial deployment scaffold via browser testing.
+- **2026-03-31**: Started implementation of core pages (Home, About, Services, Contact).
+
+## Next Steps
+- [ ] Research and implement high-fidelity design for Home, About, Services, and Contact.
+- [ ] Integrate "Formal Research Report" content into a 'Resources' or 'FAQ' section.
+- [ ] Setup responsive Header and Footer components.
+- [ ] Implement Framer Motion animations for premium feel.
+
+---
+
 ## Design Direction
 
 - **Tone:** Professional, trustworthy, clean. B2B pharma — not consumer brand.
