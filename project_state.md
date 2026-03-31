@@ -12,18 +12,21 @@ Last updated: 2026-03-31T22:25:00+05:30
 | Project Context Setup | ✅ Done | Context captured in `context.md` |
 | Project State Init | ✅ Done | `project_state.md` created |
 | Website Scaffold | ✅ Done | Next.js 16.2.1 + Tailwind v4 + shadcn |
-| Home Page | 🚧 In Progress | Scaffolding verified with basic placeholder |
-| About Page | ❌ Pending | |
-| Services Page | ❌ Pending | |
-| Contact Page | ❌ Pending | |
+| Header & Footer | ✅ Done | Sticky Navbar + Global Footer |
+| Home Page | ✅ Done | High-fidelity with Hero & Stats |
+| About Page | ✅ Done | Division of HDH details |
+| Services Page | ✅ Done | Knowledge Base integrated |
+| Contact Page | ✅ Done | Form with Zod validation |
+| Hydration Fix | ✅ Done | Resolved root-level attribute mismatches |
+| Smooth Scroll | ✅ Done | Implemented Lenis inertial scrolling |
 
 ## Pending tasks
-- [ ] Implement high-fidelity Header/Navbar component.
-- [ ] Implement high-fidelity Footer component.
-- [ ] Build Home Page sections (Hero, Stats, Services, Why Choose Us).
-- [ ] Build About Page.
-- [ ] Build Services Detailed Page.
-- [ ] Build Contact Page with form.
+- [x] Implement high-fidelity Header/Navbar component.
+- [x] Implement high-fidelity Footer component.
+- [x] Build Home Page sections (Hero, Stats, Services, Why Choose Us).
+- [x] Build About Page.
+- [x] Build Services Detailed Page.
+- [x] Build Contact Page with form.
 
 ## Known issues
 - None yet

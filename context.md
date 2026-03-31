@@ -122,15 +122,19 @@ Upload, store, and search compliance documents (drug licences, C&F agreements, C
 
 ## Recent Changes
 - **2026-03-31**: Initialized Next.js 16.2.1 + Tailwind v4 + shadcn project.
-- **2026-03-31**: Configured `Pharma Teal` (#006868) brand color in `tailwind.config.ts`.
-- **2026-03-31**: Verified initial deployment scaffold via browser testing.
-- **2026-03-31**: Started implementation of core pages (Home, About, Services, Contact).
+- **2026-03-31**: Configured `Pharma Teal` (#006868) brand color.
+- **2026-03-31**: Connected repository to `https://github.com/kunalmttl/hpl.git` and pushed to `main`.
+- **2026-03-31**: Implemented high-fidelity Home, About, Services, and Contact pages with Framer Motion.
+- **2026-03-31**: Resolved hydration mismatch error caused by browser extensions (`suppressHydrationWarning`).
+- **2026-03-31**: Implemented premium inertial smooth scrolling using **Lenis** and updated global CSS.
+- **2026-03-31**: Integrated "Knowledge Base" on Services page with the provided research report content.
+- **2026-03-31**: Added persistent WhatsApp floating button for real-time engagement.
 
 ## Next Steps
-- [ ] Research and implement high-fidelity design for Home, About, Services, and Contact.
-- [ ] Integrate "Formal Research Report" content into a 'Resources' or 'FAQ' section.
-- [ ] Setup responsive Header and Footer components.
-- [ ] Implement Framer Motion animations for premium feel.
+- [ ] Implement a full "Resource Center/Blog" system if requested.
+- [ ] Set up a proper backend for the contact form (e.g., Supabase Edge Functions).
+- [ ] Optimize images and add real industrial photography for Indore hub.
+- [ ] Conduct lighthouse audit for performance as part of SEO best practices.
 
 ---
 
