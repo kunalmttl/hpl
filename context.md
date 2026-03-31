@@ -136,3 +136,8 @@ Pharmacare is a larger Mumbai-based pharma 3PL (WHO-GDP certified, 51–200 staf
 Their website has: infrastructure numbers, team cards, certifications display, Vision/Mission sections, values with 1-word titles, process language.
 HPL adaptations: ambient storage only (no cold chain), Indore/MP regional focus, C&F + Super Stockist + distributor positioning.
 
+
+## Error Log
+| Date | Error | Fix Applied |
+|------|-------|-------------|
+| 2026-03-31 | `CssSyntaxError: Can't resolve 'tailwindcss-animate'` | Installed package; commented out in `globals.css` temporarily to allow build. Need to investigate v4 resolution. |
