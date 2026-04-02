@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="fixed top-3 w-full z-50 flex justify-center px-3 pointer-events-none">
+    <div className="fixed top-6 w-full z-50 flex justify-center px-3 pointer-events-none">
       <nav
         className={cn(
           "pointer-events-auto h-11 w-fit rounded-full px-4 transition-all duration-300 flex items-center justify-center gap-x-3 sm:gap-x-6 md:gap-x-12",
