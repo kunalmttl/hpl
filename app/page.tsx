@@ -16,6 +16,7 @@ import {
   Star
 } from "lucide-react";
 import { BrandCarousel } from "@/components/BrandCarousel";
+import { TypewriterHeading } from "@/components/TypewriterHeading";
 
 export default function Home() {
   const floatingVariant: Variants = {
@@ -33,7 +34,7 @@ export default function Home() {
     <div className="flex flex-col w-full min-h-screen bg-background pt-28 pb-12 px-4 sm:px-6 md:px-8">
       
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center py-20 px-4 overflow-hidden">
+      <section id="hero" className="relative min-h-[90vh] flex flex-col items-center justify-center py-20 px-4 overflow-hidden snap-start">
         {/* Floating Cards Background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div 
@@ -79,13 +80,14 @@ export default function Home() {
             <Warehouse size={32} />
           </motion.div>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+          <TypewriterHeading 
+            as="h1"
             className="text-4xl md:text-6xl lg:text-[64px] font-bold text-slate-900 tracking-tight leading-[1.05] mb-6"
-          >
-            Central India's Trusted <br className="hidden md:block" />
-            <span className="text-pharma-teal">Pharma Partner</span>
-          </motion.h1>
+            segments={[
+              { text: "Central India's Trusted", br: true },
+              { text: "Pharma Partner", className: "text-pharma-teal" }
+            ]}
+          />
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
@@ -106,13 +108,14 @@ export default function Home() {
       <BrandCarousel />
 
       {/* SERVICES SECTION */}
-      <section className="py-24 flex flex-col items-center px-4 md:px-12 relative overflow-hidden">
+      <section id="solutions" className="py-24 flex flex-col items-center px-4 md:px-12 relative overflow-hidden snap-start">
         <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-pharma-teal/5 blur-[100px] rounded-full pointer-events-none" />
         
         <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Core Solutions</h2>
-        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center max-w-xl">
-          Four ways HPL supports your business
-        </h3>
+        <TypewriterHeading 
+          text="Four ways HPL supports your business"
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center max-w-xl"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full z-10 relative">
           {[
@@ -137,9 +140,12 @@ export default function Home() {
       </section>
 
       {/* WORKFLOW (HOW IT WORKS) */}
-      <section className="py-24 flex flex-col items-center px-4 overflow-hidden relative">
+      <section id="workflow" className="py-24 flex flex-col items-center px-4 overflow-hidden relative snap-start">
         <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">How It Works</h2>
-        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center">Seamless Logistics Arc</h3>
+        <TypewriterHeading 
+          text="Seamless Logistics Arc"
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center"
+        />
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 max-w-5xl w-full relative min-h-[500px] md:min-h-[400px]">
           {/* Left Card */}
@@ -184,10 +190,13 @@ export default function Home() {
       </section>
 
       {/* BENTO GRID (WHO WE WORK WITH) */}
-      <section className="py-24 px-4 md:px-12 text-center md:text-left">
+      <section id="partners" className="py-24 px-4 md:px-12 text-center md:text-left snap-start">
         <div className="max-w-5xl mx-auto">
           <div className="mb-16">
-            <h3 className="text-3xl font-bold text-slate-900 mb-4">Who we work with</h3>
+            <TypewriterHeading 
+              text="Who we work with"
+              className="text-3xl font-bold text-slate-900 mb-4"
+            />
             <p className="text-slate-500 max-w-xl text-lg">HPL connects the dots between national manufacturers and local pharmacies, serving every layer of the healthcare supply chain.</p>
           </div>
 
@@ -221,9 +230,12 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS (WORDS OF TRUST) */}
-      <section className="py-24 flex flex-col items-center px-4 overflow-hidden relative">
+      <section id="testimonials" className="py-24 flex flex-col items-center px-4 overflow-hidden relative snap-start">
         <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Words of Trust</h2>
-        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center">Hear from our clients</h3>
+        <TypewriterHeading 
+          text="Hear from our clients"
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center"
+        />
         
         <div className="flex justify-center w-full max-w-3xl relative min-h-[300px]">
           <AnimatePresence>

@@ -27,6 +27,73 @@ export default function SmoothScroller() {
       lenis.start();
     }
 
+    // SECTION SNAPPING LOGIC
+    let isAnimating = false;
+    const snapSections = [
+      "#hero", 
+      "#brands", 
+      "#solutions", 
+      "#workflow", 
+      "#partners", 
+      "#testimonials"
+    ];
+
+    const handleWheel = (e: WheelEvent) => {
+      // Prevent snapping if we are already moving to a section
+      if (isAnimating || !isIntroDone) return;
+
+      const delta = e.deltaY;
+      const currentScroll = window.scrollY;
+      
+      // Threshold to avoid sensitive trackpads triggering jumping
+      if (Math.abs(delta) < 20) return;
+
+      // Find all sections and their offsets
+      const sections = snapSections
+        .map(id => document.querySelector(id) as HTMLElement)
+        .filter(Boolean)
+        .sort((a, b) => a.offsetTop - b.offsetTop);
+
+      if (delta > 0) {
+        // Scroll Down -> Find first section that is below current scroll position
+        const next = sections.find(s => s.offsetTop > currentScroll + 100);
+        if (next) {
+          e.preventDefault();
+          isAnimating = true;
+          lenis.scrollTo(next, {
+            onComplete: () => {
+              // Wait a bit before allowing next snap to prevent rapid firing
+              setTimeout(() => { isAnimating = false; }, 400);
+            }
+          });
+        }
+      } else {
+        // Scroll Up -> Find section that is above current scroll position
+        const prev = sections.slice().reverse().find(s => s.offsetTop < currentScroll - 100);
+        if (prev) {
+          e.preventDefault();
+          isAnimating = true;
+          lenis.scrollTo(prev, {
+            onComplete: () => {
+              setTimeout(() => { isAnimating = false; }, 400);
+            }
+          });
+        }
+      }
+    };
+
+    // Keyboard navigation snapping
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isAnimating || !isIntroDone) return;
+      if (["ArrowDown", "ArrowUp", "Space"].includes(e.code)) {
+        const fakeDelta = e.code === "ArrowUp" ? -100 : 100;
+        handleWheel({ deltaY: fakeDelta, preventDefault: () => e.preventDefault() } as WheelEvent);
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeyDown);
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -34,7 +101,7 @@ export default function SmoothScroller() {
 
     const rafId = requestAnimationFrame(raf);
 
-    // Ensure hash links work with smooth scroll
+    // Ensure hash links work
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
@@ -58,6 +125,8 @@ export default function SmoothScroller() {
       cancelAnimationFrame(rafId);
       lenis.destroy();
       document.removeEventListener("click", handleAnchorClick);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isIntroDone]);
 
