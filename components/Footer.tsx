@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="text-2xl font-bold bg-gradient-to-r from-pharma-teal to-cyan-400 bg-clip-text text-transparent">
                 HPL
               </span>
-              <span className="text-sm font-semibold text-white tracking-widest uppercase">
+              <span className="text-sm font-bold text-white tracking-widest uppercase font-subtext">
                 Logistics
               </span>
             </div>
@@ -90,12 +90,12 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm order-2 md:order-1 text-slate-500">
+          <p className="text-sm order-2 md:order-1 text-slate-500 font-subtext">
             &copy; {currentYear} Hindustan Pharma Logistics. All Rights Reserved.
           </p>
-          <div className="flex items-center space-x-2 text-sm order-1 md:order-2 group">
+          <div className="flex items-center space-x-2 text-sm order-1 md:order-2 group font-subtext">
             <span className="text-slate-400">A</span>
-            <span className="font-bold tracking-widest text-slate-200 group-hover:text-pharma-teal transition-colors">DIVISION OF HDH</span>
+            <span className="font-bold tracking-widest text-slate-200 group-hover:text-pharma-teal transition-colors uppercase">DIVISION OF HDH</span>
             <ExternalLink size={14} className="text-slate-600 group-hover:text-pharma-teal transition-colors" />
           </div>
         </div>

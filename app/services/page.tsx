@@ -99,7 +99,7 @@ export default function Services() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,104,104,0.15)_0%,transparent_70%)]" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center space-x-2 text-pharma-teal font-bold mb-8">
+            <div className="inline-flex items-center space-x-2 text-pharma-teal font-bold mb-8 font-subtext">
               <BookOpen size={20} />
               <span className="uppercase tracking-widest text-sm">Logistics Knowledge Base</span>
             </div>
@@ -117,7 +117,7 @@ export default function Services() {
                 <div className="p-6 bg-white/5 border border-white/10 rounded-2xl flex items-center space-x-4">
                   <FileText className="text-pharma-teal" size={32} />
                   <div>
-                    <h5 className="font-bold text-white uppercase text-xs tracking-tight">Full Framework Version</h5>
+                    <h5 className="font-bold text-white uppercase text-xs tracking-tight font-subtext">Full Framework Version</h5>
                     <p className="text-sm">Download the complete HPL Reporting Standards</p>
                   </div>
                 </div>

@@ -74,7 +74,7 @@ export default function Contact() {
                       <Phone size={24} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-1">Call Us</p>
+                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 font-subtext mb-1">Call Us</p>
                       <p className="text-xl font-bold text-slate-900">+91 XXXXX XXXXX</p>
                     </div>
                   </div>
@@ -84,7 +84,7 @@ export default function Contact() {
                       <Mail size={24} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-1">Email Us</p>
+                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 font-subtext mb-1">Email Us</p>
                       <p className="text-xl font-bold text-slate-900">info@hplindore.com</p>
                     </div>
                   </div>
@@ -94,7 +94,7 @@ export default function Contact() {
                       <MapPin size={24} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-1">Office Location</p>
+                      <p className="text-sm font-bold uppercase tracking-widest text-slate-500 font-subtext mb-1">Office Location</p>
                       <p className="text-xl font-bold text-slate-900">Indore, Madhya Pradesh</p>
                       <p className="text-slate-500 font-medium">123 Logistics Park, PH-1, Industrial Area</p>
                     </div>
@@ -104,8 +104,8 @@ export default function Contact() {
 
               <div className="bg-slate-900 rounded-[2rem] p-8 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-pharma-teal/20 blur-2xl rounded-full" />
-                <h4 className="text-xl font-bold mb-4 flex items-center"><Clock className="mr-2 text-pharma-teal" /> Operating Hours</h4>
-                <div className="space-y-4 font-medium text-slate-400">
+                <h4 className="text-xl font-bold mb-4 flex items-center font-heading"><Clock className="mr-2 text-pharma-teal" /> Operating Hours</h4>
+                <div className="space-y-4 font-medium text-slate-400 font-subtext">
                   <div className="flex justify-between">
                     <span>Monday - Friday</span>
                     <span className="text-white">9:00 AM - 6:00 PM</span>
@@ -207,7 +207,7 @@ export default function Contact() {
             {/* Using a placeholder-style design since I can't generate a real interactive Google map without an API key easily, but I'll describe it */}
             <div className="absolute inset-0 flex items-center justify-center bg-slate-100 flex-col space-y-4">
                <MapPin size={64} className="text-pharma-teal animate-bounce" />
-               <p className="text-slate-500 font-bold uppercase tracking-[0.3em]">Indore Industrial Hub</p>
+               <p className="text-slate-500 font-bold uppercase tracking-[0.3em] font-subtext">Indore Industrial Hub</p>
                <a 
                  href="https://www.google.com/maps/search/Pharma+Logistics+Indore" 
                  target="_blank" 

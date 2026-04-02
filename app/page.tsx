@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -11,253 +11,250 @@ import {
   Warehouse, 
   Truck, 
   BarChart3,
-  CheckCircle2
+  CheckCircle2,
+  ChevronRight,
+  Star
 } from "lucide-react";
 
 export default function Home() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const stagger = {
+  const floatingVariant: Variants = {
     animate: {
+      y: [0, -15, 0],
       transition: {
-        staggerChildren: 0.1
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut"
       }
     }
   };
 
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-pharma-teal/10 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-cyan-400/5 blur-[100px] rounded-full" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-4xl">
+    <div className="flex flex-col w-full min-h-screen bg-background pt-28 pb-12 px-4 sm:px-6 md:px-8">
+      {/* Outer Card Container */}
+      <div className="max-w-[1240px] mx-auto w-full bg-card rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden relative">
+        
+        {/* HERO SECTION */}
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center py-20 px-4 overflow-hidden">
+          {/* Floating Cards Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-pharma-teal/10 border border-pharma-teal/20 text-pharma-teal text-sm font-bold mb-6"
+              variants={floatingVariant} animate="animate" 
+              className="absolute top-32 left-[8%] bg-white p-4 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-slate-50 hidden lg:flex items-center gap-3"
             >
-              <ShieldCheck size={16} />
-              <span>Indore's Trusted Pharma Logistics Partner</span>
+              <div className="w-10 h-10 rounded-full bg-pharma-teal/10 flex items-center justify-center text-pharma-teal"><Globe size={18}/></div>
+              <div><p className="text-[13px] font-bold text-slate-900 leading-tight">500+</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Distributors</p></div>
+            </motion.div>
+            
+            <motion.div 
+              variants={floatingVariant} animate="animate" style={{ animationDelay: "1s" }}
+              className="absolute bottom-40 left-[10%] bg-white p-4 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-slate-50 hidden md:flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500"><ShieldCheck size={18}/></div>
+              <div><p className="text-[13px] font-bold text-slate-900 leading-tight">GST Compliant</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Secure</p></div>
+            </motion.div>
+            
+            <motion.div 
+              variants={floatingVariant} animate="animate" style={{ animationDelay: "2s" }}
+              className="absolute top-40 right-[8%] bg-white p-4 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-slate-50 hidden lg:flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-500"><Warehouse size={18}/></div>
+              <div><p className="text-[13px] font-bold text-slate-900 leading-tight">15+ Years</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Experience</p></div>
+            </motion.div>
+
+            <motion.div 
+              variants={floatingVariant} animate="animate" style={{ animationDelay: "1.5s" }}
+              className="absolute bottom-32 right-[12%] bg-white p-4 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-slate-50 hidden md:flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-500"><Truck size={18}/></div>
+              <div><p className="text-[13px] font-bold text-slate-900 leading-tight">60+ Clients</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Pharma Brands</p></div>
+            </motion.div>
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto mt-[-5vh]">
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="w-20 h-20 bg-gradient-to-br from-pharma-teal to-pharma-teal-dark rounded-[20px] flex items-center justify-center text-white mb-10 shadow-[0_12px_24px_rgba(15,118,110,0.25)]"
+            >
+              <Warehouse size={32} />
             </motion.div>
             
             <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-extrabold leading-[1.1] text-slate-900 mb-8"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-6xl lg:text-[64px] font-bold text-slate-900 tracking-tight leading-[1.05] mb-6"
             >
-              Driving the Future of <span className="text-pharma-teal">Pharmaceutical</span> Logistics
+              Central India's Trusted <br className="hidden md:block" />
+              <span className="text-pharma-teal">Pharma Partner</span>
             </motion.h1>
 
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl font-medium"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-slate-500 mb-10 max-w-2xl leading-relaxed"
             >
-              HPL (Hindustan Pharma Logistics) provides integrated supply chain solutions across Central India. A division of HDH, specializing in C&F, Super Stockist, and 3PL services.
+              Hindustan Pharma Logistics provides integrated supply chain solutions across Central India. Specializing in C&F, Super Stockist, and distribution services.
             </motion.p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Link 
-                href="/services" 
-                className="px-8 py-4 bg-pharma-teal text-white rounded-xl font-bold text-lg flex items-center justify-center hover:bg-pharma-teal-dark shadow-xl hover:shadow-pharma-teal/30 transition-all group"
-              >
-                Our Services <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link 
-                href="/contact" 
-                className="px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-xl font-bold text-lg flex items-center justify-center hover:bg-slate-50 transition-all shadow-sm"
-              >
-                Get a Quote
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>
+              <Link href="/contact" className="h-12 px-8 bg-gradient-to-r from-pharma-teal to-pharma-teal-dark text-white rounded-[10px] font-medium text-[15px] flex items-center justify-center hover:opacity-90 shadow-[0_8px_16px_rgba(15,118,110,0.2)] transition-all transform hover:scale-[1.02]">
+                Partner With Us
               </Link>
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* SERVICES SECTION */}
+        <section className="py-24 bg-[#F9FAFB] border-t border-slate-100 flex flex-col items-center px-4 md:px-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-pharma-teal/5 blur-[100px] rounded-full pointer-events-none" />
+          
+          <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Core Solutions</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center max-w-xl">
+            Four ways HPL supports your business
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full z-10 relative">
             {[
-              { label: "Years Excellence", value: "15+", icon: Zap },
-              { label: "Pharma Clients", value: "500+", icon: Globe },
-              { label: "Tons Monthly", value: "2.5k+", icon: BarChart3 },
-              { label: "Hub Cities", value: "10+", icon: Warehouse },
-            ].map((stat, i) => (
+              { title: "C&F Agency", desc: "Complete warehousing, inventory management, and billing solutions.", icon: Warehouse, color: "text-pharma-teal" },
+              { title: "Super Stockist", desc: "Regional distribution powerhouse ensuring seamless medicine reach.", icon: Truck, color: "text-blue-500" },
+              { title: "Consignee Agent", desc: "Trusted partner for managing compliant storage and dispatches.", icon: ShieldCheck, color: "text-amber-500" },
+              { title: "Hindustan Drug House", desc: "Our retail-focused distribution wing powering local chemist supply.", icon: Zap, color: "text-rose-500" },
+            ].map((service, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-white p-8 rounded-[20px] shadow-[0_4px_16px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all group flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-5 hover:-translate-y-1"
+              >
+                <div className={`w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 transition-colors ${service.color}`}>
+                  <service.icon size={26} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h4>
+                  <p className="text-slate-500 text-[15px] leading-relaxed">{service.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* WORKFLOW (HOW IT WORKS) */}
+        <section className="py-24 bg-white flex flex-col items-center px-4 overflow-hidden relative">
+          <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">How It Works</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center">Seamless Logistics Arc</h3>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 max-w-5xl w-full relative min-h-[500px] md:min-h-[400px]">
+            {/* Left Card */}
+            <motion.div 
+              initial={{ opacity: 0, x: -60, rotate: -15, y: 40 }} 
+              whileInView={{ opacity: 1, x: 0, rotate: -6, y: 20 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="md:absolute md:left-[5%] lg:left-[10%] z-10 w-full md:w-[300px] bg-[#F7F7F8] border border-slate-200 p-8 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:rotate-0 hover:z-40 transition-transform duration-300"
+            >
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 text-slate-600 shadow-sm border border-slate-100"><Truck size={24}/></div>
+              <h4 className="font-bold text-slate-900 text-lg mb-2">1. Manufacturer Ships</h4>
+              <p className="text-[15px] text-slate-500 leading-relaxed">Goods are securely transported to our state-of-the-art central hub.</p>
+            </motion.div>
+
+            {/* Center Card */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, y: -20 }} 
+              whileInView={{ opacity: 1, scale: 1, y: -20 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="md:absolute z-30 w-full md:w-[320px] bg-white border border-slate-100 p-8 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:scale-[1.02] transition-transform duration-300"
+            >
+              <div className="w-14 h-14 rounded-full bg-pharma-teal/10 flex items-center justify-center mb-6 text-pharma-teal"><Warehouse size={28}/></div>
+              <h4 className="font-bold text-slate-900 text-xl mb-3">2. We Store & Manage</h4>
+              <p className="text-[15px] text-slate-500 leading-relaxed">WHO-GSDP compliant warehousing and real-time inventory management.</p>
+            </motion.div>
+
+            {/* Right Card */}
+            <motion.div 
+              initial={{ opacity: 0, x: 60, rotate: 15, y: 40 }} 
+              whileInView={{ opacity: 1, x: 0, rotate: 6, y: 20 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              className="md:absolute md:right-[5%] lg:right-[10%] z-20 w-full md:w-[300px] bg-[#F7F7F8] border border-slate-200 p-8 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:rotate-0 hover:z-40 transition-transform duration-300"
+            >
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 text-slate-600 shadow-sm border border-slate-100"><Globe size={24}/></div>
+              <h4 className="font-bold text-slate-900 text-lg mb-2">3. We Dispatch</h4>
+              <p className="text-[15px] text-slate-500 leading-relaxed">Seamless delivery to retail and wholesale networks across Central India.</p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* BENTO GRID (WHO WE WORK WITH) */}
+        <section className="py-24 bg-[#F9FAFB] border-t border-slate-100 px-4 md:px-12 text-center md:text-left">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-16">
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">Who we work with</h3>
+              <p className="text-slate-500 max-w-xl text-lg">HPL connects the dots between national manufacturers and local pharmacies, serving every layer of the healthcare supply chain.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+              <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 md:col-span-2 bg-white rounded-[24px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.04)] relative overflow-hidden flex flex-col justify-center">
+                <h4 className="text-2xl font-bold text-slate-900 mb-3 relative z-10">Pharma Manufacturers</h4>
+                <p className="text-slate-500 relative z-10 text-[15px] max-w-sm leading-relaxed">Supporting national and multinational brands with reliable, compliant warehousing infrastructure.</p>
+                <div className="absolute right-[-10%] bottom-[-20%] opacity-[0.03] text-pharma-teal pointer-events-none"><Globe size={280} /></div>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 bg-gradient-to-br from-pharma-teal to-pharma-teal-dark rounded-[24px] p-8 shadow-lg text-white flex flex-col justify-end relative overflow-hidden">
+                <div className="absolute top-6 right-6 opacity-20"><Zap size={48} /></div>
+                <h4 className="text-xl font-bold mb-2">FMCG Healthcare</h4>
+                <p className="text-white/80 text-[15px] leading-relaxed">Robust FMCG distribution capabilities.</p>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 md:col-span-2 bg-[#F7F7F8] rounded-[24px] p-8 border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">Chemists & Retailers</h4>
+                  <p className="text-slate-500 text-[15px]">Trusted local supply lines via HDH.</p>
+                </div>
+                <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-amber-500"><ShieldCheck size={32}/></div>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 bg-white rounded-[24px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col justify-center">
+                <h4 className="text-xl font-bold text-slate-900 mb-2">Regional Brands</h4>
+                <p className="text-slate-500 text-[15px]">Deep local market penetration.</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS (WORDS OF TRUST) */}
+        <section className="py-24 bg-white flex flex-col items-center px-4 overflow-hidden relative">
+          <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Words of Trust</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center">Hear from our clients</h3>
+          
+          <div className="flex justify-center w-full max-w-3xl relative min-h-[300px]">
+            <AnimatePresence>
               <motion.div 
-                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center text-center p-6 rounded-2xl bg-white shadow-sm border border-slate-100 hover-glow"
+                className="w-full bg-[#F7F7F8] rounded-[32px] p-10 md:p-14 shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-200 text-center flex flex-col items-center relative overflow-hidden"
               >
-                <div className="w-12 h-12 bg-pharma-teal/10 rounded-lg flex items-center justify-center text-pharma-teal mb-4">
-                  <stat.icon size={24} />
+                <div className="absolute top-6 left-6 opacity-5 text-pharma-teal"><svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div>
+                
+                <div className="flex justify-center mb-8 text-amber-400 gap-1">
+                  {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={20} fill="currentColor" />)}
                 </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-1">{stat.value}</h3>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Summary */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-pharma-teal font-bold uppercase tracking-[0.2em] mb-4">What we do</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">Mastering the Supply Chain</h3>
-            <p className="text-lg text-slate-600 font-medium leading-relaxed">
-              From sophisticated warehousing to last-mile delivery, we provide end-to-end pharmaceutical logistics with a focus on regulatory compliance and temperature control.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "C&F Agency",
-                desc: "Complete warehousing, inventory management, and billing solutions for national pharma giants.",
-                icon: Warehouse,
-              },
-              {
-                title: "Super Stockist",
-                desc: "Regional distribution powerhouse ensuring medicine reach even the remotest pharmacies.",
-                icon: Truck,
-              },
-              {
-                title: "3PL Logistics",
-                desc: "Advanced third-party logistics with real-time tracking and specialized cold-chain management.",
-                icon: Zap,
-              }
-            ].map((service, i) => (
-              <motion.div 
-                key={i}
-                {...fadeIn}
-                whileHover={{ y: -10 }}
-                className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-pharma-teal/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
-                <div className="w-14 h-14 bg-pharma-teal text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-pharma-teal/20">
-                  <service.icon size={28} />
-                </div>
-                <h4 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h4>
-                <p className="text-slate-600 mb-8 leading-relaxed font-medium">
-                  {service.desc}
+                
+                <p className="text-xl md:text-2xl text-slate-800 font-bold leading-relaxed mb-10 max-w-2xl">
+                  "HPL's strict commitment to compliance and on-time delivery has completely transformed our supply chain reliability in Central India. Their super stockist model is quite unmatched in the region."
                 </p>
-                <Link href="/services" className="text-pharma-teal font-bold flex items-center hover:translate-x-2 transition-transform">
-                  Learn More <ArrowRight className="ml-2" size={18} />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Us Section */}
-      <section className="py-32 bg-slate-900 relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <motion.div {...fadeIn}>
-              <h2 className="text-pharma-teal font-bold uppercase tracking-[0.2em] mb-4">Why Choose HPL</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-white mb-8">Unmatched Reliability in Healthcare Logistics</h3>
-              <p className="text-lg text-slate-400 mb-12 font-medium leading-relaxed">
-                We understand that every shipment can save a life. Our systems are built around the strict requirements of pharmaceutical handling.
-              </p>
-              
-              <div className="space-y-6">
-                {[
-                  "WHO-GSDP Compliant Infrastructure",
-                  "Real-time Temperature Monitoring",
-                  "Direct Access to Indore Industrial Hub",
-                  "Dedicated 24/7 Logistics Support Team"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-3">
-                    <CheckCircle2 className="text-cyan-400 shrink-0" size={24} />
-                    <span className="text-white font-bold text-lg">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-12">
-                <Link href="/about" className="inline-block px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-pharma-teal hover:text-white transition-all shadow-xl">
-                  More About Our Commitment
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="aspect-square bg-pharma-teal/20 rounded-[4rem] rotate-6 absolute inset-0 blur-2xl" />
-              <div className="relative rounded-[3rem] border border-white/10 bg-white/5 backdrop-blur-3xl overflow-hidden shadow-2xl p-8">
-                <div className="grid grid-cols-1 gap-6">
-                  {/* Mock UI Element */}
-                  <div className="p-6 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Cold Chain Status</p>
-                      <h5 className="text-xl font-bold text-white tracking-tight">Active - 4.2°C</h5>
-                    </div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
-                    <p className="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Shipment Progress</p>
-                    <div className="w-full bg-white/10 h-2 rounded-full mb-4">
-                      <div className="bg-pharma-teal h-full w-[85%] rounded-full shadow-[0_0_10px_rgba(0,104,104,0.5)]" />
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-white font-medium">Batch #HPL8492</span>
-                      <span className="text-cyan-400 font-bold">85% Delivered</span>
-                    </div>
+                
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pharma-teal to-pharma-teal-dark text-white flex items-center justify-center font-bold text-lg shadow-md">SM</div>
+                  <div className="text-left">
+                    <p className="text-[15px] font-bold text-slate-900 leading-tight">Distribution Manager</p>
+                    <p className="text-[13px] text-slate-500">National Pharmaceutical Co.</p>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-pharma-teal">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-[3rem] p-12 md:p-20 shadow-2xl"
-          >
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8">Ready to Optimize Your Pharma Supply Chain?</h2>
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto font-medium">
-              Join 500+ pharmaceutical companies who trust HPL for their central India distribution needs.
-            </p>
-            <Link href="/contact" className="px-12 py-5 bg-white text-pharma-teal rounded-full font-black text-xl hover:bg-slate-50 shadow-2xl hover:scale-105 transition-all inline-block">
-              Consult with Our Experts
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      </div> {/* End outer card */}
+      
     </div>
   );
 }

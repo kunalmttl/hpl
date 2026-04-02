@@ -129,12 +129,16 @@ Upload, store, and search compliance documents (drug licences, C&F agreements, C
 - **2026-03-31**: Implemented premium inertial smooth scrolling using **Lenis** and updated global CSS.
 - **2026-03-31**: Integrated "Knowledge Base" on Services page with the provided research report content.
 - **2026-03-31**: Added persistent WhatsApp floating button for real-time engagement.
+- **2026-03-31**: Fully integrated custom typography system (Open Sans, TT Neoris Trial, ClarityCity Thin).
+- **2026-04-03**: Perfected the Intro Animation lockup with zero-gap branding and precise centering.
+- **2026-04-03**: Redesigned the Navbar into a high-end compact floating pill (CoreShift style) to ensure full single-row visibility on mobile devices.
 
 ## Next Steps
 - [ ] Implement a full "Resource Center/Blog" system if requested.
 - [ ] Set up a proper backend for the contact form (e.g., Supabase Edge Functions).
 - [ ] Optimize images and add real industrial photography for Indore hub.
 - [ ] Conduct lighthouse audit for performance as part of SEO best practices.
+- [ ] Finalize mobile responsiveness polish across all pages.
 
 ---
 
@@ -142,7 +146,7 @@ Upload, store, and search compliance documents (drug licences, C&F agreements, C
 
 - **Tone:** Professional, trustworthy, clean. B2B pharma — not consumer brand.
 - **Colors:** Warm neutral surfaces + pharma teal primary (`#006868`). Deep teal footer.
-- **Fonts:** General Sans (display, Fontshare) + Satoshi (body, Fontshare)
+- **Fonts:** **Headings:** TT Neoris Trial Medium | **Body:** Open Sans | **Subtext:** ClarityCity Thin
 - **Animations:** Motion library — scroll reveals, count-up stats, staggered card entrances
 - **Rules:** No gradient buttons. Left-align body content. No colored icon circles. No stock photo placeholders.
 

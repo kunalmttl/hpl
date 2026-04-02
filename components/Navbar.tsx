@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -15,9 +15,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { logoRef } = useNavbarLogoRef();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,114 +28,58 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200 py-3" 
-          : "bg-transparent py-5"
-      )}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className={cn(
-              "text-2xl font-bold tracking-tight transition-colors",
-              scrolled ? "text-pharma-teal" : "text-white"
-            )}>
-              HPL
-            </span>
-            <span className={cn(
-              "hidden md:block text-sm font-medium tracking-wide uppercase opacity-70 transition-colors",
-              scrolled ? "text-slate-600" : "text-white/80"
-            )}>
-              Hindustan Pharma Logistics
-            </span>
-          </Link>
+    <div className="fixed top-3 w-full z-50 flex justify-center px-3 pointer-events-none">
+      <nav
+        className={cn(
+          "pointer-events-auto h-11 w-fit rounded-full px-4 transition-all duration-300 flex items-center justify-center gap-x-3 sm:gap-x-6 md:gap-x-12",
+          scrolled
+            ? "bg-white/95 backdrop-blur-lg shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-slate-200/50"
+            : "bg-white/60 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+        )}
+      >
+        {/* Logo — Link ref attached for IntroAnimation targeting */}
+        <Link ref={logoRef} href="/" className="flex items-center shrink-0">
+          <Image
+            src="/logo.png"
+            alt="HPL Logistics"
+            width={120}
+            height={38}
+            className="h-6 md:h-8 w-auto object-contain"
+            priority
+          />
+        </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-sm font-semibold transition-all hover:text-pharma-teal hover-glow relative py-1",
-                  pathname === link.href 
-                    ? (scrolled ? "text-pharma-teal font-bold" : "text-white font-bold")
-                    : (scrolled ? "text-slate-600" : "text-white/90")
-                )}
-              >
-                {link.name}
-                {pathname === link.href && (
-                  <motion.div
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-pharma-teal rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
+        {/* Nav Links — Ultra-compact layout */}
+        <div className="flex items-center gap-x-2 sm:gap-x-3 md:gap-x-6">
+          {navLinks.map((link) => (
             <Link
-              href="/contact"
+              key={link.name}
+              href={link.href}
               className={cn(
-                "px-5 py-2.5 rounded-full text-sm font-bold transition-all",
-                scrolled 
-                  ? "bg-pharma-teal text-white shadow-lg hover:shadow-pharma-teal/20" 
-                  : "bg-white text-pharma-teal hover:bg-slate-50"
+                "text-[10px] sm:text-[11px] md:text-[13px] font-semibold transition-colors relative py-1 hover:text-pharma-teal",
+                pathname === link.href
+                  ? "text-pharma-teal"
+                  : "text-slate-600"
               )}
             >
-              Get a Quote
+              {link.name}
+              {pathname === link.href && (
+                <div className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-pharma-teal rounded-full" />
+              )}
             </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-pharma-teal"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} className={scrolled ? "text-pharma-teal" : "text-white"} />}
-          </button>
+          ))}
         </div>
-      </div>
 
-      {/* Mobile Navigation Panel */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-gray-100 overflow-hidden"
+        {/* Action Button — Refined pill */}
+        <div className="flex items-center shrink-0">
+          <Link
+            href="/contact"
+            className="h-7 sm:h-8 px-3 sm:px-4 rounded-full bg-slate-900 border border-slate-800 text-white text-[9px] sm:text-[11px] md:text-[13px] font-bold flex items-center justify-center hover:bg-slate-800 active:scale-95 transition-all shadow-md active:shadow-sm"
           >
-            <div className="container mx-auto px-4 py-6 flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "flex items-center justify-between text-lg font-medium p-3 rounded-xl transition-colors",
-                    pathname === link.href ? "bg-pharma-teal/10 text-pharma-teal" : "text-slate-700 hover:bg-slate-50"
-                  )}
-                >
-                  {link.name}
-                  <ChevronRight size={18} className="opacity-40" />
-                </Link>
-              ))}
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="mt-4 w-full bg-pharma-teal text-white text-center py-4 rounded-xl font-bold text-lg shadow-lg"
-              >
-                Get a Quote
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            Partner With Us
+          </Link>
+        </div>
+      </nav>
+    </div>
   );
 }
