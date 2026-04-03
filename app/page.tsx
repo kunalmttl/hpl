@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   ArrowRight, 
@@ -17,6 +18,7 @@ import {
 } from "lucide-react";
 import { BrandCarousel } from "@/components/BrandCarousel";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
+import { CoreSolutionCard } from "@/components/CoreSolutionCard";
 
 export default function Home() {
   const floatingVariant: Variants = {
@@ -114,27 +116,57 @@ export default function Home() {
         <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Core Solutions</h2>
         <TypewriterHeading 
           text="Four ways HPL supports your business"
-          className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center max-w-xl"
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 text-center max-w-xl"
         />
+        <p className="text-slate-500 text-center max-w-lg mb-14 text-[16px] leading-relaxed">
+          End-to-end pharmaceutical supply chain services built for compliance, speed, and coverage across Central India.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full z-10 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full z-10 relative">
           {[
-            { title: "C&F Agency", desc: "Complete warehousing, inventory management, and billing solutions.", icon: Warehouse, color: "text-pharma-teal" },
-            { title: "Super Stockist", desc: "Regional distribution powerhouse ensuring seamless medicine reach.", icon: Truck, color: "text-blue-500" },
-            { title: "Consignee Agent", desc: "Trusted partner for managing compliant storage and dispatches.", icon: ShieldCheck, color: "text-amber-500" },
-            { title: "Hindustan Drug House", desc: "Our retail-focused distribution wing powering local chemist supply.", icon: Zap, color: "text-rose-500" },
+            {
+              title: "C&F Agency",
+              desc: "Complete warehousing, inventory management, and billing solutions for national pharma brands.",
+              image: "/infographics/cf-agency.png",
+              icon: Warehouse,
+              accentColor: "#0F766E",
+              accentBg: "rgba(15, 118, 110, 0.1)",
+            },
+            {
+              title: "Super Stockist",
+              desc: "Regional distribution powerhouse ensuring seamless medicine reach across 12+ districts.",
+              image: "/infographics/super-stockist.png",
+              icon: Truck,
+              accentColor: "#3B82F6",
+              accentBg: "rgba(59, 130, 246, 0.1)",
+            },
+            {
+              title: "Consignee Agent",
+              desc: "Trusted partner for managing WHO-GSDP compliant storage and dispatches.",
+              image: "/infographics/consignee-agent.png",
+              icon: ShieldCheck,
+              accentColor: "#F59E0B",
+              accentBg: "rgba(245, 158, 11, 0.1)",
+            },
+            {
+              title: "Hindustan Drug House",
+              desc: "Our retail-focused distribution wing powering local chemist and pharmacy supply.",
+              image: "/infographics/drug-house.png",
+              icon: Zap,
+              accentColor: "#F43F5E",
+              accentBg: "rgba(244, 63, 94, 0.1)",
+            },
           ].map((service, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="p-8 transition-all group flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-5 hover:-translate-y-1"
-            >
-              <div className={`w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 transition-colors ${service.color}`}>
-                <service.icon size={26} />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h4>
-                <p className="text-slate-500 text-[15px] leading-relaxed">{service.desc}</p>
-              </div>
-            </motion.div>
+            <CoreSolutionCard
+              key={i}
+              title={service.title}
+              description={service.desc}
+              image={service.image}
+              icon={service.icon}
+              accentColor={service.accentColor}
+              accentBg={service.accentBg}
+              index={i}
+            />
           ))}
         </div>
       </section>
@@ -189,83 +221,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BENTO GRID (WHO WE WORK WITH) */}
-      <section id="partners" className="py-24 px-4 md:px-12 text-center md:text-left snap-start">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <TypewriterHeading 
-              text="Who we work with"
-              className="text-3xl font-bold text-slate-900 mb-4"
-            />
-            <p className="text-slate-500 max-w-xl text-lg">HPL connects the dots between national manufacturers and local pharmacies, serving every layer of the healthcare supply chain.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
-            <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 md:col-span-2 p-8 relative overflow-hidden flex flex-col justify-center">
-              <h4 className="text-2xl font-bold text-slate-900 mb-3 relative z-10">Pharma Manufacturers</h4>
-              <p className="text-slate-500 relative z-10 text-[15px] max-w-sm leading-relaxed">Supporting national and multinational brands with reliable, compliant warehousing infrastructure.</p>
-              <div className="absolute right-[-10%] bottom-[-20%] opacity-[0.03] text-pharma-teal pointer-events-none"><Globe size={280} /></div>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 p-8 text-pharma-teal flex flex-col justify-end relative overflow-hidden">
-              <div className="absolute top-6 right-6 opacity-20"><Zap size={48} /></div>
-              <h4 className="text-xl font-bold mb-2">FMCG Healthcare</h4>
-              <p className="text-white/80 text-[15px] leading-relaxed">Robust FMCG distribution capabilities.</p>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 md:col-span-2 p-8 flex items-center justify-between">
-              <div>
-                <h4 className="text-xl font-bold text-slate-900 mb-2">Chemists & Retailers</h4>
-                <p className="text-slate-500 text-[15px]">Trusted local supply lines via HDH.</p>
-              </div>
-              <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-amber-500"><ShieldCheck size={32}/></div>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 p-8 flex flex-col justify-center">
-              <h4 className="text-xl font-bold text-slate-900 mb-2">Regional Brands</h4>
-              <p className="text-slate-500 text-[15px]">Deep local market penetration.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS (WORDS OF TRUST) */}
-      <section id="testimonials" className="py-24 flex flex-col items-center px-4 overflow-hidden relative snap-start">
-        <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Words of Trust</h2>
-        <TypewriterHeading 
-          text="Hear from our clients"
-          className="text-3xl md:text-4xl font-bold text-slate-900 mb-16 text-center"
-        />
-        
-        <div className="flex justify-center w-full max-w-3xl relative min-h-[300px]">
-          <AnimatePresence>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="w-full p-10 md:p-14 text-center flex flex-col items-center relative overflow-hidden"
-            >
-              <div className="absolute top-6 left-6 opacity-5 text-pharma-teal"><svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div>
-              
-              <div className="flex justify-center mb-8 text-amber-400 gap-1">
-                {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={20} fill="currentColor" />)}
-              </div>
-              
-              <p className="text-xl md:text-2xl text-slate-800 font-bold leading-relaxed mb-10 max-w-2xl">
-                "HPL's strict commitment to compliance and on-time delivery has completely transformed our supply chain reliability in Central India. Their super stockist model is quite unmatched in the region."
-              </p>
-              
-              <div className="flex items-center justify-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pharma-teal to-pharma-teal-dark text-white flex items-center justify-center font-bold text-lg">SM</div>
-                <div className="text-left">
-                  <p className="text-[15px] font-bold text-slate-900 leading-tight">Distribution Manager</p>
-                  <p className="text-[13px] text-slate-500">National Pharmaceutical Co.</p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
+      {/* WORDS OF APPRECIATION (HIGH-FIDELITY REVIEWS) */}
+      <TestimonialsCarousel />
 
     </div>
   );

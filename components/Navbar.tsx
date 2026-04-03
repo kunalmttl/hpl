@@ -56,15 +56,15 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={cn(
-                "text-[10px] sm:text-[11px] md:text-[13px] font-semibold transition-colors relative py-1 hover:text-pharma-teal",
+                "text-[10px] sm:text-[11px] md:text-[13px] transition-colors relative py-1 hover:text-slate-900",
                 pathname === link.href
-                  ? "text-pharma-teal"
-                  : "text-slate-600"
+                  ? "text-slate-900 font-bold"
+                  : "text-slate-500 font-semibold"
               )}
             >
               {link.name}
               {pathname === link.href && (
-                <div className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-pharma-teal rounded-full" />
+                <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-slate-900 rounded-full" />
               )}
             </Link>
           ))}
