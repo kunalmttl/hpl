@@ -13,6 +13,7 @@ Refining individual landing page sections — Core Solutions cards done, navbar 
 - Refined the Navbar into a compact, centered floating pill design.
 - Implemented **Full-Page Section Snapping** using a custom Lenis-integrated wheel controller.
 - Developed the **`TypewriterHeading`** component for bidirectional, scroll-aware text animations.
+- Refined the **`IntroAnimation`** branding: replaced the three-line text wordmark with a high-fidelity `hpl_text.png` image for a more polished, professional entrance.
 - Integrated high-fidelity logistics and pharma assets into the Brand Carousel.
 - Removed all "boxes" and section backgrounds from the landing page to achieve a unified, minimal aesthetic.
 - Implemented a complex `BrandCarousel` component with dual-sphere semi-circle orbits (6 cards each) centered at the viewport edges.
@@ -24,6 +25,14 @@ Refining individual landing page sections — Core Solutions cards done, navbar 
 - **Testimonials Implementation**: Built a high-fidelity `TestimonialsCarousel` featuring a scroll-triggered 3D envelope intro and a curved "fan" layout for review cards.
 - **Envelope Animation Refinement**: Orchestrated a complex three-layer PNG envelope animation (`back`, `card`, `front`) with precise scaling (950x860) and rising trajectories.
 - **Carousel Symmetry**: Finalized the fan carousel geometry for the testimonials, ensuring 3D perspective and smooth auto-advance transitions.
+- **IntroAnimation Alignment**: Fixed the branding fly-away to dock perfectly into the Navbar logo by compensating for the Navbar's initial -100px vertical offset.
+- **Curved Branding Transition**: Refined the logo's exit curve with independent X/Y axis easing for a high-end, aerodynamic feel during the transition to the navigation state.
+- **Footer Redesign**: Built a premium, white-card layout to match high-fidelity reference designs, featuring a 5-column grid and a background watermark text.
+- **Footer Polish (CoreShift Inspiration)**: Refined the footer with individual social media tiles, a much larger blurred watermark ("HindustanPharma"), and an airy, minimal grid layout to match premium design standards.
+- **BrandCarousel Blending**: Refined the OrbitCard image blending using a multi-stage white gradient transition to eliminate harsh edges and backdrop-blur artifacts.
+- **Brand Icon Fixes**: Implemented custom SVG brand icons (Instagram, X, LinkedIn) in the Footer because Lucide-React removed them in version 1.0.
+- **Testimonials Animation Refinement**: Decoupled card opacity from the envelope during the exit sequence. Reduced the rising peak (`-110px`) to prevent heading overlap.
+- **Carousel Geometry**: Tightened vertical spacing (`mb-6`, `mt-[-50px]`) for a more compact and professional visual block.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
@@ -48,3 +57,6 @@ Refining individual landing page sections — Core Solutions cards done, navbar 
 - Resolved TypeScript Variants typing conflict in `TypewriterHeading` using explicit casting.
 - **Hydration Mismatch**: Fixed in `BrandCarousel.tsx` by adding a `useEffect` mounted check to prevent server/client HTML attribute drift.
 - **Static Animation Trigger**: Resolved issue where `TestimonialsCarousel` animation wouldn't start by refactoring to a declarative keyframe sequence with `useInView`.
+- **Lucide Brand Icons**: Fixed "Missing export" errors by replacing `Instagram`, `Twitter`, and `Linkedin` from `lucide-react` with custom SVG implementations (removed in Lucide v1.0).
+- **Carousel Color Mapping**: Fixed unblended image artifacts in `BrandCarousel` by switching from backdrop-blur masks to premium white-to-transparent gradients.
+- **Project State Desync**: Resolved `multi_replace_file_content` failures by breaking down complex project documentation updates into separate, smaller edits.

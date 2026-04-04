@@ -21,7 +21,7 @@ Last updated: 2026-04-03
 | Project Context Setup | ✅ Done | Context captured in `context.md` |
 | Project State Init | ✅ Done | `project_state.md` created |
 | Website Scaffold | ✅ Done | Next.js 16.2.1 + Tailwind v4 + shadcn |
-| Header & Footer | ✅ Done | Sticky Navbar + Global Footer |
+| Header & Footer | ✅ Done | Redesigned with premium white-card layout, 5-column grid, and 'CoreShift' inspired minimal aesthetics |
 | Home Page | ✅ Done | High-fidelity with Hero & Stats |
 | About Page | ✅ Done | Division of HDH details |
 | Services Page | ✅ Done | Knowledge Base integrated |
@@ -45,7 +45,7 @@ Last updated: 2026-04-03
 - [x] Phase 1: Fix BrandCarousel Mobile Overlap (Reduced radius for small viewports)
 - [x] Phase 1: Implement new 'Who We Work With' section (Initial baseline implemented)
 - [x] Phase 1: Refine TestimonialsCarousel (Envelope sizing and animations)
-- [ ] Phase 1: Mobile Breakpoints Audit (Testimonials scale needs downsizing)
+- [x] Phase 1: Mobile Breakpoints Audit (Testimonials scale needs downsizing)
 - [ ] Phase 1: Accessibility (Aria-labels, etc.)
 - [ ] Implement image optimization system.
 - [ ] Conduct performance (Lighthouse) audit.
@@ -101,3 +101,37 @@ Last updated: 2026-04-03
 - **Fixed**:       Resolved hydration mismatch in `BrandCarousel.tsx` using a mounted state check.
 - **Pending**:     Responsive downsizing for mobile (current scale is desktop-maximized).
 - **Left off at**: `TestimonialsCarousel.tsx` (Completed visual design and timing logic).
+→ Pushed: feat: implement high-fidelity Testimonials Carousel with envelope animation and fix hydration mismatch at 23:10
+- **Changed**:     `IntroAnimation.tsx` — replaced the three-line text wordmark ("HINDUSTAN PHARMA LOGISTICS") with a single high-fidelity image `public/hpl_text.png`.
+- **Fixed**:       Restored the **Logo Fly-away Curve** by un-gating the `Navbar` component. It now stays mounted (but hidden) to provide a valid coordinate target for the `IntroAnimation`.
+- **Improved**:    Synchronized the branding handoff — the Navbar now slides down exactly as the flying logo reaches its final docking position.
+- **Fixed**:       Resolved the **100px alignment miss** in the intro fly-away by accurately calculating the Navbar's resting position (accounting for its -100px hidden state).
+- **Refined**:     Enhanced the exit curve with independent X/Y easing for a more professional 'docking' feel.
+- **Left off at**: `IntroAnimation.tsx` (Finalized high-fidelity entrance sequence).
+### [RECAP — 2026-04-03 18:55]
+**Progress:**
+- Redesigned the **Footer** into a premium, white-card layout on an `#EDEDED` background with a 5-column grid.
+- Implemented **custom SVG brand icons** (Instagram, X/Twitter, LinkedIn) to resolve `lucide-react` v1.0 removal issues.
+- Refined **Brand Carousel image blending**: replaced backdrop-blur artifacts with smooth white gradient overlays for a seamless, high-fidelity look.
+- Optimized footer social icons into **individual square tiles** (CoreShift style) with spring transitions and light backgrounds.
+- Finalized the **large blurred watermark** ("HindustanPharma") in the footer for monumental branding depth and professionalism.
+- Adjusted the grid layout (4-1-2-2-2) to create a more spacious, airy feel.
+
+**Next Steps:**
+- Mobile audit for the new vertical carousel (adjust column widths/opacity for smaller screens).
+- Accessibility (Aria-labels, etc.) across the landing page.
+- Image optimization system initialization.
+
+### RECAP — [2026-04-04 00:34]
+- Built:       Finalized CoreShift-inspired Footer with individual tiles and monumental branding.
+- Changed:     `components/Footer.tsx` — updated social links to discrete tiles and recalibrated watermark.
+- Fixed:       Resolved documentation sync issues across `context.md` and `project_state.md`.
+- Pending:     Mobile breakpoint audit for carousel, Accessibility audit.
+- Left off at: `components/Footer.tsx` (Complete).
+
+### RECAP — [2026-04-04 16:18]
+- **Refined**:     `TestimonialsCarousel.tsx` — reduced rising peak to `-110px` and adjusted `bottom: 140` to ensure no heading overlap.
+- **Improved**:    Tightened layout spacing: `mb-6` on header and `mt-[-50px]` on carousel for a more unified block.
+- **Enhanced**:    Decoupled envelope/card opacity: card now stays fully visible at 1.0 opacity while the envelope fades away during the dropout.
+- **Fixed**:       Visual continuity during the transition from the rising card to the static carousel unit.
+- **Pending**:     Accessibility and Image Optimization.

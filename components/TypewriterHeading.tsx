@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 interface Segment {
   text: string;
@@ -24,6 +25,7 @@ export const TypewriterHeading = ({
   as: Component = "h3",
   delay = 0 
 }: TypewriterHeadingProps) => {
+  const { isIntroDone } = useNavbarLogoRef();
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.3, once: false });
 
@@ -72,7 +74,7 @@ export const TypewriterHeading = ({
       <motion.span
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isIntroDone && isInView ? "visible" : "hidden"}
         className="relative"
       >
         {finalSegments.map((segment: Segment, sIndex: number) => (

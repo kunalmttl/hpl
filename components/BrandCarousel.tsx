@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { TypewriterHeading } from "./TypewriterHeading";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 const images = [
   "/carousel/warehouse.png",
@@ -106,25 +107,27 @@ const OrbitCard = ({
       }}
       className="group"
     >
-      <div className="relative w-28 h-40 md:w-[160px] md:h-[220px] rounded-[1.25rem] md:rounded-[2rem] overflow-hidden 
-                    border-[3px] md:border-[5px] border-white shadow-[0_30px_70px_rgba(0,0,0,0.15)] bg-white/95 
-                    hover:scale-110 hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)] transition-all duration-500 will-change-transform"
+      <div className="relative w-28 h-40 md:w-[160px] md:h-[220px] rounded-[1.25rem] md:rounded-[2.5rem] overflow-hidden 
+                    border-[4px] md:border-[6px] border-white shadow-[0_25px_60px_rgba(0,0,0,0.1)] bg-white
+                    hover:scale-110 hover:shadow-[0_45px_100px_rgba(0,0,0,0.15)] transition-all duration-700 ease-[0.16,1,0.3,1] will-change-transform"
       >
         <Image
           src={src}
           alt="HPL Environment"
           fill
           sizes="(max-width: 768px) 112px, 160px"
-          className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-[filter] duration-500"
+          className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 ease-out"
         />
-        {/* Subtle glassmorphism overlay on bottom */}
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-white/10 backdrop-blur-[6px] border-t border-white/20 z-10" />
+        {/* Soft high-end blend: Multi-stage gradient from white to transparent to create a seamless fade into border */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white to-transparent z-10" />
       </div>
     </motion.div>
   );
 };
 
 export const BrandCarousel = () => {
+  const { isIntroDone } = useNavbarLogoRef();
   const [mounted, setMounted] = React.useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -214,7 +217,14 @@ export const BrandCarousel = () => {
       </div>
       
       {/* Central Content - Text sizes synced with Hero section */}
-      <div className="relative z-20 text-center px-10 max-w-xl md:max-w-3xl bg-[#EDEDED]/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={isIntroDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        whileInView={isIntroDone ? { opacity: 1, y: 0 } : {}}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-20 text-center px-10 max-w-xl md:max-w-3xl bg-[#EDEDED]/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
+      >
         <TypewriterHeading 
           as="h3"
           className="text-4xl md:text-6xl lg:text-[64px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
@@ -223,7 +233,7 @@ export const BrandCarousel = () => {
             { text: "Logistics Ecosystem" }
           ]}
         />
-        <p className="text-slate-500 text-lg leading-relaxed tracking-tight font-light max-w-lg md:max-w-2xl mx-auto mb-12">
+        <p className="text-slate-500 text-lg leading-relaxed tracking-tight font-subtext max-w-lg md:max-w-2xl mx-auto mb-12">
           Redefining supply chain standards with precision temperature management 
           and end-to-end visibility.
         </p>
@@ -231,12 +241,12 @@ export const BrandCarousel = () => {
         <div className="flex items-center justify-center gap-6 mt-12">
           <div className="w-16 h-px bg-pharma-teal/20" />
           <div className="flex flex-col items-center">
-            <span className="text-[11px] font-bold text-pharma-teal/60 uppercase tracking-[0.6em]">Premium Infrastructure</span>
-            <span className="text-[9px] text-slate-400 uppercase tracking-[0.4em] mt-1">GDP Certified Network</span>
+            <span className="text-[11px] font-bold text-pharma-teal/60 uppercase tracking-[0.6em] font-subtext">Premium Infrastructure</span>
+            <span className="text-[9px] text-slate-400 uppercase tracking-[0.4em] mt-1 font-subtext">GDP Certified Network</span>
           </div>
           <div className="w-16 h-px bg-pharma-teal/20" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Edge Fades */}
       <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#EDEDED] to-transparent z-15 pointer-events-none" />

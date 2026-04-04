@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 interface CoreSolutionCardProps {
   title: string;
@@ -24,10 +25,13 @@ export function CoreSolutionCard({
   accentBg,
   index,
 }: CoreSolutionCardProps) {
+  const { isIntroDone } = useNavbarLogoRef();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={isIntroDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      whileInView={isIntroDone ? { opacity: 1, y: 0 } : {}}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay: index * 0.12, ease: "easeOut" }}
       className="group relative flex flex-col rounded-3xl bg-[#F4F4F5] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
@@ -45,7 +49,8 @@ export function CoreSolutionCard({
         {/* Animated infographic image */}
         <motion.div
           initial={{ scale: 0.92, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          animate={isIntroDone ? { scale: 1, opacity: 1 } : { scale: 0.92, opacity: 0 }}
+          whileInView={isIntroDone ? { scale: 1, opacity: 1 } : {}}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: index * 0.12 + 0.2, ease: "easeOut" }}
           className="relative w-full h-full"
@@ -79,12 +84,24 @@ export function CoreSolutionCard({
 
       {/* Text Content */}
       <div className="px-7 pb-7 pt-2 flex flex-col">
-        <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">
+        <motion.h4 
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.12 + 0.3 }}
+          className="text-xl font-bold text-slate-900 mb-2 tracking-tight"
+        >
           {title}
-        </h4>
-        <p className="text-[15px] text-slate-500 leading-relaxed">
+        </motion.h4>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.12 + 0.4 }}
+          className="text-[15px] text-slate-500 leading-relaxed font-subtext"
+        >
           {description}
-        </p>
+        </motion.p>
       </div>
     </motion.div>
   );

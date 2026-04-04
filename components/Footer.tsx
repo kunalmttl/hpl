@@ -1,105 +1,186 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { 
-  Globe, 
-  Mail, 
-  Phone, 
-  MapPin, 
   ArrowUpRight,
-  ExternalLink,
-  MessageSquare
+  Mail,
+  Phone,
+  MapPin
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
+
+// Custom Brand Icons as Lucide removed them in v1.0
+const IconInstagram = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+const IconTwitter = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M22 4s-1 2.17-2.09 3.42a8.18 8.18 0 0 1 0 10.16C21 18.83 22 21 22 21s-2.04 0-3.13-1.09a10.45 10.45 0 0 1-10.74 0C7.04 21 5 21 5 21s1-2.17 2.09-3.42a8.18 8.18 0 0 1 0-10.16C6 5.17 5 3 5 3s2.04 0 3.13 1.09a10.45 10.45 0 0 1 10.74 0C19.96 3 22 3 22 3z"></path>
+  </svg>
+);
+
+const IconLinkedin = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
 
 export default function Footer() {
+  const { isIntroDone } = useNavbarLogoRef();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-slate-900 text-slate-300 pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-slate-800">
-          {/* Brand Column */}
-          <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <span className="text-2xl font-bold bg-gradient-to-r from-pharma-teal to-cyan-400 bg-clip-text text-transparent">
-                HPL
-              </span>
-              <span className="text-sm font-bold text-white tracking-widest uppercase font-subtext">
-                Logistics
-              </span>
+    <footer className="w-full bg-[#EDEDED] px-4 md:px-10 pb-12 pt-24 font-body">
+      <motion.div 
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={isIntroDone ? { opacity: 1, y: 0 } : {}}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-[1440px] mx-auto bg-white rounded-[4rem] md:rounded-[5.5rem] p-10 md:p-24 shadow-[0_45px_120px_rgba(0,0,0,0.03)] border border-slate-100/50 overflow-hidden"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 relative z-10 pb-20">
+          
+          {/* Main Brand & Contact Info */}
+          <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-12">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="w-9 h-9 bg-pharma-teal rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-pharma-teal/15 transition-transform hover:scale-105 duration-300">
+                <img src="/logo.png" alt="HPL Logo" className="w-full h-full object-contain brightness-0 invert" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-slate-900 tracking-tight leading-none mb-0.5">HPL</span>
+                <span className="text-[9px] font-bold text-pharma-teal uppercase tracking-[0.25em] font-subtext">Hindustan Pharma</span>
+              </div>
             </div>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              Empowering the pharmaceutical supply chain in Indore with speed, safety, and precision. We are your reliable partner for C&F, Super Stockiest, and Third Party Logistics 
+            
+            <p className="text-xl md:text-2xl font-bold text-slate-900 leading-[1.2] mb-10 max-w-sm tracking-tight">
+              Core logistics platform <span className="text-pharma-teal">for building</span> the future of healthcare—all in one place.
             </p>
-            <div className="flex space-x-4">
-              {[Globe, MessageSquare, Mail].map((Icon, i) => (
-                <Link 
-                  key={i} 
-                  href="#" 
-                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pharma-teal hover:text-white transition-all transform hover:-translate-y-1"
-                >
-                  <Icon size={18} />
-                </Link>
-              ))}
+
+            <div className="flex flex-col gap-5">
+              <ContactItem icon={<MapPin size={16} />} text="123 Pharma Hub, Logistics Park, Indore, MP 452001" />
+              <ContactItem icon={<Phone size={16} />} text="+91 731 400 1234" />
+              <ContactItem icon={<Mail size={16} />} text="connect@hplindia.co" />
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="col-span-1">
-            <h3 className="text-white font-bold text-lg mb-6">Quick Links</h3>
-            <ul className="space-y-4">
-              {["Home", "About HPL", "Services", "Resource Center", "Contact"].map((link) => (
-                <li key={link}>
-                  <Link href={`/${link.toLowerCase().replace(' ', '-')}`} className="hover:text-pharma-teal flex items-center group transition-colors">
-                    {link} <ArrowUpRight size={14} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Spacer */}
+          <div className="hidden lg:block lg:col-span-1" />
+
+          {/* Links Column 1: Solutions */}
+          <div className="lg:col-span-2 flex flex-col gap-7">
+            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Solutions</h4>
+            <div className="flex flex-col gap-4">
+              <FooterLink href="/services#cnf">C&F Agency</FooterLink>
+              <FooterLink href="/services#stockist">Super Stockist</FooterLink>
+              <FooterLink href="/services#3pl">3PL Logistics</FooterLink>
+              <FooterLink href="/services#hub">Fulfillment Hub</FooterLink>
+            </div>
           </div>
 
-          {/* Services */}
-          <div className="col-span-1">
-            <h3 className="text-white font-bold text-lg mb-6">Services</h3>
-            <ul className="space-y-4">
-              <li><Link href="/services#cnf" className="hover:text-pharma-teal transition-colors">C&F Agency</Link></li>
-              <li><Link href="/services#stockist" className="hover:text-pharma-teal transition-colors">Super Stockiest</Link></li>
-              <li><Link href="/services#distribution" className="hover:text-pharma-teal transition-colors">Distribution Hub</Link></li>
-              <li><Link href="/services#3pl" className="hover:text-pharma-teal transition-colors">3PL Logistics</Link></li>
-            </ul>
+          {/* Links Column 2: Company */}
+          <div className="lg:col-span-2 flex flex-col gap-7">
+            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Company</h4>
+            <div className="flex flex-col gap-4">
+              <FooterLink href="/about">Our Story</FooterLink>
+              <FooterLink href="/infrastructure">Infrastructure</FooterLink>
+              <FooterLink href="/compliance">Compliance</FooterLink>
+              <FooterLink href="/contact">Get in Touch</FooterLink>
+            </div>
           </div>
 
-          {/* Contact Info */}
-          <div className="col-span-1">
-            <h3 className="text-white font-bold text-lg mb-6">Contact Us</h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin size={20} className="text-pharma-teal mt-1 shrink-0" />
-                <span>Indore, Madhya Pradesh<br />Industrial Area, PH-1</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-pharma-teal shrink-0" />
-                <Link href="tel:+91XXXXXXXXXX" className="hover:text-white transition-colors">+91 XXXXX XXXXX</Link>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-pharma-teal shrink-0" />
-                <Link href="mailto:info@hplindore.com" className="hover:text-white transition-colors">info@hplindore.com</Link>
+          {/* Links Column 3: Resources */}
+          <div className="lg:col-span-2 flex flex-col items-start lg:items-end gap-10">
+            <div className="w-full flex flex-col items-start lg:items-end gap-7">
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Follow us</h4>
+              <div className="flex gap-4">
+                <SocialIcon icon={<IconInstagram />} label="Instagram" />
+                <SocialIcon icon={<IconTwitter />} label="Twitter" />
+                <SocialIcon icon={<IconLinkedin />} label="LinkedIn" />
               </div>
             </div>
           </div>
+
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm order-2 md:order-1 text-slate-500 font-subtext">
-            &copy; {currentYear} Hindustan Pharma Logistics. All Rights Reserved.
-          </p>
-          <div className="flex items-center space-x-2 text-sm order-1 md:order-2 group font-subtext">
-            <span className="text-slate-400">A</span>
-            <span className="font-bold tracking-widest text-slate-200 group-hover:text-pharma-teal transition-colors uppercase">DIVISION OF HDH</span>
-            <ExternalLink size={14} className="text-slate-600 group-hover:text-pharma-teal transition-colors" />
+        {/* Huge Blurred Background Text - Branding depth */}
+        <div className="absolute -bottom-16 md:-bottom-32 lg:-bottom-48 left-0 w-full overflow-hidden pointer-events-none select-none flex items-end justify-center">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 0.1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="text-[16rem] md:text-[24rem] lg:text-[40rem] font-bold text-pharma-teal/40 blur-[40px] md:blur-[80px] lg:blur-[120px] leading-none whitespace-nowrap transform translate-y-1/4 select-none"
+          >
+            HindustanPharma
+          </motion.span>
+        </div>
+
+        {/* Copyright Bar */}
+        <div className="mt-16 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 text-[10px] md:text-[10px] text-slate-400 font-subtext tracking-widest uppercase font-semibold">
+          <div className="flex items-center gap-6">
+            <span>&copy; {currentYear} HPL GROUP</span>
+            <span className="w-1 h-1 bg-slate-200 rounded-full hidden md:block" />
+            <span className="hidden md:inline">Quality Distribution Network</span>
+          </div>
+          <div className="flex gap-10">
+            <Link href="/privacy" className="hover:text-pharma-teal transition-colors tracking-widest">Privacy</Link>
+            <Link href="/terms" className="hover:text-pharma-teal transition-colors tracking-widest">Terms</Link>
+            <Link href="/docs" className="hover:text-pharma-teal transition-colors tracking-widest">GDPR</Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
+
+function ContactItem({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center gap-4 text-slate-500 font-subtext group cursor-default">
+      <div className="text-pharma-teal opacity-60 group-hover:opacity-100 transition-opacity">
+        {icon}
+      </div>
+      <span className="text-sm font-medium tracking-tight group-hover:text-slate-900 transition-colors">
+        {text}
+      </span>
+    </div>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link 
+      href={href} 
+      className="text-[14px] text-slate-500 hover:text-pharma-teal transition-all flex items-center group font-medium"
+    >
+      <span className="group-hover:translate-x-1 transition-transform">
+        {children}
+      </span>
+      <ArrowUpRight size={10} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all transform" />
+    </Link>
+  );
+}
+
+function SocialIcon({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <motion.button 
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label={label}
+      className="w-12 h-12 rounded-2xl flex items-center justify-center text-slate-600 bg-slate-50 border border-slate-100/50 hover:text-pharma-teal hover:border-pharma-teal/20 hover:bg-white hover:shadow-[0_15px_35px_rgba(15,118,110,0.06)] transition-all duration-300"
+    >
+      {icon}
+    </motion.button>
+  );
+}
+
+

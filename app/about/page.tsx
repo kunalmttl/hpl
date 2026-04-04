@@ -12,13 +12,29 @@ import {
   Building2,
   TrendingUp
 } from "lucide-react";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 export default function About() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
+  const { isIntroDone } = useNavbarLogoRef();
+
+  const containerVariants: any = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants: any = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring" as const, stiffness: 100, damping: 20 }
+    }
   };
 
   return (
@@ -29,7 +45,8 @@ export default function About() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isIntroDone ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-6xl font-black text-white mb-6">Our Legacy, <br /><span className="text-pharma-teal text-glow">Your Reliability.</span></h1>
@@ -43,14 +60,20 @@ export default function About() {
       {/* Core Values / Mission */}
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div {...fadeIn}>
-              <h2 className="text-pharma-teal font-bold uppercase tracking-widest font-subtext mb-4">Who We Are</h2>
-              <h3 className="text-4xl font-black text-slate-900 mb-6">A Vital Link in the Pharma Supply Chain</h3>
-              <p className="text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView={isIntroDone ? "visible" : "hidden"}
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+          >
+            <motion.div variants={itemVariants}>
+              <motion.h2 variants={itemVariants} className="text-pharma-teal font-bold uppercase tracking-widest font-subtext mb-4">Who We Are</motion.h2>
+              <motion.h3 variants={itemVariants} className="text-4xl font-black text-slate-900 mb-6">A Vital Link in the Pharma Supply Chain</motion.h3>
+              <motion.p variants={itemVariants} className="text-lg text-slate-600 mb-6 leading-relaxed font-medium">
                 Established in Indore, HPL has grown from a local distributor to a sophisticated logistics partner for India's leading pharmaceutical companies. We specialize in navigating the complexities of temperature-sensitive storage and time-critical delivery.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              </motion.p>
+              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3 text-slate-700">
                   <Award className="text-pharma-teal" size={24} />
                   <span className="font-bold">ISO 9001 Certified</span>
@@ -59,7 +82,7 @@ export default function About() {
                   <TrendingUp className="text-pharma-teal" size={24} />
                   <span className="font-bold">Scalable Capacity</span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
             
             <motion.div 
@@ -75,47 +98,62 @@ export default function About() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-pharma-teal/20 to-transparent" />
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* The HDH Connection */}
       <section className="py-24 bg-slate-50 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="bg-white rounded-[3rem] p-12 md:p-20 shadow-xl border border-slate-100 relative">
-             <div className="absolute top-0 right-0 px-8 py-4 bg-slate-900 text-white rounded-bl-3xl font-black text-sm tracking-[0.2em] font-subtext">
-               PART OF HDH GROUP
-             </div>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView={isIntroDone ? "visible" : "hidden"}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-white rounded-[3rem] p-12 md:p-20 shadow-xl border border-slate-100 relative"
+          >
+             <motion.div variants={itemVariants} className="absolute top-0 right-0 px-8 py-4 bg-slate-900 text-white rounded-bl-3xl font-black text-sm tracking-[0.2em] font-subtext">
+                PART OF HDH GROUP
+             </motion.div>
              
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
                <div className="lg:col-span-2">
-                 <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Strengthened by the HDH Legacy</h3>
-                 <p className="text-lg text-slate-600 font-medium leading-relaxed mb-8">
+                 <motion.h3 variants={itemVariants} className="text-3xl md:text-5xl font-black text-slate-900 mb-8 tracking-tight">Strengthened by the <br />HDH Legacy</motion.h3>
+                 <motion.p variants={itemVariants} className="text-xl text-slate-600 font-medium leading-relaxed mb-10">
                    HPL operates as a strategic division of HDH, leveraging the group's vast experience in distribution and warehousing. This synergy allows us to offer unmatched stability, financial backing, and a deep-rooted network across Central India.
-                 </p>
-                 <div className="flex flex-wrap gap-4">
-                    <span className="px-6 py-2 bg-slate-100 rounded-full text-slate-700 font-bold text-sm font-subtext">Regional Reach</span>
-                    <span className="px-6 py-2 bg-slate-100 rounded-full text-slate-700 font-bold text-sm font-subtext">Market Intelligence</span>
-                    <span className="px-6 py-2 bg-slate-100 rounded-full text-slate-700 font-bold text-sm font-subtext">Tech-Infused Ops</span>
-                 </div>
+                 </motion.p>
+                 <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+                    {[ "Regional Reach", "Market Intelligence", "Tech-Infused Ops" ].map((tag, i) => (
+                      <span key={i} className="px-6 py-2 bg-slate-50 rounded-full text-slate-700 font-bold text-sm font-subtext border border-slate-100 shadow-sm transition-transform hover:scale-105 select-none">{tag}</span>
+                    ))}
+                 </motion.div>
                </div>
-               <div className="flex justify-center lg:justify-end">
-                 <div className="w-48 h-48 rounded-full border-8 border-slate-50 flex items-center justify-center bg-slate-900 shadow-2xl">
-                    <span className="text-4xl font-black text-white">HDH</span>
-                 </div>
-               </div>
+               <motion.div variants={itemVariants} className="flex justify-center lg:justify-end">
+                 <motion.div 
+                   whileHover={{ rotate: 12, scale: 1.05 }}
+                   className="w-56 h-56 rounded-full border-8 border-slate-50 flex items-center justify-center bg-slate-900 shadow-2xl transition-transform duration-500 cursor-default"
+                 >
+                    <span className="text-5xl font-black text-white">HDH</span>
+                 </motion.div>
+               </motion.div>
              </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Infrastructure Section */}
       <section className="py-32">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-black text-slate-900 mb-4">World-Class Infrastructure</h2>
-            <div className="w-20 h-1.5 bg-pharma-teal mx-auto rounded-full" />
-          </div>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView={isIntroDone ? "visible" : "hidden"}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-24"
+          >
+            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">World-Class Infrastructure</motion.h2>
+            <motion.div variants={itemVariants} className="w-24 h-2 bg-pharma-teal mx-auto rounded-full" />
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
@@ -137,7 +175,10 @@ export default function About() {
             ].map((item, i) => (
               <motion.div 
                 key={i}
-                {...fadeIn}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView={isIntroDone ? "visible" : "hidden"}
+                viewport={{ once: true }}
                 className="group"
               >
                 <div className="mb-6 w-16 h-16 rounded-2xl bg-white border border-slate-100 shadow-lg flex items-center justify-center text-pharma-teal group-hover:bg-pharma-teal group-hover:text-white transition-all duration-300">

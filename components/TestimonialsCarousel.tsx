@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 /**
  * 🏥 Pharmaceutical Testimonials Data
@@ -43,6 +44,7 @@ const testimonials = [
 type Phase = "hidden" | "envelope-up" | "card-rising" | "carousel";
 
 export default function TestimonialsCarousel() {
+  const { isIntroDone } = useNavbarLogoRef();
   const [phase, setPhase] = useState<Phase>("hidden");
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
@@ -51,13 +53,14 @@ export default function TestimonialsCarousel() {
   // Animation Controls for imperative flow
   const envelopeControls = useAnimationControls();
   const cardControls = useAnimationControls();
+  const layersControls = useAnimationControls();
 
   // Handle Phase Transitions
   useEffect(() => {
-    if (inView && phase === "hidden") {
+    if (isIntroDone && inView && phase === "hidden") {
       runIntroSequence();
     }
-  }, [inView, phase]);
+  }, [isIntroDone, inView, phase]);
 
   const runIntroSequence = async () => {
     // 1. Envelope Up
@@ -65,25 +68,37 @@ export default function TestimonialsCarousel() {
     await envelopeControls.start({
       y: 0,
       opacity: 1,
+      scale: 0.65,
       transition: { type: "spring", stiffness: 80, damping: 18, duration: 0.7 }
     });
 
     // 2. Card Rising
     setPhase("card-rising");
     
-    // Animate Card up out of envelope
+    // Animate Card up OUT of envelope
     cardControls.start({
-      y: -540,
+      y: -110,
       opacity: 1,
       rotate: -3,
-      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
     });
 
-    // Simultaneously drop and fade envelope
+    // Simultaneously SCALE EVERYTHING back to original size (1.0)
+    // and then drop/fade the envelope away
+    envelopeControls.start({
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+    });
+
+    // 2.3 Fade out only the envelope layers
+    layersControls.start({
+      opacity: 0,
+      transition: { duration: 0.4 }
+    });
+
     await envelopeControls.start({
       y: 80,
-      opacity: 0,
-      transition: { duration: 0.45, ease: "easeIn", delay: 0.25 }
+      transition: { duration: 0.5, ease: "easeIn", delay: 0.25 }
     });
 
     // 3. Carousel Phase
@@ -108,7 +123,7 @@ export default function TestimonialsCarousel() {
       className="relative w-full py-24 flex flex-col items-center justify-center overflow-hidden bg-[#fafafa]/50"
     >
       {/* Section Heading */}
-      <div className="text-center z-10 mb-16 px-4">
+      <div className="text-center z-10 mb-6 px-4">
         <h2 className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
           Words of Trust
         </h2>
@@ -120,18 +135,22 @@ export default function TestimonialsCarousel() {
         </p>
       </div>
 
-      <div className="relative w-full h-[480px] flex items-center justify-center perspective-[1200px] mt-[-80px]">
+      <div className="relative w-full h-[480px] flex items-center justify-center perspective-[1200px] mt-[-50px]">
         {/* ENVELOPE INTRO UNIT */}
         <AnimatePresence>
           {phase !== "carousel" && (
             <motion.div 
               className="relative flex items-center justify-center"
               style={{ width: 950, height: 860 }}
-              initial={{ y: 120, opacity: 0 }}
+              initial={{ y: 120, opacity: 0, scale: 0.6 }}
               animate={envelopeControls}
             >
               {/* Back Layer (Full envelope) */}
-              <div className="absolute inset-0 z-0">
+              <motion.div 
+                className="absolute inset-0 z-0"
+                initial={{ opacity: 1 }}
+                animate={layersControls}
+              >
                 <Image 
                   src="/open_envelope_back.png" 
                   alt="Envelope Back" 
@@ -139,20 +158,24 @@ export default function TestimonialsCarousel() {
                   unoptimized 
                   className="object-contain" 
                 />
-              </div>
+              </motion.div>
 
               {/* The Rising Card (Sandwich Center) */}
               <motion.div 
                 className="absolute z-10 w-[450px]"
-                style={{ top: "auto", bottom: 100 }}
-                initial={{ opacity: 1, y: 40, rotate: -3 }}
+                style={{ top: "auto", bottom: 140 }}
+                initial={{ opacity: 1, y: 0, rotate: -3 }}
                 animate={cardControls}
               >
                 <TestimonialCard data={testimonials[activeIndex]} />
               </motion.div>
 
               {/* Front Layer (Pocket Cover) */}
-              <div className="absolute inset-0 z-20 pointer-events-none">
+              <motion.div 
+                className="absolute inset-0 z-20 pointer-events-none"
+                initial={{ opacity: 1 }}
+                animate={layersControls}
+              >
                 <Image 
                   src="/open_envelope_front.png" 
                   alt="Envelope Front" 
@@ -160,7 +183,7 @@ export default function TestimonialsCarousel() {
                   unoptimized 
                   className="object-contain" 
                 />
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -181,7 +204,7 @@ export default function TestimonialsCarousel() {
               return (
                 <motion.div
                   key={idx}
-                  initial={phase === "carousel" && idx === activeIndex ? { rotate: -3, y: -180 } : { opacity: 0 }}
+                  initial={phase === "carousel" && idx === activeIndex ? { rotate: -3, y: -110 } : { opacity: 0 }}
                   animate={{
                     x: offset * 300,
                     y: isActive ? 0 : 12,
