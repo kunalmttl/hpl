@@ -1,11 +1,11 @@
 # Project Context: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-03
+Last updated: 2026-04-04
 
 ## Active Project
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-Refining individual landing page sections — Core Solutions cards done, navbar refined.
+Completed high-fidelity motion design and robust, re-triggerable scroll animations across all core pages (Home, About, Services, Contact, and Footer) using the `useInView` and `animate` pattern gated by `isIntroDone`.
 
 ## Task History
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Bento Grid, and Testimonials.
@@ -31,8 +31,18 @@ Refining individual landing page sections — Core Solutions cards done, navbar 
 - **Footer Polish (CoreShift Inspiration)**: Refined the footer with individual social media tiles, a much larger blurred watermark ("HindustanPharma"), and an airy, minimal grid layout to match premium design standards.
 - **BrandCarousel Blending**: Refined the OrbitCard image blending using a multi-stage white gradient transition to eliminate harsh edges and backdrop-blur artifacts.
 - **Brand Icon Fixes**: Implemented custom SVG brand icons (Instagram, X, LinkedIn) in the Footer because Lucide-React removed them in version 1.0.
-- **Testimonials Animation Refinement**: Decoupled card opacity from the envelope during the exit sequence. Reduced the rising peak (`-110px`) to prevent heading overlap.
-- **Carousel Geometry**: Tightened vertical spacing (`mb-6`, `mt-[-50px]`) for a more compact and professional visual block.
+- Unify Background Colors: Set all landing page sections and the footer to use `#EDEDED` (the theme's `--background` color) for a consistent brand aesthetic. Updated `BrandCarousel`, `TestimonialsCarousel`, and `Footer` to use `bg-background`.
+- Remove horizontal padding from the main wrapper in `app/page.tsx` to enable a seamless, edge-to-edge "no-box" layout while maintaining a unified background.
+- Reduced vertical spacing between the Hero section and Brand Carousel.
+- Refined the **Core Solutions** section: implemented a grid-level staggered entrance and synchronized internal card elements (images, text).
+- **Staggered Workflow Entrance**: Updated "How It Works" to use `staggerContainer` for a coordinated, parent-driven section reveal.
+- **Unified Button Animations**: Implemented a smooth `buttonZoom` (scale 0-1) variant for all primary CTAs across the landing page, navbar, footer, testimonials, and contact page.
+- **Contact Page Polish**: Applied the premium animation system to the contact form and map sections.
+## Task History
+...
+- **Animation Standardization**: Unified animation variants (`itemPop`, `itemSlideUp`, `buttonZoom`, `staggerContainer`) across all pages. Integrated `isIntroDone` and `useInView` for consistent, scroll-aware re-triggering. Fixed TypeScript Easing errors in `services/page.tsx`.
+- **Dynamic Re-triggering**: Refactored `whileInView` to `animate` using `useInView` across all major pages (`page.tsx`, `about/page.tsx`, `services/page.tsx`, `contact/page.tsx`).
+- **Standardized Card Entrance**: Replaced diverse entrance animations with a unified `itemPop` (scale 0.9 + y:30) and `staggerChildren` container pattern for a professional, cohesive UI.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)

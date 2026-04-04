@@ -5,7 +5,8 @@ import {
   motion, 
   AnimatePresence, 
   useInView, 
-  useAnimationControls 
+  useAnimationControls,
+  Variants 
 } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -48,17 +49,37 @@ export default function TestimonialsCarousel() {
   const [phase, setPhase] = useState<Phase>("hidden");
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
-  const inView = useInView(containerRef, { once: true, amount: 0.4 });
+  const inView = useInView(containerRef, { once: false, amount: 0.4 });
 
   // Animation Controls for imperative flow
   const envelopeControls = useAnimationControls();
   const cardControls = useAnimationControls();
   const layersControls = useAnimationControls();
+  
+  const buttonZoom: Variants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 15,
+        mass: 0.8
+      }
+    }
+  };
 
   // Handle Phase Transitions
   useEffect(() => {
     if (isIntroDone && inView && phase === "hidden") {
       runIntroSequence();
+    } else if (!inView && phase !== "hidden") {
+      // Reset when scrolling away to allow re-triggering
+      setPhase("hidden");
+      envelopeControls.set({ y: 120, opacity: 0, scale: 0.6 });
+      cardControls.set({ y: 0, opacity: 1, rotate: -3 });
+      layersControls.set({ opacity: 1 });
     }
   }, [isIntroDone, inView, phase]);
 
@@ -120,20 +141,53 @@ export default function TestimonialsCarousel() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full py-24 flex flex-col items-center justify-center overflow-hidden bg-[#fafafa]/50"
+      className="relative w-full py-24 flex flex-col items-center justify-center overflow-hidden bg-background"
     >
       {/* Section Heading */}
-      <div className="text-center z-10 mb-6 px-4">
-        <h2 className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
+      <motion.div 
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.15,
+              delayChildren: 0.1
+            }
+          }
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-100px" }}
+        className="text-center z-10 mb-6 px-4"
+      >
+        <motion.h2 
+          variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
+          }}
+          className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3"
+        >
           Words of Trust
-        </h2>
-        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">
+        </motion.h2>
+        <motion.h3 
+          variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
+          }}
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center"
+        >
           What our partners say
-        </h3>
-        <p className="text-slate-500 text-sm text-center max-w-md mb-6 font-subtext mx-auto px-4">
+        </motion.h3>
+        <motion.p 
+          variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
+          }}
+          className="text-slate-500 text-sm text-center max-w-md mb-6 font-subtext mx-auto px-4"
+        >
           Trusted by manufacturers, distributors, and chemist networks across Madhya Pradesh.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       <div className="relative w-full h-[480px] flex items-center justify-center perspective-[1200px] mt-[-50px]">
         {/* ENVELOPE INTRO UNIT */}
@@ -225,20 +279,36 @@ export default function TestimonialsCarousel() {
 
         {/* Navigation Controls */}
         {phase === "carousel" && (
-          <div className="absolute bottom-[-60px] flex gap-4 z-50">
-            <button 
-              onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button 
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          <motion.div 
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.2
+                }
+              }
+            }}
+            initial="hidden"
+            animate="visible"
+            className="absolute bottom-[-60px] flex gap-4 z-50"
+          >
+            <motion.div variants={buttonZoom}>
+              <button 
+                onClick={handlePrev}
+                className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
+              >
+                <ChevronLeft size={20} />
+              </button>
+            </motion.div>
+            <motion.div variants={buttonZoom}>
+              <button 
+                onClick={handleNext}
+                className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </section>

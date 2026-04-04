@@ -89,12 +89,23 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center shrink-0">
-            <Link
-              href="/contact"
-              className="h-8 px-5 rounded-full bg-slate-900 border border-slate-800 text-white text-[13px] font-bold flex items-center justify-center hover:bg-slate-800 active:scale-95 transition-all shadow-md active:shadow-sm"
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isIntroDone ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 200, 
+                damping: 18, 
+                delay: 0.8 
+              }}
             >
-              Partner With Us
-            </Link>
+              <Link
+                href="/contact"
+                className="h-8 px-5 rounded-full bg-slate-900 border border-slate-800 text-white text-[13px] font-bold flex items-center justify-center hover:bg-slate-800 active:scale-95 transition-all shadow-md active:shadow-sm"
+              >
+                Partner With Us
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -153,9 +164,9 @@ export default function Navbar() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 15 }}
             >
               <Link
                 href="/contact"

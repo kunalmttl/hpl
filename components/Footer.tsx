@@ -6,12 +6,13 @@ import {
   ArrowUpRight,
   Mail,
   Phone,
-  MapPin
+  MapPin,
+  Warehouse
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants, useInView } from "framer-motion";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
-// Custom Brand Icons as Lucide removed them in v1.0
+// Custom Brand Icons
 const IconInstagram = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -22,7 +23,6 @@ const IconInstagram = () => (
 
 const IconTwitter = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
     <path d="M22 4s-1 2.17-2.09 3.42a8.18 8.18 0 0 1 0 10.16C21 18.83 22 21 22 21s-2.04 0-3.13-1.09a10.45 10.45 0 0 1-10.74 0C7.04 21 5 21 5 21s1-2.17 2.09-3.42a8.18 8.18 0 0 1 0-10.16C6 5.17 5 3 5 3s2.04 0 3.13 1.09a10.45 10.45 0 0 1 10.74 0C19.96 3 22 3 22 3z"></path>
   </svg>
 );
@@ -38,23 +38,77 @@ const IconLinkedin = () => (
 export default function Footer() {
   const { isIntroDone } = useNavbarLogoRef();
   const currentYear = new Date().getFullYear();
+  const footerRef = React.useRef(null);
+  const isFooterInView = useInView(footerRef, { amount: 0.1, once: false });
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const footerMainVariants: Variants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 1, 
+        ease: [0.16, 1, 0.3, 1] 
+      }
+    }
+  };
+
+  const buttonZoom: Variants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 15,
+        mass: 0.8
+      }
+    }
+  };
 
   return (
-    <footer className="w-full bg-[#EDEDED] px-4 md:px-10 pb-12 pt-24 font-body">
+    <footer ref={footerRef} className="w-full bg-background px-4 md:px-10 pb-12 pt-24 font-body">
       <motion.div 
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={isIntroDone ? { opacity: 1, y: 0 } : {}}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        variants={footerMainVariants}
+        initial="hidden"
+        animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
         className="relative w-full max-w-[1440px] mx-auto bg-white rounded-[4rem] md:rounded-[5.5rem] p-10 md:p-24 shadow-[0_45px_120px_rgba(0,0,0,0.03)] border border-slate-100/50 overflow-hidden"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 relative z-10 pb-20">
-          
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 relative z-10 pb-20"
+        >
           {/* Main Brand & Contact Info */}
-          <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-12">
+          <motion.div variants={itemVariants} className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-12">
             <div className="flex items-center gap-3 mb-10">
               <div className="w-9 h-9 bg-pharma-teal rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-pharma-teal/15 transition-transform hover:scale-105 duration-300">
-                <img src="/logo.png" alt="HPL Logo" className="w-full h-full object-contain brightness-0 invert" />
+                <Warehouse className="w-full h-full text-white" size={22} />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-slate-900 tracking-tight leading-none mb-0.5">HPL</span>
@@ -66,58 +120,75 @@ export default function Footer() {
               Core logistics platform <span className="text-pharma-teal">for building</span> the future of healthcare—all in one place.
             </p>
 
-            <div className="flex flex-col gap-5">
-              <ContactItem icon={<MapPin size={16} />} text="123 Pharma Hub, Logistics Park, Indore, MP 452001" />
-              <ContactItem icon={<Phone size={16} />} text="+91 731 400 1234" />
-              <ContactItem icon={<Mail size={16} />} text="connect@hplindia.co" />
-            </div>
-          </div>
+            <motion.div 
+              variants={containerVariants}
+              className="flex flex-col gap-5"
+            >
+              <motion.div variants={itemVariants}><ContactItem icon={<MapPin size={16} />} text="123 Pharma Hub, Logistics Park, Indore, MP 452001" /></motion.div>
+              <motion.div variants={itemVariants}><ContactItem icon={<Phone size={16} />} text="+91 731 400 1234" /></motion.div>
+              <motion.div variants={itemVariants}><ContactItem icon={<Mail size={16} />} text="connect@hplindia.co" /></motion.div>
+            </motion.div>
+          </motion.div>
 
           {/* Spacer */}
           <div className="hidden lg:block lg:col-span-1" />
 
           {/* Links Column 1: Solutions */}
-          <div className="lg:col-span-2 flex flex-col gap-7">
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-7">
             <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Solutions</h4>
-            <div className="flex flex-col gap-4">
-              <FooterLink href="/services#cnf">C&F Agency</FooterLink>
-              <FooterLink href="/services#stockist">Super Stockist</FooterLink>
-              <FooterLink href="/services#3pl">3PL Logistics</FooterLink>
-              <FooterLink href="/services#hub">Fulfillment Hub</FooterLink>
-            </div>
-          </div>
+            <motion.div 
+              variants={containerVariants}
+              className="flex flex-col gap-4"
+            >
+              <motion.div variants={itemVariants}><FooterLink href="/services#cnf">C&F Agency</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/services#stockist">Super Stockist</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/services#3pl">3PL Logistics</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/services#hub">Fulfillment Hub</FooterLink></motion.div>
+            </motion.div>
+          </motion.div>
 
           {/* Links Column 2: Company */}
-          <div className="lg:col-span-2 flex flex-col gap-7">
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-7">
             <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Company</h4>
-            <div className="flex flex-col gap-4">
-              <FooterLink href="/about">Our Story</FooterLink>
-              <FooterLink href="/infrastructure">Infrastructure</FooterLink>
-              <FooterLink href="/compliance">Compliance</FooterLink>
-              <FooterLink href="/contact">Get in Touch</FooterLink>
-            </div>
-          </div>
+            <motion.div 
+              variants={containerVariants}
+              className="flex flex-col gap-4"
+            >
+              <motion.div variants={itemVariants}><FooterLink href="/about">Our Story</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/infrastructure">Infrastructure</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/compliance">Compliance</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/contact">Get in Touch</FooterLink></motion.div>
+            </motion.div>
+          </motion.div>
 
           {/* Links Column 3: Resources */}
-          <div className="lg:col-span-2 flex flex-col items-start lg:items-end gap-10">
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col items-start lg:items-end gap-10">
             <div className="w-full flex flex-col items-start lg:items-end gap-7">
               <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Follow us</h4>
               <div className="flex gap-4">
-                <SocialIcon icon={<IconInstagram />} label="Instagram" />
-                <SocialIcon icon={<IconTwitter />} label="Twitter" />
-                <SocialIcon icon={<IconLinkedin />} label="LinkedIn" />
+                <motion.div variants={buttonZoom}>
+                  <SocialIcon icon={<IconInstagram />} label="Instagram" />
+                </motion.div>
+                <motion.div variants={buttonZoom}>
+                  <SocialIcon icon={<IconTwitter />} label="Twitter" />
+                </motion.div>
+                <motion.div variants={buttonZoom}>
+                  <SocialIcon icon={<IconLinkedin />} label="LinkedIn" />
+                </motion.div>
               </div>
             </div>
-          </div>
-
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Huge Blurred Background Text - Branding depth */}
         <div className="absolute -bottom-16 md:-bottom-32 lg:-bottom-48 left-0 w-full overflow-hidden pointer-events-none select-none flex items-end justify-center">
           <motion.span 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 0.1, scale: 1 }}
-            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.9 },
+              visible: { opacity: 0.05, scale: 1 }
+            }}
+            initial="hidden"
+            animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
             transition={{ duration: 2, ease: "easeOut" }}
             className="text-[16rem] md:text-[24rem] lg:text-[40rem] font-bold text-pharma-teal/40 blur-[40px] md:blur-[80px] lg:blur-[120px] leading-none whitespace-nowrap transform translate-y-1/4 select-none"
           >
@@ -126,7 +197,13 @@ export default function Footer() {
         </div>
 
         {/* Copyright Bar */}
-        <div className="mt-16 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 text-[10px] md:text-[10px] text-slate-400 font-subtext tracking-widest uppercase font-semibold">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="mt-16 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 text-[10px] md:text-[10px] text-slate-400 font-subtext tracking-widest uppercase font-semibold"
+        >
           <div className="flex items-center gap-6">
             <span>&copy; {currentYear} HPL GROUP</span>
             <span className="w-1 h-1 bg-slate-200 rounded-full hidden md:block" />
@@ -137,7 +214,7 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-pharma-teal transition-colors tracking-widest">Terms</Link>
             <Link href="/docs" className="hover:text-pharma-teal transition-colors tracking-widest">GDPR</Link>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </footer>
   );
@@ -182,5 +259,3 @@ function SocialIcon({ icon, label }: { icon: React.ReactNode; label: string }) {
     </motion.button>
   );
 }
-
-

@@ -182,7 +182,7 @@ export const BrandCarousel = () => {
     <section 
       id="brands"
       ref={containerRef}
-      className="py-32 h-[800px] md:h-[1000px] relative overflow-hidden flex items-center justify-center bg-[#EDEDED] snap-start"
+      className="pt-12 pb-32 h-[800px] md:h-[850px] relative overflow-hidden flex items-center justify-center bg-background snap-start"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.03)_0%,transparent_80%)]" />
 
@@ -218,39 +218,67 @@ export const BrandCarousel = () => {
       
       {/* Central Content - Text sizes synced with Hero section */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={isIntroDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        whileInView={isIntroDone ? { opacity: 1, y: 0 } : {}}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-20 text-center px-10 max-w-xl md:max-w-3xl bg-[#EDEDED]/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.15,
+              delayChildren: 0.2
+            }
+          }
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-100px" }}
+        className="relative z-20 text-center px-10 max-w-xl md:max-w-3xl bg-background/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
       >
-        <TypewriterHeading 
-          as="h3"
-          className="text-4xl md:text-6xl lg:text-[64px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
-          segments={[
-            { text: "Integrated Pharma", br: true },
-            { text: "Logistics Ecosystem" }
-          ]}
-        />
-        <p className="text-slate-500 text-lg leading-relaxed tracking-tight font-subtext max-w-lg md:max-w-2xl mx-auto mb-12">
+        <motion.div
+           variants={{
+             hidden: { y: 60, opacity: 0 },
+             visible: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+           }}
+        >
+          <TypewriterHeading 
+            as="h3"
+            className="text-4xl md:text-6xl lg:text-[64px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
+            segments={[
+              { text: "Integrated Pharma", br: true },
+              { text: "Logistics Ecosystem" }
+            ]}
+          />
+        </motion.div>
+        
+        <motion.p 
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: { y: 0, opacity: 1, transition: { duration: 1, ease: "easeOut" } }
+          }}
+          className="text-slate-500 text-lg leading-relaxed tracking-tight font-subtext max-w-lg md:max-w-2xl mx-auto mb-12"
+        >
           Redefining supply chain standards with precision temperature management 
           and end-to-end visibility.
-        </p>
+        </motion.p>
         
-        <div className="flex items-center justify-center gap-6 mt-12">
+        <motion.div 
+          variants={{
+            hidden: { scale: 0.9, opacity: 0 },
+            visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+          }}
+          className="flex items-center justify-center gap-6 mt-12"
+        >
           <div className="w-16 h-px bg-pharma-teal/20" />
           <div className="flex flex-col items-center">
             <span className="text-[11px] font-bold text-pharma-teal/60 uppercase tracking-[0.6em] font-subtext">Premium Infrastructure</span>
             <span className="text-[9px] text-slate-400 uppercase tracking-[0.4em] mt-1 font-subtext">GDP Certified Network</span>
           </div>
           <div className="w-16 h-px bg-pharma-teal/20" />
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Edge Fades */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#EDEDED] to-transparent z-15 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#EDEDED] to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-background to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent z-15 pointer-events-none" />
     </section>
   );
 };

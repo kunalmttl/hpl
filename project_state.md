@@ -44,8 +44,10 @@ Last updated: 2026-04-03
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
 - [x] Phase 1: Fix BrandCarousel Mobile Overlap (Reduced radius for small viewports)
 - [x] Phase 1: Implement new 'Who We Work With' section (Initial baseline implemented)
-- [x] Phase 1: Refine TestimonialsCarousel (Envelope sizing and animations)
-- [x] Phase 1: Mobile Breakpoints Audit (Testimonials scale needs downsizing)
+- [X] Staggered entrance for "How It Works" section
+- [X] Button zoom-from-nothing animations for high-intent CTAs
+- [x] Phase 1: Robust Scroll Re-triggering (Home, About, Services, Contact, Footer)
+- [ ] Image Optimization System (scale needs downsizing)
 - [ ] Phase 1: Accessibility (Aria-labels, etc.)
 - [ ] Implement image optimization system.
 - [ ] Conduct performance (Lighthouse) audit.
@@ -81,12 +83,18 @@ Last updated: 2026-04-03
 - Synchronized scroll speed to page progress using `framer-motion` for dynamic interactivity.
 - Refined **TypewriterHeading** scale and **Navbar** active tab styles (bold black, tightened underline gap).
 - Optimized layout to ensure no overlap between cards and central text on desktop/laptop views.
+- **High-Fidelity Animations**:
+  - Implemented staggered grid-level entrance for "Core Solutions."
+  - Updated "How It Works" (Workflow) with parent-driven staggered card reveals.
+  - Applied `buttonZoom` (scale 0 to 1) spring animations to all high-intent CTAs (Hero, Navbar, Footer, Testimonials, Contact).
+  - Synchronized entrance timing to trigger after text/headings settle.
 
 **Next Steps:**
 - Mobile audit for the new vertical carousel (adjust column widths/opacity for smaller screens).
-- Final review of entrance animations across all landing page sections.
+- Image optimization system implementation.
+- Conduct performance (Lighthouse) audit.
 
-## RECAP (2026-04-03)
+### RECAP (2026-04-03)
 ### Brand Carousel Refinement: Absolute Symmetry & Spacing Balance
 - **Symmetry Unified**: Replaced conditional logic with a single `translateX: "-50%"` centered anchor for both spheres. This ensures the left carousel is perfectly clear of the text and mirrors the right side exactly.
 - **Tuned Radius**: Finalized the radius at **240px** (Desktop) and **120px** (Mobile) to create a centered, balanced "corridor" for the text with exactly equal margins to the carousel cards.
@@ -108,19 +116,6 @@ Last updated: 2026-04-03
 - **Fixed**:       Resolved the **100px alignment miss** in the intro fly-away by accurately calculating the Navbar's resting position (accounting for its -100px hidden state).
 - **Refined**:     Enhanced the exit curve with independent X/Y easing for a more professional 'docking' feel.
 - **Left off at**: `IntroAnimation.tsx` (Finalized high-fidelity entrance sequence).
-### [RECAP — 2026-04-03 18:55]
-**Progress:**
-- Redesigned the **Footer** into a premium, white-card layout on an `#EDEDED` background with a 5-column grid.
-- Implemented **custom SVG brand icons** (Instagram, X/Twitter, LinkedIn) to resolve `lucide-react` v1.0 removal issues.
-- Refined **Brand Carousel image blending**: replaced backdrop-blur artifacts with smooth white gradient overlays for a seamless, high-fidelity look.
-- Optimized footer social icons into **individual square tiles** (CoreShift style) with spring transitions and light backgrounds.
-- Finalized the **large blurred watermark** ("HindustanPharma") in the footer for monumental branding depth and professionalism.
-- Adjusted the grid layout (4-1-2-2-2) to create a more spacious, airy feel.
-
-**Next Steps:**
-- Mobile audit for the new vertical carousel (adjust column widths/opacity for smaller screens).
-- Accessibility (Aria-labels, etc.) across the landing page.
-- Image optimization system initialization.
 
 ### RECAP — [2026-04-04 00:34]
 - Built:       Finalized CoreShift-inspired Footer with individual tiles and monumental branding.
@@ -130,8 +125,35 @@ Last updated: 2026-04-03
 - Left off at: `components/Footer.tsx` (Complete).
 
 ### RECAP — [2026-04-04 16:18]
+- Unify Background Colors: Set all landing page sections and the footer to use `#EDEDED` (the theme's `--background` color) for a consistent brand aesthetic. Updated `BrandCarousel`, `TestimonialsCarousel`, and `Footer` to use `bg-background`.
+- Remove horizontal padding from the main wrapper in `app/page.tsx` to enable a seamless, edge-to-edge "no-box" layout while maintaining a unified background.
+- Reduced vertical spacing between the Hero section and Brand Carousel.
 - **Refined**:     `TestimonialsCarousel.tsx` — reduced rising peak to `-110px` and adjusted `bottom: 140` to ensure no heading overlap.
 - **Improved**:    Tightened layout spacing: `mb-6` on header and `mt-[-50px]` on carousel for a more unified block.
 - **Enhanced**:    Decoupled envelope/card opacity: card now stays fully visible at 1.0 opacity while the envelope fades away during the dropout.
 - **Fixed**:       Visual continuity during the transition from the rising card to the static carousel unit.
 - **Pending**:     Accessibility and Image Optimization.
+
+### RECAP — [2026-04-04 16:42]
+- **Refined the Core Solutions section**: implemented a grid-level staggered entrance and synchronized internal card elements (images, text).
+- **Staggered Workflow Entrance**: Updated "How It Works" to use `staggerContainer` for a coordinated, parent-driven section reveal.
+- **Unified Button Animations**: Implemented a smooth `buttonZoom` (scale 0-1) variant for all primary CTAs across the landing page, navbar, footer, testimonials, and contact page.
+- **Contact Page Polish**: Applied the premium animation system to the contact form and map sections.
+- **Improved**:    Parental inheritance for `whileInView` triggers, ensuring coordinated reveals across the 2x2 grid.
+- **Changed**:     `app/page.tsx` — wrapped the services grid in a motion container with `staggerContainer` variants.
+- **Pending**:     Accessibility and Image Optimization.
+- **Left off at**: `app/page.tsx` (Core Solutions grid wrap).
+
+### RECAP — [2026-04-04 17:15]
+- **Standardized Animations**: Unified animation variants (`itemPop`, `itemSlideUp`, `buttonZoom`, `staggerContainer`) across `page.tsx`, `about/page.tsx`, `services/page.tsx`, and `contact/page.tsx`.
+- **Entrance Safety**: Integrated `isIntroDone` checks across all major components and pages to prevent premature animation firing.
+- **Improved Re-triggering**: Refined `useInView` logic for reliable "scroll-back" animation re-triggering across the entire site.
+- **Fixed TypeScript Errors**: Resolved Easing type mismatches in `services/page.tsx`.
+- **Refined CoreSolutionCard**: Added `isIntroDone` gate specifically to the Core Solutions grid to ensure sync with the global entrance.
+- **UI Consistency**: Standardized item entrance (scale 0.9, y:30 with spring) for a cohesive, premium feel.
+
+### Next Steps:
+- Mobile breakpoint audit for carousels and grids.
+- Implement specialized image optimization for Next.js.
+- Accessibility and Lighthouse audit.
+- **Left off at**: `app/page.tsx` (Core Solutions grid wrap).
