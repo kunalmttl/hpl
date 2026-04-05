@@ -122,7 +122,8 @@ export default function TestimonialsCarousel() {
       transition: { duration: 0.5, ease: "easeIn", delay: 0.25 }
     });
 
-    // 3. Carousel Phase
+    // 3. Carousel Phase — card stays at full opacity so fan card can
+    // pick up from the exact same visual position with no gap
     setPhase("carousel");
   };
 
@@ -258,7 +259,14 @@ export default function TestimonialsCarousel() {
               return (
                 <motion.div
                   key={idx}
-                  initial={phase === "carousel" && idx === activeIndex ? { rotate: -3, y: -110 } : { opacity: 0 }}
+                  // Active card: start at the exact visual position the envelope card
+                  // was at (y:100 below container center, rotate:-3) so it continues
+                  // seamlessly. Spring physics settle it to y:0.
+                  // Ghost cards: fade + slide in normally.
+                  initial={isActive 
+                    ? { opacity: 1, y: 100, rotate: -3 } 
+                    : { opacity: 0, y: -30 }
+                  }
                   animate={{
                     x: offset * 300,
                     y: isActive ? 0 : 12,

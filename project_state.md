@@ -1,5 +1,5 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-03
+Last updated: 2026-04-06
 
 ## Current active task
 - [x] Initial alignment & context gathering
@@ -38,7 +38,8 @@ Last updated: 2026-04-03
 | Fidelity Assets | ✅ Done | Integrated AI-generated logistics/pharma imagery |
 | Core Solutions Cards | ✅ Done | 2×2 premium card grid with infographic images (`CoreSolutionCard`) |
 | Navbar Active Style | ✅ Done | Bold black active tab + tighter underline (replaced teal) |
-| Testimonials Carousel | ✅ Done | High-fidelity envelope intro + 3D fan carousel |
+| Testimonials Carousel | ✅ Done | High-fidelity envelope intro + 3D fan carousel. Transition flash fixed (coordinate-space mismatch resolved). |
+| Hero Network Map | ✅ Done | Animated SVG hub-spoke distribution network with mouse parallax on stat cards |
 
 ## Pending tasks
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
@@ -50,10 +51,28 @@ Last updated: 2026-04-03
 - [x] **Footer Optimization**: Optimize Footer performance (watermark blur reduction, hardware acceleration) (2026-04-05)
 - [x] Standardize animation sequence for section headings and subtexts (Heading -> Subtext/Description delay) (2026-04-05)
 - [x] Implement reverse-stagger exit animations for all major sections (2026-04-05)
-- [x] **Hero Spacing Layout**: Tightened the Hero section layout by reducing global top padding, section padding, and pulling content higher (using `mt-[-12vh]`) to eliminate excessive blank space.
-- [ ] Image Optimization System (scale needs downsizing)
-- [ ] Phase 1: Accessibility (Aria-labels, etc.)
+- [x] **Hero Spacing Layout**: Tightened the Hero section layout by reducing
+    - **Hero Top Space**: Reduced combined top padding (parent container + section) to 24-28 units (96-112px) to clear the fixed Navbar while avoiding excessive "blank space" before the title.
+- [x] **Density & Texture (Latest)**:
+    - **Grid Patterns**: Integrated `radial-gradient` dot grids (opacity 3%) into sections like 'Workflow' to eliminate 'empty void' feelings.
+    - **Decorative Background Elements**: Added large background indicators (01, 02, 03) and floating workflow-themed icons to fill visual gaps.
+    - **Animated Connections**: Replaced static SVG connectors with animated gradient flow paths to guide user focus through the distribution chain.
+    - **Tight Density**: Reduced horizontal spread of absolutely positioned cards to `md:left/right-[10-15%]` to maintain center focus on large screens.
+- [x] Refined Core Solutions section copy (Action-oriented & local context)
+- [x] Fixed content wrapping issue on section headings
+- [ ] Mobile Responsiveness Audit (Ongoing)
+- [ ] Image Optimization System
+- [ ] Accessibility (Aria Labels & Reduced Motion)
 - [ ] Conduct performance (Lighthouse) audit.
+- [x] **TestimonialsCarousel Transition Polish** — fixed double-card flash on envelope→fan phase switch (2026-04-06)
+- [x] **Hero Premium Enhancement** — animated distribution network SVG + mouse parallax depth on stat cards (2026-04-06)
+
+## Current Task Status
+- Copy & Layout Polish: **COMPLETE** [2026-04-05]
+- Density Optimization & Workflow Refinement: **COMPLETE** [2026-04-05]
+- Visual Seam & Background Detail Enhancement: **COMPLETE** [2026-04-05]
+- TestimonialsCarousel Transition Bug Fix: **COMPLETE** [2026-04-06]
+- Hero Section Premium Enhancement: **COMPLETE** [2026-04-06]
 
 ## Known issues
 - **BrandCarousel Mobile Overlap:** The left/right carousel centers at 0 and 100% width causing image overlap on very narrow screens. Reverted to stable desktop version for now.
@@ -173,3 +192,16 @@ Last updated: 2026-04-03
 - Image optimization system implementation.
 - Accessibility and Lighthouse audit.
 - Left off at: `app/page.tsx` (Hero layout refinement).
+
+### RECAP — [2026-04-06 23:22]
+- **Diagnosed**: `TestimonialsCarousel.tsx` double-card flash during envelope→carousel transition. Two root causes identified via frame-by-frame screenshot analysis:
+  1. `AnimatePresence` on the envelope unit had no `exit` prop — held the envelope alive one extra render while the fan carousel mounted.
+  2. The fan carousel's active card used `initial={{ y: -110 }}` to "match" the envelope card's position, but the coordinate spaces were different (950×860 envelope container vs. full-width flex fan container), causing a ~140px visual jump.
+- **Fixed**: Added `await cardControls.start({ opacity: 0 })` before `setPhase("carousel")` to fade the card out before unmount. Changed fan card `initial` from the broken position-match to `{ opacity: 0, y: -30 }` for a clean slide-down entrance.
+- **Left off at**: `components/TestimonialsCarousel.tsx` (transition polish complete).
+
+### RECAP — [2026-04-06 23:59]
+- **Built**: `components/HeroNetworkMap.tsx` — animated SVG hub-spoke network (600×470 viewBox, CX=300 CY=235). Features 12 spokes with `pathLength` draw-in (staggered 70ms), outer dashed connecting ring, 3 ripple rings, 12 traveling data-flow dots, pulsing satellite nodes, and a central hub with glow ring.
+- **Added**: Mouse parallax to hero stat cards via `useMotionValue` + `useSpring` (stiffness:40, damping:20) + `useTransform`. Left cards track mouse direction, right cards oppose it (depth illusion). Handler on `onMouseMove`/`onMouseLeave` of hero section.
+- **Improved**: `TestimonialsCarousel` seamless phase handoff — fan active card now starts at calculated envelope coordinate (`y:100, rotate:-3, opacity:1`) matching the envelope card's last position, then spring-settles to center.
+- **Left off at**: `app/page.tsx` + `components/HeroNetworkMap.tsx` (hero premium enhancement).

@@ -182,7 +182,7 @@ export const BrandCarousel = () => {
     <section 
       id="brands"
       ref={containerRef}
-      className="pt-12 pb-32 h-[800px] md:h-[850px] relative overflow-hidden flex items-center justify-center bg-background snap-start"
+      className="pt-12 pb-20 h-[750px] md:h-[800px] relative overflow-hidden flex items-center justify-center bg-background snap-start"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.03)_0%,transparent_80%)]" />
 
@@ -305,8 +305,8 @@ export const BrandCarousel = () => {
       </motion.div>
 
       {/* Edge Fades */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-background to-transparent z-15 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#EDEDED] to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#EDEDED] to-transparent z-15 pointer-events-none" />
     </section>
   );
 };
