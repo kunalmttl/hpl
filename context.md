@@ -8,7 +8,8 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 **Landing page is COMPLETE.** All sections — Hero, Brand Carousel, Core Solutions, Workflow, Testimonials, and Footer — are fully built, polished, and committed. Next focus: inner pages polish (About, Services, Contact), mobile audit, and performance/accessibility.
 
 ## Task History
-- Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Bento Grid, and Testimonials.
+- Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Team Section, Bento Grid, and Testimonials.
+- Added **`TeamSection.tsx`**: Integrated an "Our Team" dual-card component following the 'How It Works' section. Features ultra-premium 4:5 aspect ratio portraits with CSS grid-based `[0fr]` to `[1fr]` bio reveal strictly upon hover, with high-fidelity `staggerContainer` entry synchronization.
 - Implemented a complex `BrandCarousel` component with dual-direction infinite rotation synced to scroll.
 - Refined the Navbar into a compact, centered floating pill design.
 - Implemented **Full-Page Section Snapping** using a custom Lenis-integrated wheel controller.

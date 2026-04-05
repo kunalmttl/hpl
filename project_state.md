@@ -42,6 +42,7 @@ Last updated: 2026-04-06
 | Hero Network Map | ✅ Done | Animated SVG hub-spoke distribution network with mouse parallax on stat cards |
 | Navbar Tightening | ✅ Done | Reduced pill gap, padding, and link spacing — clean compact layout |
 | Footer Content Fix | ✅ Done | All 7 content errors corrected (real contact, real services, real socials, GDPR removed) |
+| Our Team Section | ✅ Done | High fidelity 4:5 image cards with hover grid-height bio expansion |
 
 ## Pending tasks
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
@@ -216,5 +217,10 @@ Last updated: 2026-04-06
 ### RECAP — [2026-04-06 00:11] — LANDING PAGE COMPLETE
 - **Navbar**: Tightened pill gap (`gap-x-12`→`gap-x-6`), padding (`px-6`→`px-4`), link spacing (`gap-x-6`→`gap-x-5`). No dead space, equal rhythm.
 - **Footer (7 fixes)**: Brand copy → real HPL description. Address → Vijay Nagar 452010. Phone → +91 93000 01411. Email → hindustanpharma1@yahoo.com. Solutions → Consignee Agent + Hindustan Drug House (removed 3PL & Fulfillment Hub). Company links → About/Services/Contact/Partner With Us (removed Infrastructure/Compliance). Socials → LinkedIn + WhatsApp only (removed Instagram/Twitter). Copyright → "Hindustan Pharma Logistics". GDPR link removed. Footer padding reduced to eliminate blank space.
-- **🏁 Landing page is done.** All sections complete: Hero, Brand Carousel, Core Solutions, Workflow, Testimonials, Footer.
+- **🏁 Landing page is done.** All sections complete: Hero, Brand Carousel, Core Solutions, Workflow, Team, Testimonials, Footer.
 - **Next**: Mobile responsiveness audit → inner pages polish (About, Services, Contact) → Lighthouse audit → Accessibility.
+
+### RECAP — [2026-04-06 00:25]
+- **Documented**: Generated `LANDING_PLAYBOOK.md` detailing the entire animation system, components APIs, design tokens, mouse offsets, and pitfall checks.
+- **Built**: `components/TeamSection.tsx` inserted between 'How It Works' and 'TestimonialsCarousel'.
+- **Features**: Dual 4:5 tall portraits, with a hidden text bio that gracefully slides open via CSS `grid-rows-[0fr]` to `[1fr]` on group hover. Integrated Unsplash placeholders for testing layout. Gated all entrance animations perfectly using `isIntroDone` & `staggerContainer` template.

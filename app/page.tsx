@@ -21,6 +21,7 @@ import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { CoreSolutionCard } from "@/components/CoreSolutionCard";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 import { HeroNetworkMap } from "@/components/HeroNetworkMap";
+import { TeamSection } from "@/components/TeamSection";
 
 const cardVariantsLeft: Variants = {
   hidden: { opacity: 0, x: -40, rotate: -15, y: 40 },
@@ -538,6 +539,9 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* OUR TEAM */}
+      <TeamSection />
 
       {/* WORDS OF APPRECIATION (HIGH-FIDELITY REVIEWS) */}
       <TestimonialsCarousel />
