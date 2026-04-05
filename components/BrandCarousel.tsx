@@ -219,7 +219,13 @@ export const BrandCarousel = () => {
       {/* Central Content - Text sizes synced with Hero section */}
       <motion.div 
         variants={{
-          hidden: { opacity: 0 },
+          hidden: { 
+            opacity: 0,
+            transition: {
+              staggerChildren: 0.05,
+              staggerDirection: -1
+            }
+          },
           visible: {
             opacity: 1,
             transition: {
@@ -231,7 +237,8 @@ export const BrandCarousel = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, margin: "-100px" }}
-        className="relative z-20 text-center px-10 max-w-xl md:max-w-3xl bg-background/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
+        onViewportLeave={() => {}} // Optional hook for debugging if needed
+        className="relative z-20 text-center px-10 max-w-xl md:max-w-5xl bg-background/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
       >
         <motion.div
            variants={{
@@ -241,36 +248,57 @@ export const BrandCarousel = () => {
         >
           <TypewriterHeading 
             as="h3"
-            className="text-4xl md:text-6xl lg:text-[64px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
             segments={[
-              { text: "Integrated Pharma", br: true },
-              { text: "Logistics Ecosystem" }
+              { text: "Rooted in Indore. Reaching", br: true },
+              { text: "All", className: "text-pharma-teal" },
+              { text: " of Madhya Pradesh." }
             ]}
           />
         </motion.div>
         
         <motion.p 
           variants={{
-            hidden: { y: 40, opacity: 0 },
-            visible: { y: 0, opacity: 1, transition: { duration: 1, ease: "easeOut" } }
+            hidden: { y: 20, opacity: 0 },
+            visible: { 
+              y: 0, 
+              opacity: 1, 
+              transition: { 
+                duration: 0.8, 
+                ease: "easeOut",
+                delay: 1.4 // Wait for heading to mostly type out
+              } 
+            }
           }}
           className="text-slate-500 text-lg leading-relaxed tracking-tight font-subtext max-w-lg md:max-w-2xl mx-auto mb-12"
         >
-          Redefining supply chain standards with precision temperature management 
-          and end-to-end visibility.
+          From our base in Vijay Nagar, Indore — HPL manages 
+          warehousing, stock movement, and distribution for
+          pharma brands. Every batch tracked. Every dispatch 
+          GST-billed. Serving chemists and distributors across 
+          12+ districts.
         </motion.p>
         
         <motion.div 
           variants={{
-            hidden: { scale: 0.9, opacity: 0 },
-            visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+            hidden: { scale: 0.9, opacity: 0, y: 10 },
+            visible: { 
+              scale: 1, 
+              opacity: 1, 
+              y: 0,
+              transition: { 
+                type: "spring", 
+                stiffness: 100,
+                delay: 1.6 // Follow paragraph
+              } 
+            }
           }}
           className="flex items-center justify-center gap-6 mt-12"
         >
           <div className="w-16 h-px bg-pharma-teal/20" />
           <div className="flex flex-col items-center">
-            <span className="text-[11px] font-bold text-pharma-teal/60 uppercase tracking-[0.6em] font-subtext">Premium Infrastructure</span>
-            <span className="text-[9px] text-slate-400 uppercase tracking-[0.4em] mt-1 font-subtext">GDP Certified Network</span>
+            <span className="text-[11px] font-bold text-pharma-teal/60 uppercase tracking-[0.6em] font-subtext">MARG ERP Managed</span>
+            <span className="text-[9px] text-slate-400 uppercase tracking-[0.4em] mt-1 font-subtext">Batch & Expiry Tracked</span>
           </div>
           <div className="w-16 h-px bg-pharma-teal/20" />
         </motion.div>

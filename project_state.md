@@ -44,12 +44,15 @@ Last updated: 2026-04-03
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
 - [x] Phase 1: Fix BrandCarousel Mobile Overlap (Reduced radius for small viewports)
 - [x] Phase 1: Implement new 'Who We Work With' section (Initial baseline implemented)
-- [X] Staggered entrance for "How It Works" section
-- [X] Button zoom-from-nothing animations for high-intent CTAs
+- [x] Staggered entrance for "How It Works" section
+- [x] Button zoom-from-nothing animations for high-intent CTAs
 - [x] Phase 1: Robust Scroll Re-triggering (Home, About, Services, Contact, Footer)
+- [x] **Footer Optimization**: Optimize Footer performance (watermark blur reduction, hardware acceleration) (2026-04-05)
+- [x] Standardize animation sequence for section headings and subtexts (Heading -> Subtext/Description delay) (2026-04-05)
+- [x] Implement reverse-stagger exit animations for all major sections (2026-04-05)
+- [x] **Hero Spacing Layout**: Tightened the Hero section layout by reducing global top padding, section padding, and pulling content higher (using `mt-[-12vh]`) to eliminate excessive blank space.
 - [ ] Image Optimization System (scale needs downsizing)
 - [ ] Phase 1: Accessibility (Aria-labels, etc.)
-- [ ] Implement image optimization system.
 - [ ] Conduct performance (Lighthouse) audit.
 
 ## Known issues
@@ -137,8 +140,8 @@ Last updated: 2026-04-03
 ### RECAP — [2026-04-04 16:42]
 - **Refined the Core Solutions section**: implemented a grid-level staggered entrance and synchronized internal card elements (images, text).
 - **Staggered Workflow Entrance**: Updated "How It Works" to use `staggerContainer` for a coordinated, parent-driven section reveal.
-- **Unified Button Animations**: Implemented a smooth `buttonZoom` (scale 0-1) variant for all primary CTAs across the landing page, navbar, footer, testimonials, and contact page.
-- **Contact Page Polish**: Applied the premium animation system to the contact form and map sections.
+- **Animation Synchronization**: Refined `IntroAnimation.tsx` to delay the `isIntroDone` signal until the full sequence (fly-away + overlay fade) is complete, ensuring site content (Navbar, Hero) reveals sequentially.
+- **Footer Optimization**: Optimized `Footer.tsx` performance by reducing expensive CSS blur filters on large watermark text (reduced from 120px to 40px), removing the scale animation to prevent re-paints, and adding `will-change` hardware acceleration hints.
 - **Improved**:    Parental inheritance for `whileInView` triggers, ensuring coordinated reveals across the 2x2 grid.
 - **Changed**:     `app/page.tsx` — wrapped the services grid in a motion container with `staggerContainer` variants.
 - **Pending**:     Accessibility and Image Optimization.
@@ -152,8 +155,21 @@ Last updated: 2026-04-03
 - **Refined CoreSolutionCard**: Added `isIntroDone` gate specifically to the Core Solutions grid to ensure sync with the global entrance.
 - **UI Consistency**: Standardized item entrance (scale 0.9, y:30 with spring) for a cohesive, premium feel.
 
-### Next Steps:
+### RECAP — [2026-04-04 23:29]
+- **Fixed**:       Resolved `CoreSolutionCard.tsx` visibility issues by restoring animation state inheritance from the parent `staggerContainer`.
+- **Improved**:    Synchronized scroll-triggered reveals for all 4 cards in the Core Solutions grid.
+- **Improved**:    Verified re-triggerability (set `once: false` in `useInView`) to ensure dynamic animations on both up and down scroll.
+
+### RECAP — [2026-04-05 16:22]
+- **Optimized**:    `Footer.tsx` performance. Reduced watermark blur radius from 120px to 40px to alleviate GPU load.
+- **Refined**:     Removed scale animation on the watermark to prevent costly re-rasterization during movement.
+- **Performance**: Added `will-change-transform` and `will-change-opacity` as hardware acceleration hints to the footer container and watermark.
+- **Synchronized**: Intro animation timing finalized (delayed `isIntroDone` signal until sequence completion).
+- **Updated**:  `app/page.tsx` Hero layout. Reduced global padding (`pt-28` to `pt-16`), section padding (`pt-20` to `pt-10`), and significantly pulled up main content (`mt-[-12vh]`).
+- **Adjusted**: Decoration floating cards in Hero section were shifted higher to maintain visual balance with the new tighter layout.
+
+**Next Steps**:
 - Mobile breakpoint audit for carousels and grids.
-- Implement specialized image optimization for Next.js.
+- Image optimization system implementation.
 - Accessibility and Lighthouse audit.
-- **Left off at**: `app/page.tsx` (Core Solutions grid wrap).
+- Left off at: `app/page.tsx` (Hero layout refinement).

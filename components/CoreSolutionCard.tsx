@@ -68,8 +68,6 @@ export function CoreSolutionCard({
   return (
     <motion.div
       variants={cardVariants}
-      initial="hidden"
-      animate={isIntroDone ? undefined : "hidden"}
       className="group relative flex flex-col rounded-3xl bg-[#F4F4F5] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
     >
       {/* Infographic Area */}

@@ -96,7 +96,7 @@ export default function Footer() {
         variants={footerMainVariants}
         initial="hidden"
         animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
-        className="relative w-full max-w-[1440px] mx-auto bg-white rounded-[4rem] md:rounded-[5.5rem] p-10 md:p-24 shadow-[0_45px_120px_rgba(0,0,0,0.03)] border border-slate-100/50 overflow-hidden"
+        className="relative w-full max-w-[1440px] mx-auto bg-white rounded-[4rem] md:rounded-[5.5rem] p-10 md:p-24 shadow-[0_45px_120px_rgba(0,0,0,0.03)] border border-slate-100/50 overflow-hidden will-change-transform"
       >
         <motion.div 
           variants={containerVariants}
@@ -184,13 +184,13 @@ export default function Footer() {
         <div className="absolute -bottom-16 md:-bottom-32 lg:-bottom-48 left-0 w-full overflow-hidden pointer-events-none select-none flex items-end justify-center">
           <motion.span 
             variants={{
-              hidden: { opacity: 0, scale: 0.9 },
-              visible: { opacity: 0.05, scale: 1 }
+              hidden: { opacity: 0 },
+              visible: { opacity: 0.05 }
             }}
             initial="hidden"
             animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
             transition={{ duration: 2, ease: "easeOut" }}
-            className="text-[16rem] md:text-[24rem] lg:text-[40rem] font-bold text-pharma-teal/40 blur-[40px] md:blur-[80px] lg:blur-[120px] leading-none whitespace-nowrap transform translate-y-1/4 select-none"
+            className="text-[16rem] md:text-[24rem] lg:text-[40rem] font-bold text-pharma-teal/40 blur-[20px] md:blur-[30px] lg:blur-[40px] leading-none whitespace-nowrap transform translate-y-1/4 select-none will-change-transform will-change-opacity translate-z-0"
           >
             HindustanPharma
           </motion.span>

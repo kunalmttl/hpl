@@ -135,7 +135,13 @@ export default function Home() {
   };
 
   const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1
+      }
+    },
     visible: {
       opacity: 1,
       transition: {
@@ -155,13 +161,13 @@ export default function Home() {
   const isWorkflowInView = useInView(workflowRef, { amount: 0.2, once: false });
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-background pt-28 pb-12">
+    <div className="flex flex-col w-full min-h-screen bg-background pt-20 pb-12">
       
       {/* HERO SECTION */}
       <section 
         id="hero" 
         ref={heroRef}
-        className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 pb-6 px-4 overflow-hidden snap-start"
+        className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 pb-6 px-4 overflow-hidden snap-start"
       >
         {/* Floating Cards Background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -170,7 +176,7 @@ export default function Home() {
             custom={0.8}
             initial="initial"
             animate={isIntroDone && isHeroInView ? ["animate", "visible"] : "initial"}
-            className="absolute top-32 left-[8%] hidden lg:flex items-center gap-3"
+            className="absolute top-24 left-[8%] hidden lg:flex items-center gap-3"
           >
             <div className="w-10 h-10 rounded-full bg-pharma-teal/10 flex items-center justify-center text-pharma-teal shadow-[0_0_20px_rgba(15,118,110,0.1)]"><Globe size={18}/></div>
             <div><p className="text-[13px] font-bold text-slate-900 leading-tight">500+</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Distributors</p></div>
@@ -192,7 +198,7 @@ export default function Home() {
             custom={1}
             initial="initial"
             animate={isIntroDone && isHeroInView ? ["animate", "visible"] : "initial"}
-            className="absolute top-40 right-[8%] hidden lg:flex items-center gap-3"
+            className="absolute top-28 right-[8%] hidden lg:flex items-center gap-3"
           >
             <div className="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.1)]"><Warehouse size={18}/></div>
             <div><p className="text-[13px] font-bold text-slate-900 leading-tight">15+ Years</p><p className="text-[11px] text-slate-500 font-subtext uppercase tracking-wider">Experience</p></div>
@@ -214,7 +220,7 @@ export default function Home() {
           variants={staggerContainer}
           initial="hidden"
           animate={isIntroDone && isHeroInView ? "visible" : "hidden"}
-          className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto mt-[-5vh]"
+          className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto mt-[-12vh]"
         >
           <motion.div 
             variants={itemPop}
@@ -241,7 +247,7 @@ export default function Home() {
             variants={itemSlideUp}
             className="text-base md:text-lg text-slate-500 mb-10 max-w-2xl leading-relaxed font-subtext px-4"
           >
-            Hindustan Pharma Logistics provides integrated supply chain solutions across Central India. Specializing in C&F, Super Stockist, and distribution services.
+            Hindustan Pharam Logistics serves 60+ pharma manufacturers as a C&F agent, super stockist, consignee agent, and retail distributor — covering 12+ districts across Madhya Pradesh.
           </motion.p>
   
           <motion.div variants={buttonZoom}>
@@ -273,14 +279,44 @@ export default function Home() {
           animate={isIntroDone && isSolutionsInView ? "visible" : "hidden"}
           className="flex flex-col items-center text-center w-full"
         >
-          <motion.h2 variants={itemSlideUp} className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4 font-subtext">Core Solutions</motion.h2>
+          <motion.h2 
+            variants={{
+              hidden: { y: 30, opacity: 0 },
+              visible: { 
+                y: 0, 
+                opacity: 1, 
+                transition: { 
+                  duration: 0.8, 
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 1.2 
+                } 
+              }
+            }}
+            className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4 font-subtext"
+          >
+            Core Solutions
+          </motion.h2>
           <motion.div variants={itemSlideUp}>
             <TypewriterHeading 
               text="Four ways HPL supports your business"
               className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 text-center max-w-xl tracking-tight"
             />
           </motion.div>
-          <motion.p variants={itemSlideUp} className="text-slate-500 text-center max-w-lg mb-14 text-[16px] leading-relaxed font-subtext">
+          <motion.p 
+            variants={{
+              hidden: { y: 30, opacity: 0 },
+              visible: { 
+                y: 0, 
+                opacity: 1, 
+                transition: { 
+                  duration: 0.8, 
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 1.4 
+                } 
+              }
+            }}
+            className="text-slate-500 text-center max-w-lg mb-14 text-[16px] leading-relaxed font-subtext"
+          >
             End-to-end pharmaceutical supply chain services built for compliance, speed, and coverage across Central India.
           </motion.p>
         </motion.div>

@@ -94,11 +94,6 @@ export default function IntroAnimation() {
         // Scale factor: matches the size in the navbar
         const scaleTarget = navRect.width / logoRect.width;
 
-        // Trigger Navbar reveal slightly after fly-away starts for perfect handoff
-        setTimeout(() => {
-          setIntroDone(true);
-        }, 150);
-
         await animate(
           logo,
           {
@@ -120,7 +115,6 @@ export default function IntroAnimation() {
         );
       } else {
         // Fallback if ref not ready: just fade out
-        setIntroDone(true);
         await animate(logo, { opacity: 0, scale: 0.3 }, { duration: 0.4 });
       }
 
@@ -130,6 +124,7 @@ export default function IntroAnimation() {
       // Final Cleanup
       document.body.style.overflow = "";
       sessionStorage.setItem("hpl-intro-played", "1");
+      setIntroDone(true); // Signalling completion to other components only at the very end
       setDone(true);
     };
 
