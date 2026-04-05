@@ -36,7 +36,7 @@ Last updated: 2026-04-06
 | Typewriter Headings | ✅ Done | Bidirectional scroll-triggered typing on all section headers |
 | Full-Page Snap | ✅ Done | Intercepted wheel for section-by-section landing |
 | Fidelity Assets | ✅ Done | Integrated AI-generated logistics/pharma imagery |
-| Core Solutions Cards | ✅ Done | 2×2 premium card grid with infographic images (`CoreSolutionCard`) |
+| Core Solutions Cards | ✅ Done | 2×2 premium card grid with infographic images, radar pulses, corner brackets, and decorative index numbers. Removed all technical metadata. |
 | Navbar Active Style | ✅ Done | Bold black active tab + tighter underline (replaced teal) |
 | Testimonials Carousel | ✅ Done | High-fidelity envelope intro + 3D fan carousel. Transition flash fixed (coordinate-space mismatch resolved). |
 | Hero Network Map | ✅ Done | Animated SVG hub-spoke distribution network with mouse parallax on stat cards |
@@ -59,6 +59,7 @@ Last updated: 2026-04-06
 - [x] **Density & Texture (Latest)**:
     - **Grid Patterns**: Integrated `radial-gradient` dot grids (opacity 3%) into sections like 'Workflow' to eliminate 'empty void' feelings.
     - **Decorative Background Elements**: Added large background indicators (01, 02, 03) and floating workflow-themed icons to fill visual gaps.
+    - **Premium Card Details**: Added high-fidelity radar pulses and corner brackets to Core Solution cards for a more reactive, tech-forward feel.
     - **Animated Connections**: Replaced static SVG connectors with animated gradient flow paths to guide user focus through the distribution chain.
     - **Tight Density**: Reduced horizontal spread of absolutely positioned cards to `md:left/right-[10-15%]` to maintain center focus on large screens.
 - [x] Refined Core Solutions section copy (Action-oriented & local context)
@@ -80,6 +81,7 @@ Last updated: 2026-04-06
 - Hero Section Premium Enhancement: **COMPLETE** [2026-04-06]
 - Navbar Tightening: **COMPLETE** [2026-04-06]
 - Footer Content Corrections: **COMPLETE** [2026-04-06]
+- Core Solutions High-Fidelity Refinement: **COMPLETE** [2026-04-06]
 - **🏁 LANDING PAGE: COMPLETE** [2026-04-06]
 
 ## Known issues

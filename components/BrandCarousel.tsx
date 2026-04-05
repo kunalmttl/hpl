@@ -108,19 +108,18 @@ const OrbitCard = ({
       className="group"
     >
       <div className="relative w-28 h-40 md:w-[160px] md:h-[220px] rounded-[1.25rem] md:rounded-[2.5rem] overflow-hidden 
-                    border-[4px] md:border-[6px] border-white shadow-[0_25px_60px_rgba(0,0,0,0.1)] bg-white
-                    hover:scale-110 hover:shadow-[0_45px_100px_rgba(0,0,0,0.15)] transition-all duration-700 ease-[0.16,1,0.3,1] will-change-transform"
+                    border-[3px] md:border-[4px] border-slate-700/10 shadow-[0_30px_70px_rgba(0,0,0,0.2)] bg-slate-950
+                    group-hover:border-pharma-teal/30 hover:scale-110 hover:shadow-[0_50px_120px_rgba(0,0,0,0.25)] transition-all duration-700 ease-[0.16,1,0.3,1] will-change-transform"
       >
         <Image
           src={src}
           alt="HPL Environment"
           fill
           sizes="(max-width: 768px) 112px, 160px"
-          className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 ease-out"
+          className="object-cover grayscale-[0.1] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 ease-out"
         />
-        {/* Soft high-end blend: Multi-stage gradient from white to transparent to create a seamless fade into border */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white to-transparent z-10" />
+        {/* Soft high-end blend: Deep vignette instead of light wash */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-700" />
       </div>
     </motion.div>
   );
@@ -251,7 +250,7 @@ export const BrandCarousel = () => {
             className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
             segments={[
               { text: "Rooted in Indore. Reaching", br: true },
-              { text: "All", className: "text-pharma-teal" },
+              { text: "ALL", className: "text-pharma-teal" },
               { text: " of Madhya Pradesh." }
             ]}
           />

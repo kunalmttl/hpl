@@ -294,10 +294,61 @@ export default function Home() {
       <section 
         id="solutions" 
         ref={solutionsRef}
-        className="pt-12 pb-24 flex flex-col items-center px-4 md:px-12 relative overflow-hidden bg-background snap-start"
+        className="pt-12 pb-32 flex flex-col items-center px-4 md:px-12 relative overflow-hidden bg-background snap-start"
       >
-        <div className="absolute top-20 right-0 w-[40%] h-[40%] bg-pharma-teal/5 blur-[100px] rounded-full pointer-events-none" />
+        {/* Decorative Background Elements */}
+        <div className="absolute top-40 right-[-5%] w-[500px] h-[500px] bg-pharma-teal/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-20 left-[-5%] w-[400px] h-[400px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
         
+        {/* Intricate Dot Grid Texture (NEW) */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.04]" style={{ 
+          backgroundImage: `radial-gradient(circle at 1.5px 1.5px, #0F766E 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }} />
+
+        {/* Ambient Technical Icons (NEW) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <motion.div 
+            variants={floatingVariant} custom={1.2} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}
+            className="absolute top-[15%] left-[20%] opacity-[0.05] text-pharma-teal hidden lg:block"
+          >
+            <ShieldCheck size={120} strokeWidth={0.5} />
+          </motion.div>
+          <motion.div 
+            variants={floatingVariant} custom={1.8} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}
+            className="absolute bottom-[10%] right-[25%] opacity-[0.05] text-blue-500 hidden lg:block"
+          >
+            <Zap size={100} strokeWidth={0.5} />
+          </motion.div>
+        </div>
+
+        {/* SVG Technical Connecting Lines (NEW) */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden lg:block">
+          <svg className="w-full h-full" viewBox="0 0 1440 1000" preserveAspectRatio="none">
+             <path 
+               d="M 400 400 L 720 300 L 1040 400 M 720 300 V 700" 
+               fill="none" 
+               stroke="#0F766E" 
+               strokeWidth="0.5" 
+               className="opacity-10" 
+             />
+             <motion.circle 
+               r="3" 
+               fill="#0F766E" 
+               initial={{ opacity: 0 }}
+               animate={isIntroDone && isSolutionsInView ? { opacity: [0, 1, 0], x: [400, 720, 1040], y: [400, 300, 400] } : {}}
+               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+             />
+          </svg>
+        </div>
+        
+        {/* Giant Watermark Backdrop */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center items-center opacity-[0.04] select-none pointer-events-none">
+          <span className="text-[180px] md:text-[280px] font-black text-slate-900 tracking-[-0.05em] leading-none uppercase">
+            Solutions
+          </span>
+        </div>
+
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -350,7 +401,7 @@ export default function Home() {
           variants={staggerContainer}
           initial="hidden"
           animate={isIntroDone && isSolutionsInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full z-10 relative"
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full z-10 relative"
         >
           {[
             {
@@ -421,11 +472,11 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Premium Decorative Grid (NEW) - Subtle 'blueprint' or 'tech' texture */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]" style={{ 
-          backgroundImage: `radial-gradient(circle at 1.5px 1.5px, #0F766E 1px, transparent 0)`,
-          backgroundSize: '24px 24px'
-        }} />
+        {/* Ambient Glows Layer (Replaces Dot Grid) */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+          <div className="absolute top-[10%] left-[-5%] w-[400px] h-[400px] bg-pharma-teal/5 blur-[100px] rounded-full" />
+          <div className="absolute bottom-[10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/5 blur-[120px] rounded-full" />
+        </div>
 
         {/* Decorative Background Elements (REFINED) - Animate on scroll */}
         <div className="absolute inset-x-0 top-[48%] translate-y-[-50%] hidden md:flex justify-between items-center px-[12%] opacity-10 pointer-events-none z-0">

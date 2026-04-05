@@ -233,6 +233,12 @@ Every section follows this structure:
 ### `CoreSolutionCard`
 **File**: `components/CoreSolutionCard.tsx`  
 **Purpose**: 2×2 premium card for the Core Solutions section.  
+**Key Features**: 
+- **Infographic Area**: Centered AI-generated illustration with `group-hover:scale-[1.1]` and float animation.
+- **Radar Pulse**: Animated `pharma-teal` pulse behind the floating icon badge (infinite loop).
+- **Corner Brackets**: Discrete border brackets that reveal in the bottom corners on card hover.
+- **Decorative Index**: Large background number (01-04) at 8% opacity.
+- **Ultra-Minimalism**: All technical metadata and navigation icons removed for a cleaner look.
 **Pattern**: Inherits animation state from parent `staggerContainer` — do NOT add explicit `animate` prop on the card.
 
 ```tsx
