@@ -14,7 +14,8 @@ import {
   BarChart3,
   CheckCircle2,
   ChevronRight,
-  Star
+  Star,
+  Package
 } from "lucide-react";
 import { BrandCarousel } from "@/components/BrandCarousel";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
@@ -310,38 +311,29 @@ export default function Home() {
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           <motion.div 
             variants={floatingVariant} custom={1.2} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}
-            className="absolute top-[15%] left-[20%] opacity-[0.05] text-pharma-teal hidden lg:block"
+            className="absolute top-[8%] left-[4%] opacity-[0.08] text-pharma-teal hidden lg:block"
           >
-            <ShieldCheck size={120} strokeWidth={0.5} />
+            <ShieldCheck size={140} strokeWidth={0.5} />
           </motion.div>
           <motion.div 
             variants={floatingVariant} custom={1.8} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}
-            className="absolute bottom-[10%] right-[25%] opacity-[0.05] text-blue-500 hidden lg:block"
+            className="absolute bottom-[8%] right-[4%] opacity-[0.08] text-blue-500 hidden lg:block"
           >
-            <Zap size={100} strokeWidth={0.5} />
+            <Zap size={140} strokeWidth={0.5} />
           </motion.div>
         </div>
 
-        {/* SVG Technical Connecting Lines (NEW) */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden lg:block">
-          <svg className="w-full h-full" viewBox="0 0 1440 1000" preserveAspectRatio="none">
-             <path 
-               d="M 400 400 L 720 300 L 1040 400 M 720 300 V 700" 
-               fill="none" 
-               stroke="#0F766E" 
-               strokeWidth="0.5" 
-               className="opacity-10" 
-             />
-             <motion.circle 
-               r="3" 
-               fill="#0F766E" 
-               initial={{ opacity: 0 }}
-               animate={isIntroDone && isSolutionsInView ? { opacity: [0, 1, 0], x: [400, 720, 1040], y: [400, 300, 400] } : {}}
-               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-             />
-          </svg>
+        <div className="absolute top-[15%] right-[5%] opacity-[0.06] text-amber-500 hidden xl:block">
+           <motion.div variants={floatingVariant} custom={2.4} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}>
+              <Package size={120} strokeWidth={0.5} />
+           </motion.div>
         </div>
-        
+        <div className="absolute bottom-[15%] left-[5%] opacity-[0.06] text-rose-500 hidden xl:block">
+           <motion.div variants={floatingVariant} custom={3.0} initial="initial" animate={isIntroDone && isSolutionsInView ? ["animate", "visible"] : "initial"}>
+              <Truck size={120} strokeWidth={0.5} />
+           </motion.div>
+        </div>
+
         {/* Giant Watermark Backdrop */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center items-center opacity-[0.04] select-none pointer-events-none">
           <span className="text-[180px] md:text-[280px] font-black text-slate-900 tracking-[-0.05em] leading-none uppercase">
@@ -355,6 +347,58 @@ export default function Home() {
           animate={isIntroDone && isSolutionsInView ? "visible" : "hidden"}
           className="flex flex-col items-center text-center w-full"
         >
+          {/* Background SOLUTIONS text */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-black text-teal-900/[0.08] select-none -z-20 pointer-events-none whitespace-nowrap overflow-hidden">
+            SOLUTIONS
+          </div>
+
+          {/* Background Decorative Icons - Frame the content */}
+          <motion.div className="absolute top-40 left-[-40px] md:left-4 text-teal-900/10 rotate-12 -z-10" variants={floatingVariant} custom={0.5}>
+            <ShieldCheck size={260} />
+          </motion.div>
+          <motion.div className="absolute bottom-40 right-[-40px] md:right-4 text-teal-900/10 -rotate-12 -z-10" variants={floatingVariant} custom={1.2}>
+            <Zap size={220} />
+          </motion.div>
+          <motion.div className="absolute top-1/2 right-[-20px] md:right-10 text-teal-800/10 rotate-45 -z-10" variants={floatingVariant} custom={0.8}>
+            <Package size={200} />
+          </motion.div>
+          <motion.div className="absolute bottom-20 left-[-20px] md:left-10 text-teal-800/10 -rotate-6 -z-10" variants={floatingVariant} custom={1.5}>
+            <Truck size={180} />
+          </motion.div>
+
+          {/* Animated Network Paths - Frames the structure */}
+          <div className="absolute inset-0 pointer-events-none -z-10 opacity-60 overflow-visible">
+            <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" preserveAspectRatio="none">
+              {/* Primary framing path */}
+              <motion.path
+                d="M1380 50 Q 1420 400 1380 750 M60 750 Q 20 400 60 50"
+                stroke="url(#gradient-core)"
+                strokeWidth="2"
+                strokeDasharray="12 12"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              {/* Complementary data flow path */}
+              <motion.path
+                d="M1380 50 Q 1420 400 1380 750 M60 750 Q 20 400 60 50"
+                stroke="#3B82F6"
+                strokeWidth="3"
+                strokeDasharray="0 100"
+                initial={{ strokeDashoffset: 0, opacity: 0 }}
+                animate={{ strokeDashoffset: -100, opacity: [0, 1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }}
+              />
+              <defs>
+                <linearGradient id="gradient-core" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#0F766E" stopOpacity="0.2" />
+                  <stop offset="50%" stopColor="#0F766E" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#0F766E" stopOpacity="0.2" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
           <motion.h2 
             variants={{
               hidden: { y: 30, opacity: 0 },

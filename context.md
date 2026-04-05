@@ -19,10 +19,13 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - Removed all "boxes" and section backgrounds from the landing page to achieve a unified, minimal aesthetic.
 - **Carousel Absolute Symmetry**: Unified card centering (`translateX: "-50%"`) and tuned radius to 240px (Desktop) and 120px (Mobile) for equal spacing between central text and viewport edges.
 ## [2026-04-06] - UI/UX Refinement & Premium Polish
-- **Core Solutions**: 
-    - Implemented advanced SVG network paths with animated data particles.
-    - **Premium Card Refinements**: Added high-fidelity radar pulse animations, hover corner brackets, and large decorative index numbers (01-04) to `CoreSolutionCard`.
-    - **UI Simplification**: Removed high-frequency technical metadata (Latency, Uptime) and "noisy" `ArrowUpRight` hover icons per user preference for a cleaner, ultra-minimal professional look.
+- **Core Solutions Section**:
+    - **Visibility Refinements**: Increased opacity of background icons (teal-900/10), background text "SOLUTIONS" (opacity 0.08), and animated network paths (opacity 0.6).
+    - **Framing Adjustment**: Repositioned icons slightly inward (`left-4`, `right-4`, etc.) and used `preserveAspectRatio="none"` on the SVG network map to ensure it frames content correctly across varying viewport sizes.
+    - **Card Cleanup**: Verified removal of "Integrated" and "Compliant" badges based on user feedback.
+- **Brand Carousel**: Corrected "too white" appearance by adjusting initial opacity and hover saturation for a more professional look.
+- **Premium Card Refinements**: Added high-fidelity radar pulse animations, hover corner brackets, and large decorative index numbers (01-04) to `CoreSolutionCard`.
+- **UI Simplification**: Removed high-frequency technical metadata (Latency, Uptime) and "noisy" `ArrowUpRight` hover icons per user preference for a cleaner, ultra-minimal professional look.
 - **Team Section**: Restored the `TeamSection.tsx` component after accidental deletion; synchronized with premium leadership layout.
 - **Brand Carousel**: Fixed washed-out logo images by switching to a deep `slate-950` background and adjusting saturation/vignette.
 - **Fixes**: Resolved `ReferenceError` for missing `ArrowUpRight` and `Module not found` build errors.
