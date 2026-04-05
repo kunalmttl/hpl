@@ -45,7 +45,7 @@ export default function Navbar() {
       >
         <nav
           className={cn(
-            "pointer-events-auto h-12 md:h-11 w-full max-w-[95%] md:w-fit rounded-full px-4 md:px-6 transition-all duration-300 flex items-center justify-between md:justify-center md:gap-x-12",
+            "pointer-events-auto h-12 md:h-11 w-full max-w-[95%] md:w-fit rounded-full px-4 md:px-4 transition-all duration-300 flex items-center justify-between md:justify-center md:gap-x-6",
             scrolled
               ? "bg-white/95 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-slate-200/50"
               : "bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
@@ -64,7 +64,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-x-6">
+          <div className="hidden md:flex items-center gap-x-5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

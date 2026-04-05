@@ -5,7 +5,7 @@ Last updated: 2026-04-06
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-Finalized high-fidelity motion design and robust, re-triggerable scroll animations across all core pages. Implementing staggered sequences where subtext and descriptions follow heading typewriter animations.
+**Landing page is COMPLETE.** All sections — Hero, Brand Carousel, Core Solutions, Workflow, Testimonials, and Footer — are fully built, polished, and committed. Next focus: inner pages polish (About, Services, Contact), mobile audit, and performance/accessibility.
 
 ## Task History
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Bento Grid, and Testimonials.
@@ -44,6 +44,17 @@ Finalized high-fidelity motion design and robust, re-triggerable scroll animatio
     - Features: `pathLength` draw-in animation on 12 spokes (staggered 70ms), outer dashed connecting ring, looping ripple pulse rings, traveling data-flow dots along each spoke, and pulsing satellite nodes.
     - All animations gated on `isActive={isIntroDone && isHeroInView}` for performance.
     - Added **mouse parallax** to the 4 hero stat cards using `useMotionValue` + `useSpring` + `useTransform`. Left cards move with mouse, right cards move against (opposing depth layers). Returns to center on `mouseLeave`.
+- **Navbar Tightening (2026-04-06)**:
+    - Reduced section gap from `md:gap-x-12` → `md:gap-x-6`, horizontal pill padding from `md:px-6` → `md:px-4`, and nav link spacing from `gap-x-6` → `gap-x-5`.
+    - Result: compact pill with equal breathing room, no dead space.
+- **Footer Corrections (2026-04-06)** — 7 content errors fixed from `footer_correction.md`:
+    - Brand statement: replaced SaaS template copy with real HPL description (C&F, super stockist, 60+ manufacturers, since 2009).
+    - Contact: real address (Vijay Nagar, Indore 452010), real phone (+91 93000 01411), real email (hindustanpharma1@yahoo.com).
+    - Solutions: replaced `3PL Logistics` + `Fulfillment Hub` with `Consignee Agent` + `Hindustan Drug House`.
+    - Company: replaced broken links (Infrastructure, Compliance) with About / Services / Contact / Partner With Us.
+    - Socials: removed Instagram + Twitter, added WhatsApp icon; label changed from "Follow Us" → "Reach Us"; `SocialIcon` upgraded from `<button>` to `<a>` with `href`.
+    - Copyright: `HPL GROUP` → `Hindustan Pharma Logistics`; GDPR link removed.
+    - Blank space: footer card padding reduced `p-10 md:p-24` → `p-8 md:p-16`, grid `pb-20` → `pb-8`, copyright `mt-16` → `mt-10`.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
