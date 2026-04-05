@@ -109,7 +109,8 @@ export default function Footer() {
             </div>
             
             <p className="text-base md:text-lg font-medium text-slate-600 leading-[1.6] mb-10 max-w-sm tracking-tight font-subtext">
-              Hindustan Pharma Logistics — <span className="text-pharma-teal font-bold">Indore&apos;s trusted</span> C&amp;F agent, super stockist, and pharma distributor. Serving 60+ manufacturers across Madhya Pradesh since 2009.
+              Hindustan Pharma Logistics — <span className="text-pharma-teal font-bold">Indore&apos;s trusted</span>{" "}
+              C&amp;F agent, super stockist, and pharma distributor. Serving 60+ manufacturers across Madhya Pradesh since 2009.
             </p>
 
             <motion.div 
