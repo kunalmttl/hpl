@@ -64,13 +64,23 @@ export default function IntroAnimation() {
       // ── Step 6: Logo flies to navbar position with smooth curve ────────
       const navEl = navbarLogoRef.current;
       if (navEl) {
-        // Measure current positions
-        const navRect = navEl.getBoundingClientRect();
-        const logoRect = logo.getBoundingClientRect();
+        // ── IMAGE-TO-IMAGE PRECISION MAPPING ──
+        // We measure the actual 'img' tags rather than their containers (div/a) 
+        // to ignore internal padding differences between Intro and Navbar.
+        const navImg = navEl.querySelector('img');
+        const logoImg = logo.querySelector('img');
+
+        if (!navImg || !logoImg) {
+          // Fallback if images aren't found in DOM
+          await animate(logo, { opacity: 0, scale: 0.3 }, { duration: 0.4 });
+          return;
+        }
+
+        const navRect = navImg.getBoundingClientRect();
+        const logoRect = logoImg.getBoundingClientRect();
 
         // ── ROBUST COORDINATE CALCULATION ──
         // The navbar starts at y: -100 (hidden). We need to target its RESTING position (y: 0).
-        // If we don't, the logo will land 100px too high or low.
         const navContainer = navEl.closest('.fixed');
         const style = window.getComputedStyle(navContainer || navEl);
         const transform = style.transform;
@@ -78,20 +88,21 @@ export default function IntroAnimation() {
         let translateY = 0;
         if (transform && transform !== 'none') {
           const matrix = new DOMMatrix(transform);
-          translateY = matrix.m42; // The current y-offset (e.g. -100)
+          translateY = matrix.m42;
         }
 
-        // Final targets: where the navbar logo will be after it slides down to y:0
+        // Target: Center of the navbar logo image when it's at rest
         const targetX = navRect.left + navRect.width / 2;
         const targetY = (navRect.top - translateY) + navRect.height / 2;
 
+        // Current: Center of the intro animation logo image
         const currentX = logoRect.left + logoRect.width / 2;
         const currentY = logoRect.top + logoRect.height / 2;
 
         const dx = targetX - currentX;
         const dy = targetY - currentY;
 
-        // Scale factor: matches the size in the navbar
+        // Scale factor: match the image width precisely
         const scaleTarget = navRect.width / logoRect.width;
 
         await animate(
@@ -100,7 +111,6 @@ export default function IntroAnimation() {
             x: dx,
             y: dy,
             scale: scaleTarget,
-            // Smoothly remove intro-specific stylings
             backgroundColor: "rgba(255, 255, 255, 0)",
             borderColor: "rgba(255, 255, 255, 0)",
             backdropFilter: "blur(0px)",
@@ -108,9 +118,9 @@ export default function IntroAnimation() {
           },
           {
             duration: 1.1,
-            ease: [0.16, 1, 0.3, 1], // High-end exit curve
+            ease: [0.16, 1, 0.3, 1],
             x: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 1.1, ease: [0.45, 0, 0.55, 1] } // Arc/Curve effect
+            y: { duration: 1.1, ease: [0.45, 0, 0.55, 1] } 
           }
         );
       } else {
@@ -121,10 +131,17 @@ export default function IntroAnimation() {
       // ── Step 7: Fade out the overlay background ──────────────────
       await animate(scope.current, { backgroundColor: "rgba(0,0,0,0)" }, { duration: 0.5 });
 
-      // Final Cleanup
+      // Signal completion early so the site reveals underneath the logo
+      setIntroDone(true);
       document.body.style.overflow = "";
+
+      // ── Step 8: Settle Buffer ───────────────────────────────────────
+      // We keep the splash logo visible for an extra 2 seconds as a buffer
+      // to ensure the navbar is fully opaque and stable before we remove it.
+      await new Promise((r) => setTimeout(r, 2000));
+
+      // Final Cleanup
       sessionStorage.setItem("hpl-intro-played", "1");
-      setIntroDone(true); // Signalling completion to other components only at the very end
       setDone(true);
     };
 
@@ -147,7 +164,7 @@ export default function IntroAnimation() {
         {/* ── Logo Image (Large Hero Size) ── */}
         <div
           ref={logoRef}
-          className="flex items-center justify-center pl-4 py-4 pr-0 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10"
+          className="flex items-center justify-center px-4 py-4 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10"
           style={{ opacity: 0, transform: "scale(0)" }}
         >
           <Image
@@ -163,7 +180,7 @@ export default function IntroAnimation() {
         {/* ── Wordmark Image (Hindustan Pharma Logistics) ── */}
         <div 
           ref={textRef}
-          className="ml-[-24px] md:ml-[-48px] origin-left"
+          className="ml-[-40px] md:ml-[-64px] origin-left"
           style={{ 
             opacity: 0, 
             transform: "translateX(-30px)" 

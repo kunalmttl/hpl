@@ -102,6 +102,28 @@ When using decorative icons or SVG paths to frame central grid content:
 
 ---
 
+## 🧭 Grouped Navigation & Scroll-Spy
+**Standard**: Active navigation states must span across functional groups using `IntersectionObserver`.
+
+### 1. Group Mapping
+Navigation categories are tied to arrays of IDs in `Navbar.tsx`:
+- **Home**: `["hero", "brands"]`
+- **Services**: `["solutions", "workflow"]`
+- **About**: `["team", "testimonials"]`
+
+### 2. ID Anchor Strategy
+Every major interactive block must have a dedicated ID for tracking:
+- `#hero`: Main landing header.
+- `#brands`: Rotating logo carousel.
+- `#solutions`: Core service grid.
+- `#workflow`: Process flow steps.
+- `#team`: Leadership profiles.
+- `#testimonials`: 3D Review carousel.
+- `#footer`: Essential end-of-page target (clears active state).
+
+### 3. Exit Animation
+Navbar underline must smoothly exit (animate out) when the `#footer` is intersected to prevent "stuck" indicators at the bottom of the page.
+
 ## 🛠️ Dev Guidelines
 1. **Rule of 30**: Keep files under 300 lines. Refactor common logic to `utils`.
 2. **Global Gating**: All entrance animations must wait for `isIntroDone`.

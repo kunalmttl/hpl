@@ -3,8 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import { LucideIcon, ArrowUpRight } from "lucide-react";
-import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
+import { LucideIcon } from "lucide-react";
 
 interface CoreSolutionCardProps {
   title: string;
@@ -16,6 +15,44 @@ interface CoreSolutionCardProps {
   index: number;
 }
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      staggerChildren: 0.05,
+      delayChildren: 0.05
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const imageVariants: Variants = {
+  hidden: { scale: 0.92, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
 export function CoreSolutionCard({
   title,
   description,
@@ -25,53 +62,14 @@ export function CoreSolutionCard({
   accentBg,
   index,
 }: CoreSolutionCardProps) {
-  const { isIntroDone } = useNavbarLogoRef();
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        staggerChildren: 0.05,
-        delayChildren: 0.05
-      }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const imageVariants: Variants = {
-    hidden: { scale: 0.92, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
 
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative flex flex-col rounded-[32px] bg-white overflow-hidden transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,128,128,0.1)] border border-slate-100"
+      className="group relative flex flex-col rounded-[32px] bg-white overflow-hidden transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,128,128,0.1)] border border-slate-100 will-change-transform"
     >
       {/* Decorative Index Number (Premium Detail) */}
-      <div className="absolute top-8 left-8 z-20 pointer-events-none opacity-[0.08] group-hover:opacity-[0.15] group-hover:translate-x-2 transition-all duration-500">
+      <div className="absolute top-8 left-8 z-20 pointer-events-none opacity-[0.12] group-hover:opacity-[0.22] group-hover:translate-x-2 transition-all duration-500">
         <span className="text-6xl font-black text-slate-900 leading-none">0{index + 1}</span>
       </div>
 
@@ -111,7 +109,7 @@ export function CoreSolutionCard({
           <motion.div 
             animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-            className="absolute inset-0 rounded-2xl bg-pharma-teal/20"
+            className="absolute inset-0 rounded-2xl bg-pharma-teal/20 will-change-[transform,opacity]"
           />
           <motion.div
             variants={itemVariants}
@@ -130,11 +128,10 @@ export function CoreSolutionCard({
           className="text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-pharma-teal transition-colors duration-500 flex items-center gap-2"
         >
           {title}
-          
         </motion.h4>
         <motion.p 
           variants={itemVariants}
-          className="text-[15px] text-slate-500/90 leading-relaxed font-subtext"
+          className="text-[15px] text-slate-600 leading-relaxed font-subtext"
         >
           {description}
         </motion.p>

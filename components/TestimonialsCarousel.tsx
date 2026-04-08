@@ -8,7 +8,7 @@ import {
   useAnimationControls,
   Variants 
 } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck, CheckCircle2, MessageSquareQuote } from "lucide-react";
 import Image from "next/image";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
@@ -49,7 +49,7 @@ export default function TestimonialsCarousel() {
   const [phase, setPhase] = useState<Phase>("hidden");
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
-  const inView = useInView(containerRef, { once: false, amount: 0.4 });
+  const inView = useInView(containerRef, { once: true, amount: 0.4 });
 
   // Animation Controls for imperative flow
   const envelopeControls = useAnimationControls();
@@ -74,14 +74,9 @@ export default function TestimonialsCarousel() {
   useEffect(() => {
     if (isIntroDone && inView && phase === "hidden") {
       runIntroSequence();
-    } else if (!inView && phase !== "hidden") {
-      // Reset when scrolling away to allow re-triggering
-      setPhase("hidden");
-      envelopeControls.set({ y: 120, opacity: 0, scale: 0.6 });
-      cardControls.set({ y: 0, opacity: 1, rotate: -3 });
-      layersControls.set({ opacity: 1 });
     }
   }, [isIntroDone, inView, phase]);
+
 
   const runIntroSequence = async () => {
     // 1. Envelope Up
@@ -143,7 +138,84 @@ export default function TestimonialsCarousel() {
     <section 
       ref={containerRef}
       className="relative w-full py-24 flex flex-col items-center justify-center overflow-hidden bg-background"
+      aria-label="Client Testimonials"
     >
+      {/* 🏙️ High-Fidelity Background Framing (NEW) */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none" aria-hidden="true">
+        {/* Large Centered Watermark */}
+
+
+        {/* Ambient Corner Glows */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-pharma-teal/5 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2" />
+
+        {/* Floating Trust Network Elements */}
+        {phase === "carousel" && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            {/* Animated rays emanating from the center */}
+            <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none">
+              <defs>
+                <radialGradient id="trust-ray" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                  <stop offset="0%" stopColor="#0F766E" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="transparent" />
+                </radialGradient>
+              </defs>
+              <g className="opacity-15">
+                {[...Array(12)].map((_, i) => (
+                  <motion.line
+                    key={i}
+                    x1="720" y1="400"
+                    x2={720 + Math.cos((i * 30) * Math.PI / 180) * 1000}
+                    y2={400 + Math.sin((i * 30) * Math.PI / 180) * 1000}
+                    stroke="url(#trust-ray)"
+                    strokeWidth="1"
+                    strokeDasharray="4 12"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 90 + i * 10, repeat: Infinity, ease: "linear" }}
+                  />
+                ))}
+              </g>
+            </svg>
+
+            {/* Floating Icons with parallax-style motion */}
+            <motion.div 
+              className="absolute top-[15%] left-[8%] text-pharma-teal/10 rotate-[-15deg]"
+              animate={{ y: [0, -20, 0], rotate: [-15, -10, -15] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            >
+              <Quote size={200} strokeWidth={0.5} />
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-[20%] right-[10%] text-blue-500/10 rotate-[15deg]"
+              style={{ scaleX: -1 }}
+              animate={{ y: [0, 20, 0], rotate: [15, 20, 15] }}
+              transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+            >
+              <Quote size={240} strokeWidth={0.5} />
+            </motion.div>
+
+            {/* Smaller floating trust badges */}
+            <motion.div 
+              className="absolute top-[40%] right-[12%] text-slate-400/20"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
+              transition={{ duration: 6, repeat: Infinity }}
+            >
+              <ShieldCheck size={80} />
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-[40%] left-[12%] text-slate-400/20"
+              animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.1, 0.2] }}
+              transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+            >
+              <CheckCircle2 size={60} />
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
       {/* Section Heading */}
       <motion.div 
         variants={{
@@ -158,7 +230,7 @@ export default function TestimonialsCarousel() {
         }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-100px" }}
+        viewport={{ once: true, margin: "-100px" }}
         className="text-center z-10 mb-6 px-4"
       >
         <motion.h2 
@@ -190,12 +262,17 @@ export default function TestimonialsCarousel() {
         </motion.p>
       </motion.div>
 
-      <div className="relative w-full h-[480px] flex items-center justify-center perspective-[1200px] mt-[-50px]">
+      <div 
+        className="relative w-full h-[480px] flex items-center justify-center perspective-[1200px] mt-[-50px]"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Success Stories Carousel"
+      >
         {/* ENVELOPE INTRO UNIT */}
         <AnimatePresence>
           {phase !== "carousel" && (
             <motion.div 
-              className="relative flex items-center justify-center"
+              className="absolute flex items-center justify-center"
               style={{ width: 950, height: 860 }}
               initial={{ y: 120, opacity: 0, scale: 0.6 }}
               animate={envelopeControls}
@@ -208,10 +285,11 @@ export default function TestimonialsCarousel() {
               >
                 <Image 
                   src="/open_envelope_back.png" 
-                  alt="Envelope Back" 
+                  alt="" 
                   fill 
                   unoptimized 
-                  className="object-contain" 
+                  className="object-contain"
+                  aria-hidden="true" 
                 />
               </motion.div>
 
@@ -233,10 +311,11 @@ export default function TestimonialsCarousel() {
               >
                 <Image 
                   src="/open_envelope_front.png" 
-                  alt="Envelope Front" 
+                  alt="" 
                   fill 
                   unoptimized 
-                  className="object-contain" 
+                  className="object-contain"
+                  aria-hidden="true" 
                 />
               </motion.div>
             </motion.div>
@@ -245,7 +324,7 @@ export default function TestimonialsCarousel() {
 
         {/* FAN CAROUSEL UNIT */}
         {phase === "carousel" && (
-          <div className="relative w-full h-full flex items-center justify-center">
+          <div className="absolute w-full h-full flex items-center justify-center">
             {testimonials.map((t, idx) => {
               let offset = idx - activeIndex;
               if (offset > 1) offset -= testimonials.length;
@@ -304,16 +383,18 @@ export default function TestimonialsCarousel() {
               <button 
                 onClick={handlePrev}
                 className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
+                aria-label="Previous Testimonial"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={20} aria-hidden="true" />
               </button>
             </motion.div>
             <motion.div variants={buttonZoom}>
               <button 
                 onClick={handleNext}
                 className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:bg-pharma-teal hover:text-white hover:border-pharma-teal transition-colors shadow-sm"
+                aria-label="Next Testimonial"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={20} aria-hidden="true" />
               </button>
             </motion.div>
           </motion.div>
@@ -337,9 +418,9 @@ function TestimonialCard({ data }: { data: any }) {
       </p>
 
       {/* 5 Amber Stars */}
-      <div className="flex text-amber-400 gap-0.5 mt-4">
+      <div className="flex text-amber-400 gap-0.5 mt-4" aria-label={`${data.rating} out of 5 stars`}>
         {[...Array(5)].map((_, i) => (
-          <Star key={i} size={14} fill="currentColor" />
+          <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
         ))}
       </div>
 

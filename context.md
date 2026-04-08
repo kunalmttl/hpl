@@ -5,7 +5,7 @@ Last updated: 2026-04-06
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Landing page is COMPLETE.** All sections — Hero, Brand Carousel, Core Solutions, Workflow, Testimonials, and Footer — are fully built, polished, and committed. Next focus: inner pages polish (About, Services, Contact), mobile audit, and performance/accessibility.
+**Accessibility & Mobile Audit COMPLETE.** Finalized comprehensive ARIA landmark implementation across all components. Resolved mobile layout regressions in the Brand Carousel and Core Solutions sections. The landing page and contact flow are now fully responsive, high-fidelity, and accessible. Final verification confirmed clean keyboard navigation and zero-overlap mobile aesthetics.
 
 ## Task History
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Team Section, Bento Grid, and Testimonials.
@@ -18,6 +18,12 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - Integrated high-fidelity logistics and pharma assets into the Brand Carousel.
 - Removed all "boxes" and section backgrounds from the landing page to achieve a unified, minimal aesthetic.
 - **Carousel Absolute Symmetry**: Unified card centering (`translateX: "-50%"`) and tuned radius to 240px (Desktop) and 120px (Mobile) for equal spacing between central text and viewport edges.
+- **Contact Page Refactor (2026-04-06)**:
+    - **Tone Shift**: Removed SaaS-heavy jargon ("Secure Gateway", "Transmission Protocol", "Node") in favor of professional pharma/B2B language ("Send an Enquiry", "Representative").
+    - **B2B Form Expansion**: Updated the inquiry form to capture `Company Name`, `Phone Number`, and a categorized `Enquiry Type` (C&F, Super Stockist, etc.).
+    - **UI Spaciousness**: Increased horizontal padding (`px-8 md:px-16 lg:px-24`) and card gaps to improve framing and breathing room.
+    - **Section Cleanup**: Removed the "Strategic Location" map section to focus on high-intent lead generation.
+    - **Navigation Consistency**: Synchronized the hero section and form grid horizontal alignment.
 ## [2026-04-06] - UI/UX Refinement & Premium Polish
 - **Core Solutions Section**:
     - **Visibility Refinements**: Increased opacity of background icons (teal-900/10), background text "SOLUTIONS" (opacity 0.08), and animated network paths (opacity 0.6).
@@ -61,12 +67,35 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
     - Result: compact pill with equal breathing room, no dead space.
 - **Footer Corrections (2026-04-06)** — 7 content errors fixed from `footer_correction.md`:
     - Brand statement: replaced SaaS template copy with real HPL description (C&F, super stockist, 60+ manufacturers, since 2009).
-    - Contact: real address (Vijay Nagar, Indore 452010), real phone (+91 93000 01411), real email (hindustanpharma1@yahoo.com).
+    - Contact: real address (Khajrana, Indore 452016), real landline (0731 605 6001), real email (hindustanpharma1@yahoo.com).
     - Solutions: replaced `3PL Logistics` + `Fulfillment Hub` with `Consignee Agent` + `Hindustan Drug House`.
     - Company: replaced broken links (Infrastructure, Compliance) with About / Services / Contact / Partner With Us.
     - Socials: removed Instagram + Twitter, added WhatsApp icon; label changed from "Follow Us" → "Reach Us"; `SocialIcon` upgraded from `<button>` to `<a>` with `href`.
     - Copyright: `HPL GROUP` → `Hindustan Pharma Logistics`; GDPR link removed.
     - Blank space: footer card padding reduced `p-10 md:p-24` → `p-8 md:p-16`, grid `pb-20` → `pb-8`, copyright `mt-16` → `mt-10`.
+- **Core Solutions Visibility & Cleanup (2026-04-06)**:
+    - **Restored Content**: Re-added the missing "Core Solutions" heading, "Four Ways HPL" subtitle, and background "SOLUTIONS" watermark that were accidentally removed during background optimization.
+    - **Animation Optimization**: Removed excessive absolute delays (1.2s+) from section variants that caused the content to appear missing or laggy.
+    - **Reliability Fix**: Removed the `isIntroDone` gate from scroll-triggered sections (Solutions, Workflow) to ensure content reveals immediately upon scroll, regardless of the intro animation state.
+    - **Redundancy Removal**: Removed the "Dot Grid Texture" from the Solutions section as per user feedback to maintain a cleaner aesthetic.
+    - **Backgroup SVG**: Restored and improved the animated network flow paths with multi-colored data particles.
+- **Single-Page Architecture (SPA) Transition (2026-04-06)**:
+    - **Consolidation**: Merged standalone `/about` and `/services` routes into the main landing page flow to improve narrative continuity and performance.
+    - **Anchor Navigation**: Implemented `#solutions`, `#workflow`, `#team`, and `#testimonials` anchors for precise section targeting.
+    - **Grouped Scroll Spy**: Upgraded the Navbar with an `IntersectionObserver` that maps multiple sections to single navigation categories:
+        - **Home**: `#hero`, `#brands`
+        - **Services**: `#solutions`, `#workflow`
+        - **About**: `#team`, `#testimonials`
+    - **Smart Logic**: Implemented a "Hide on Footer" trigger that smoothly removes the Navbar underline when the user reaches the end of the page Journey.
+    - **Seamless Handoff**: Verified cross-page redirection from the "Partner With Us" (Contact) page back to the landing page anchor points.
+- **Accessibility & Mobile Quality Audit (2026-04-08)**:
+    - **Global Accessibility**: Implemented comprehensive ARIA landmarks and metadata across `Navbar`, `Footer`, `Hero`, `Solutions`, `Workflow`, `Team`, and `Testimonials`.
+    - **Interactive Semantics**: Added `aria-label` to all navigation links, logo anchors, and "Partner With Us" CTA buttons. 
+    - **Noise Reduction**: Marked all non-functional Framer Motion animations, background decoration SVGs, and pulse elements as `aria-hidden="true"`.
+    - **Carousel Accessibility**: Integrated `aria-roledescription="carousel"` and control labels for the 3D-envelope testimonial system.
+    - **Brand Carousel (Mobile Fix)**: Squeezed central text into an absolute 260px safety zone and adjusted orbit lanes for total zero-overlap on small devices.
+    - **Typo Fix**: Corrected "Pharam" to "Pharma" in the Hero section mission statement.
+    - **Verification**: Confirmed visible focus states across the site and validated mobile legibility in the Core Solutions grid.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
@@ -95,3 +124,7 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - **ReferenceError (2026-04-06)**: Fixed `ArrowUpRight is not defined` in `CoreSolutionCard.tsx` by adding the missing import.
 - **Module not found (2026-04-06)**: Resolved `Can't resolve '@/components/TeamSection'` by restoring the accidentally deleted component.
 - **Project State Desync**: Resolved `multi_replace_file_content` failures by breaking down complex updates into separate, smaller edits.
+- **Core Solutions Missing Content**: Fixed `isIntroDone` dependency and excessive delays that made the heading and subtext invisible/laggy.
+- **Redundant BG Elements**: Removed dot grid texture from Core Solutions following user request for a cleaner "no-box" look.
+- **Contact Page Layout (2026-04-06)**: Resolved tight horizontal spacing by increasing container padding from `px-6` to responsive `px-24`.
+- **Form Copy Errors**: Corrected "An specialist node" to "A representative" in success state.

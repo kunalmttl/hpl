@@ -83,7 +83,12 @@ export default function Footer() {
   };
 
   return (
-    <footer ref={footerRef} className="w-full bg-background px-4 md:px-10 pb-12 pt-24 font-body">
+    <footer 
+      id="footer" 
+      ref={footerRef} 
+      className="w-full bg-background px-4 md:px-10 pb-12 pt-24 font-body"
+      aria-label="Footer"
+    >
       <motion.div 
         variants={footerMainVariants}
         initial="hidden"
@@ -99,7 +104,10 @@ export default function Footer() {
           {/* Main Brand & Contact Info */}
           <motion.div variants={itemVariants} className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-12">
             <div className="flex items-center gap-3 mb-10">
-              <div className="w-9 h-9 bg-pharma-teal rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-pharma-teal/15 transition-transform hover:scale-105 duration-300">
+              <div 
+                className="w-9 h-9 bg-pharma-teal rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-pharma-teal/15 transition-transform hover:scale-105 duration-300"
+                aria-hidden="true"
+              >
                 <Warehouse className="w-full h-full text-white" size={22} />
               </div>
               <div className="flex flex-col">
@@ -113,14 +121,14 @@ export default function Footer() {
               C&amp;F agent, super stockist, and pharma distributor. Serving 60+ manufacturers across Madhya Pradesh since 2009.
             </p>
 
-            <motion.div 
-              variants={containerVariants}
-              className="flex flex-col gap-5"
-            >
-              <motion.div variants={itemVariants}><ContactItem icon={<MapPin size={16} />} text="Vijay Nagar, Indore, Madhya Pradesh — 452010" /></motion.div>
-              <motion.div variants={itemVariants}><ContactItem icon={<Phone size={16} />} text="+91 93000 01411" /></motion.div>
-              <motion.div variants={itemVariants}><ContactItem icon={<Mail size={16} />} text="hindustanpharma1@yahoo.com" /></motion.div>
-            </motion.div>
+              <motion.div 
+                variants={containerVariants}
+                className="flex flex-col gap-5"
+              >
+                <motion.div variants={itemVariants}><ContactItem icon={<MapPin size={16} />} text="MR 9 Rd, RamKrishna Bagh, Khajrana, Indore, MP 452016" /></motion.div>
+                <motion.div variants={itemVariants}><ContactItem icon={<Phone size={16} />} text="0731 605 6001" /></motion.div>
+                <motion.div variants={itemVariants}><ContactItem icon={<Mail size={16} />} text="hindustanpharma1@yahoo.com" /></motion.div>
+              </motion.div>
           </motion.div>
 
           {/* Spacer */}
@@ -128,7 +136,7 @@ export default function Footer() {
 
           {/* Links Column 1: Solutions */}
           <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-7">
-            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Solutions</h4>
+            <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-subtext">Solutions</h4>
             <motion.div 
               variants={containerVariants}
               className="flex flex-col gap-4"
@@ -142,7 +150,7 @@ export default function Footer() {
 
           {/* Links Column 2: Company */}
           <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col gap-7">
-            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Company</h4>
+            <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-subtext">Company</h4>
             <motion.div 
               variants={containerVariants}
               className="flex flex-col gap-4"
@@ -157,7 +165,7 @@ export default function Footer() {
           {/* Links Column 3: Resources */}
           <motion.div variants={itemVariants} className="lg:col-span-2 flex flex-col items-start lg:items-end gap-10">
             <div className="w-full flex flex-col items-start lg:items-end gap-7">
-              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-subtext opacity-80">Reach Us</h4>
+              <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-subtext">Reach Us</h4>
               <div className="flex gap-4">
                 <motion.div variants={buttonZoom}>
                   <SocialIcon icon={<IconLinkedin />} label="LinkedIn" href="https://linkedin.com" />
@@ -181,6 +189,7 @@ export default function Footer() {
             animate={isIntroDone && isFooterInView ? "visible" : "hidden"}
             transition={{ duration: 2, ease: "easeOut" }}
             className="text-[16rem] md:text-[24rem] lg:text-[40rem] font-bold text-pharma-teal/40 blur-[20px] md:blur-[30px] lg:blur-[40px] leading-none whitespace-nowrap transform translate-y-1/4 select-none will-change-transform will-change-opacity translate-z-0"
+            aria-hidden="true"
           >
             HindustanPharma
           </motion.span>
@@ -211,8 +220,8 @@ export default function Footer() {
 
 function ContactItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-4 text-slate-500 font-subtext group cursor-default">
-      <div className="text-pharma-teal opacity-60 group-hover:opacity-100 transition-opacity">
+    <div className="flex items-center gap-4 text-slate-600 font-subtext group cursor-default">
+      <div className="text-pharma-teal opacity-70 group-hover:opacity-100 transition-opacity">
         {icon}
       </div>
       <span className="text-sm font-medium tracking-tight group-hover:text-slate-900 transition-colors">
@@ -226,7 +235,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link 
       href={href} 
-      className="text-[14px] text-slate-500 hover:text-pharma-teal transition-all flex items-center group font-medium"
+      className="text-[14px] text-slate-600 hover:text-pharma-teal transition-all flex items-center group font-medium"
     >
       <span className="group-hover:translate-x-1 transition-transform">
         {children}

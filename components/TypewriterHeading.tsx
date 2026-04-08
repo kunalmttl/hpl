@@ -16,6 +16,7 @@ interface TypewriterHeadingProps {
   className?: string;
   as?: "h1" | "h2" | "h3" | "h4";
   delay?: number;
+  once?: boolean;
 }
 
 export const TypewriterHeading = ({ 
@@ -23,11 +24,12 @@ export const TypewriterHeading = ({
   text,
   className = "", 
   as: Component = "h3",
-  delay = 0 
+  delay = 0,
+  once = true 
 }: TypewriterHeadingProps) => {
   const { isIntroDone } = useNavbarLogoRef();
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.3, once: false });
+  const isInView = useInView(ref, { amount: 0.1, once });
 
   // Convert string or text prop to segments for consistency
   const finalSegments = text ? [{ text }] : 
@@ -74,20 +76,34 @@ export const TypewriterHeading = ({
       <motion.span
         variants={containerVariants}
         initial="hidden"
-        animate={isIntroDone && isInView ? "visible" : "hidden"}
+        animate={isInView ? "visible" : "hidden"}
         className="relative"
       >
         {finalSegments.map((segment: Segment, sIndex: number) => (
           <React.Fragment key={sIndex}>
             <span className={segment.className}>
-              {segment.text.split("").map((char: string, cIndex: number) => (
-                <motion.span
-                  key={`${sIndex}-${cIndex}`}
-                  variants={childVariants}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
+              {segment.text.split(" ").map((word: string, wIndex: number, wordsArray: string[]) => (
+                <span key={`${sIndex}-${wIndex}`} className="inline-block whitespace-nowrap">
+                  {word.split("").map((char: string, cIndex: number) => (
+                    <motion.span
+                      key={`${sIndex}-${wIndex}-${cIndex}`}
+                      variants={childVariants}
+                      className="inline-block will-change-[opacity,transform]"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {/* Add back the space after the word, unless it's the last word in segment */}
+                  {wIndex < wordsArray.length - 1 && (
+                    <motion.span
+                      key={`${sIndex}-${wIndex}-space`}
+                      variants={childVariants}
+                      className="inline-block"
+                    >
+                      &nbsp;
+                    </motion.span>
+                  )}
+                </span>
               ))}
             </span>
             {segment.br && <br />}

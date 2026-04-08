@@ -7,10 +7,61 @@ import {
   useSpring, 
   useTime, 
   useTransform,
+  Variants
 } from "framer-motion";
 import Image from "next/image";
 import { TypewriterHeading } from "./TypewriterHeading";
-import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
+
+// --- Animation Variants (Externalized) ---
+
+const centralContentVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1
+    }
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const headingFadeUp: Variants = {
+  hidden: { y: 60, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+};
+
+const paragraphFadeUp: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1, 
+    transition: { 
+      duration: 0.8, 
+      ease: "easeOut",
+      delay: 1.4 
+    } 
+  }
+};
+
+const accentBadgeVariants: Variants = {
+  hidden: { scale: 0.9, opacity: 0, y: 10 },
+  visible: { 
+    scale: 1, 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring", 
+      stiffness: 100,
+      delay: 1.6 
+    } 
+  }
+};
 
 const images = [
   "/carousel/warehouse.png",
@@ -29,14 +80,16 @@ const OrbitCard = ({
   total, 
   rotation, 
   side = "left", 
-  radius = 450 
+  radius = 450,
+  isMobile = false
 }: { 
   src: string, 
   index: number, 
   total: number, 
   rotation: any, 
   side?: "left" | "right", 
-  radius?: number 
+  radius?: number,
+  isMobile?: boolean
 }) => {
   // Use math to calculate position on an arc
   const angleOffset = (index / total) * 360;
@@ -82,7 +135,9 @@ const OrbitCard = ({
     const cosVal = Math.cos(rad);
     // Smoother fade out at the edges
     if (cosVal < 0) return 0;
-    return Math.pow(cosVal, 0.8); // Slightly non-linear for "popping" in
+    // On mobile, use a slightly tighter power (1.8) to focus on the 'hero' image 
+    // while maintaining the smooth fade preferred in the right carousel.
+    return Math.pow(cosVal, isMobile ? 1.8 : 0.8); 
   });
 
   const zIndex = useTransform(angleResult, (angle) => {
@@ -107,7 +162,7 @@ const OrbitCard = ({
       }}
       className="group"
     >
-      <div className="relative w-28 h-40 md:w-[160px] md:h-[220px] rounded-[1.25rem] md:rounded-[2.5rem] overflow-hidden 
+      <div className="relative w-24 h-32 md:w-[160px] md:h-[220px] rounded-[1rem] md:rounded-[2.5rem] overflow-hidden 
                     border-[3px] md:border-[4px] border-slate-700/10 shadow-[0_30px_70px_rgba(0,0,0,0.2)] bg-slate-950
                     group-hover:border-pharma-teal/30 hover:scale-110 hover:shadow-[0_50px_120px_rgba(0,0,0,0.25)] transition-all duration-700 ease-[0.16,1,0.3,1] will-change-transform"
       >
@@ -126,7 +181,6 @@ const OrbitCard = ({
 };
 
 export const BrandCarousel = () => {
-  const { isIntroDone } = useNavbarLogoRef();
   const [mounted, setMounted] = React.useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -164,7 +218,7 @@ export const BrandCarousel = () => {
   React.useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setRadius(120); 
+        setRadius(200); 
       } else if (window.innerWidth < 1280) {
         setRadius(200); 
       } else {
@@ -181,12 +235,12 @@ export const BrandCarousel = () => {
     <section 
       id="brands"
       ref={containerRef}
-      className="pt-12 pb-20 h-[750px] md:h-[800px] relative overflow-hidden flex items-center justify-center bg-background snap-start"
+      className="pt-12 pb-20 h-[650px] md:h-[800px] relative overflow-hidden flex items-center justify-center bg-background snap-start"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.03)_0%,transparent_80%)]" />
 
-      {/* Left Sphere - Centered at Left Edge */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
+      {/* Left Sphere - Pushed far off-edge on mobile to stay clear of text */}
+      <div className="absolute left-[-150px] md:left-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
         {mounted && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <OrbitCard 
             key={`left-${i}`}
@@ -196,12 +250,13 @@ export const BrandCarousel = () => {
             rotation={leftRotation} 
             side="left"
             radius={radius}
+            isMobile={radius <= 200}
           />
         ))}
       </div>
 
-      {/* Right Sphere - Centered at Right Edge */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
+      {/* Right Sphere - Pushed far off-edge on mobile to stay clear of text */}
+      <div className="absolute right-[-150px] md:right-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
         {mounted && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <OrbitCard 
             key={`right-${i}`}
@@ -211,43 +266,23 @@ export const BrandCarousel = () => {
             rotation={rightRotation} 
             side="right"
             radius={radius}
+            isMobile={radius <= 200}
           />
         ))}
       </div>
       
-      {/* Central Content - Text sizes synced with Hero section */}
+      {/* Central Content - Blur removed for cleaner mobile aesthetic */}
       <motion.div 
-        variants={{
-          hidden: { 
-            opacity: 0,
-            transition: {
-              staggerChildren: 0.05,
-              staggerDirection: -1
-            }
-          },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.15,
-              delayChildren: 0.2
-            }
-          }
-        }}
+        variants={centralContentVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, margin: "-100px" }}
-        onViewportLeave={() => {}} // Optional hook for debugging if needed
-        className="relative z-20 text-center px-10 max-w-xl md:max-w-5xl bg-background/50 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none py-16 rounded-[4rem] pointer-events-none"
+        className="relative z-20 text-center px-8 md:px-10 max-w-[95vw] md:max-w-5xl bg-transparent md:bg-transparent backdrop-blur-none py-4 md:py-16 rounded-none md:rounded-[4rem] pointer-events-none"
       >
-        <motion.div
-           variants={{
-             hidden: { y: 60, opacity: 0 },
-             visible: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
-           }}
-        >
+        <motion.div variants={headingFadeUp}>
           <TypewriterHeading 
             as="h3"
-            className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight mb-8 text-slate-900 leading-[1.1]"
+            className="text-[21px] md:text-5xl lg:text-[56px] font-bold tracking-tight mb-4 md:mb-8 text-slate-900 leading-[1.3] md:leading-[1.1]"
             segments={[
               { text: "Rooted in Indore. Reaching", br: true },
               { text: "ALL", className: "text-pharma-teal" },
@@ -257,21 +292,10 @@ export const BrandCarousel = () => {
         </motion.div>
         
         <motion.p 
-          variants={{
-            hidden: { y: 20, opacity: 0 },
-            visible: { 
-              y: 0, 
-              opacity: 1, 
-              transition: { 
-                duration: 0.8, 
-                ease: "easeOut",
-                delay: 1.4 // Wait for heading to mostly type out
-              } 
-            }
-          }}
-          className="text-slate-500 text-lg leading-relaxed tracking-tight font-subtext max-w-lg md:max-w-2xl mx-auto mb-12"
+          variants={paragraphFadeUp}
+          className="text-slate-600 md:text-slate-500 text-[14px] md:text-lg leading-relaxed tracking-tight font-subtext max-w-[260px] md:max-w-2xl mx-auto mb-8 md:mb-12 px-4 md:px-0"
         >
-          From our base in Vijay Nagar, Indore — HPL manages 
+          From our base in Khajrana, Indore — HPL manages 
           warehousing, stock movement, and distribution for
           pharma brands. Every batch tracked. Every dispatch 
           GST-billed. Serving chemists and distributors across 
@@ -279,20 +303,8 @@ export const BrandCarousel = () => {
         </motion.p>
         
         <motion.div 
-          variants={{
-            hidden: { scale: 0.9, opacity: 0, y: 10 },
-            visible: { 
-              scale: 1, 
-              opacity: 1, 
-              y: 0,
-              transition: { 
-                type: "spring", 
-                stiffness: 100,
-                delay: 1.6 // Follow paragraph
-              } 
-            }
-          }}
-          className="flex items-center justify-center gap-6 mt-12"
+          variants={accentBadgeVariants}
+          className="flex items-center justify-center gap-4 md:gap-6 mt-8 md:mt-12"
         >
           <div className="w-16 h-px bg-pharma-teal/20" />
           <div className="flex flex-col items-center">
@@ -304,8 +316,8 @@ export const BrandCarousel = () => {
       </motion.div>
 
       {/* Edge Fades */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#EDEDED] to-transparent z-15 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#EDEDED] to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-background)] to-transparent z-15 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[var(--color-background)] to-transparent z-15 pointer-events-none" />
     </section>
   );
 };

@@ -37,7 +37,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
             stroke="#0F766E"
             strokeWidth={1}
             initial={{ r: 16, opacity: 0.7 }}
-            animate={isActive ? { r: [16, 160], opacity: [0.7, 0] } : {}}
+            animate={isActive ? { r: [16, 160], opacity: [0.7, 0] } : { r: 16, opacity: 0 }}
             transition={{ duration: 3.5, delay: i * 1.1, repeat: Infinity, ease: "easeOut" }}
           />
         ))}
@@ -51,7 +51,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
             strokeWidth={1}
             fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+            animate={isActive ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
             transition={{ duration: 0.7, delay: 0.4 + i * 0.07, ease: "easeOut" }}
           />
         ))}
@@ -64,7 +64,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
           strokeDasharray="5 5"
           fill="none"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={isActive ? { pathLength: 1, opacity: 0.7 } : {}}
+          animate={isActive ? { pathLength: 1, opacity: 0.7 } : { pathLength: 0, opacity: 0 }}
           transition={{ duration: 2.2, delay: 1.3, ease: "easeOut" }}
         />
 
@@ -79,7 +79,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
               cx: [CX, node.x],
               cy: [CY, node.y],
               opacity: [0, 1, 0],
-            } : {}}
+            } : { opacity: 0 }}
             transition={{
               duration: 1.3,
               delay: 1.2 + i * 0.28,
@@ -97,7 +97,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
             cx={node.x} cy={node.y}
             fill="#0F766E"
             initial={{ r: 0, opacity: 0 }}
-            animate={isActive ? { r: [3.5, 5, 3.5], opacity: 1 } : {}}
+            animate={isActive ? { r: [3.5, 5, 3.5], opacity: 1 } : { r: 0, opacity: 0 }}
             transition={{
               r: { duration: 2.5, delay: 1.0 + i * 0.09, repeat: Infinity, ease: "easeInOut" },
               opacity: { duration: 0.3, delay: 1.0 + i * 0.09 },
@@ -110,7 +110,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
           cx={CX} cy={CY} r={10}
           fill="#0F766E"
           initial={{ r: 0 }}
-          animate={isActive ? { r: 10 } : {}}
+          animate={isActive ? { r: 10 } : { r: 0 }}
           transition={{ type: "spring", stiffness: 120, damping: 12, delay: 0.2 }}
         />
 
@@ -119,7 +119,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
           cx={CX} cy={CY}
           fill="none" stroke="#0F766E" strokeWidth={2}
           initial={{ r: 0, opacity: 0 }}
-          animate={isActive ? { r: 18, opacity: [0, 0.5, 0.2] } : {}}
+          animate={isActive ? { r: 18, opacity: [0, 0.5, 0.2] } : { r: 0, opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         />
       </svg>

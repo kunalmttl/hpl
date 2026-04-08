@@ -4,12 +4,13 @@ import React, { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 import { TypewriterHeading } from "./TypewriterHeading";
+import Image from "next/image";
 import { Users, Award } from "lucide-react";
 
 export const TeamSection = () => {
   const { isIntroDone } = useNavbarLogoRef();
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.2, once: false });
+  const isInView = useInView(sectionRef, { amount: 0.2, once: true });
 
   const staggerContainer: Variants = {
     hidden: { 
@@ -53,6 +54,7 @@ export const TeamSection = () => {
       id="team" 
       ref={sectionRef}
       className="pt-12 pb-24 flex flex-col items-center px-4 md:px-12 relative overflow-hidden bg-background snap-start"
+      aria-label="Our Team"
     >
       <motion.div
         variants={staggerContainer}
@@ -84,10 +86,12 @@ export const TeamSection = () => {
               className="group relative w-full aspect-[3/4] rounded-[32px] overflow-hidden cursor-default shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-slate-200"
             >
               {/* High-fidelity Photo */}
-              <img 
+              <Image 
                 src={member.image} 
                 alt={member.name} 
+                fill
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               
               {/* Premium Gradient Overlay */}
@@ -123,7 +127,7 @@ export const TeamSection = () => {
       </motion.div>
 
       {/* Decorative Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Teal Glow Blobs */}
         <div className="absolute top-[20%] -left-[10%] w-[400px] h-[400px] bg-pharma-teal/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[10%] -right-[5%] w-[350px] h-[350px] bg-blue-500/5 blur-[100px] rounded-full" />
@@ -134,7 +138,7 @@ export const TeamSection = () => {
             LEADERSHIP
           </span>
         </div>
-
+ 
         {/* Ambient Decorative Icons */}
         <div className="absolute top-[30%] right-[15%] opacity-[0.07] text-pharma-teal hidden lg:block rotate-12">
           <Users size={60} strokeWidth={1} />
