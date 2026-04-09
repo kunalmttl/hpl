@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import { 
   motion, 
   AnimatePresence, 
@@ -8,14 +8,14 @@ import {
   useAnimationControls,
   Variants 
 } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck, CheckCircle2, MessageSquareQuote } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 /**
  * 🏥 Pharmaceutical Testimonials Data
  */
-const testimonials = [
+const TESTIMONIALS = [
   {
     initials: "RM",
     name: "Rajesh Mehta",
@@ -42,9 +42,10 @@ const testimonials = [
   },
 ];
 
+type Testimonial = typeof TESTIMONIALS[0];
 type Phase = "hidden" | "envelope-up" | "card-rising" | "carousel";
 
-const ratingArray = [...Array(5)];
+const RATING_ARRAY = Array(5).fill(0);
 
 const buttonZoom: Variants = {
   hidden: { scale: 0, opacity: 0 },
@@ -163,17 +164,17 @@ export default function TestimonialsCarousel() {
   useEffect(() => {
     if (phase !== "carousel") return;
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, [phase, activeIndex]);
+  }, [phase]);
 
-  const handleNext = React.useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
   }, []);
 
-  const handlePrev = React.useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
   }, []);
 
   return (
@@ -324,7 +325,7 @@ export default function TestimonialsCarousel() {
                 initial={{ opacity: 1, y: 0, rotate: -3 }}
                 animate={cardControls}
               >
-                <TestimonialCard data={testimonials[activeIndex]} />
+                <TestimonialCard data={TESTIMONIALS[activeIndex]} />
               </motion.div>
 
               {/* Front Layer (Pocket Cover) */}
@@ -349,13 +350,12 @@ export default function TestimonialsCarousel() {
         {/* FAN CAROUSEL UNIT */}
         {phase === "carousel" && (
           <div className="absolute w-full h-full flex items-center justify-center">
-            {testimonials.map((t, idx) => {
+            {TESTIMONIALS.map((t, idx) => {
               let offset = idx - activeIndex;
-              if (offset > 1) offset -= testimonials.length;
-              if (offset < -1) offset += testimonials.length;
+              if (offset > 1) offset -= TESTIMONIALS.length;
+              if (offset < -1) offset += TESTIMONIALS.length;
               
               const isActive = offset === 0;
-              const isGhost = Math.abs(offset) === 1;
 
               if (Math.abs(offset) > 1) return null;
 
@@ -428,7 +428,7 @@ export default function TestimonialsCarousel() {
   );
 }
 
-function TestimonialCard({ data }: { data: any }) {
+const TestimonialCard = memo(({ data }: { data: Testimonial }) => {
   return (
     <div className="w-[450px] bg-white rounded-[2.5rem] p-12 shadow-2xl border border-slate-50 flex flex-col items-center text-center">
       {/* 60px Initials Avatar */}
@@ -443,7 +443,7 @@ function TestimonialCard({ data }: { data: any }) {
 
       {/* 5 Amber Stars */}
       <div className="flex text-amber-400 gap-0.5 mt-4" aria-label={`${data.rating} out of 5 stars`}>
-        {ratingArray.map((_, i) => (
+        {RATING_ARRAY.map((_, i) => (
           <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
         ))}
       </div>
@@ -453,4 +453,6 @@ function TestimonialCard({ data }: { data: any }) {
       </p>
     </div>
   );
-}
+});
+
+TestimonialCard.displayName = "TestimonialCard";
