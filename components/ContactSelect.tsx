@@ -13,7 +13,13 @@ interface ContactSelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 export const ContactSelect = React.forwardRef<HTMLSelectElement, ContactSelectProps>(
   ({ label, error, options, onFocus, onBlur, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
-    const hasValue = props.value !== undefined && props.value !== "";
+    const [hasValue, setHasValue] = useState(!!props.defaultValue || !!props.value);
+
+    // Update hasValue when internal value changes
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setHasValue(!!e.target.value);
+      props.onChange?.(e);
+    };
 
     return (
       <div className="relative w-full group">
@@ -40,6 +46,7 @@ export const ContactSelect = React.forwardRef<HTMLSelectElement, ContactSelectPr
               setIsFocused(false);
               onBlur?.(e);
             }}
+            onChange={handleChange}
             className={`
               w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl
               text-slate-900 font-medium outline-none appearance-none

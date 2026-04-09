@@ -46,9 +46,24 @@ export default function Contact() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    // Mocking API call with premium delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setPhase("success");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setPhase("success");
+      } else {
+        alert("Submission failed: " + (result.error || "Unknown error"));
+      }
+    } catch (err) {
+      console.error("Submission Error:", err);
+      alert("An error occurred while sending your enquiry. Please try again later.");
+    }
   };
 
   // Animation Variants
