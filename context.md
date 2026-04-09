@@ -111,6 +111,9 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
     - **Memory Management**: Externalized large static data arrays (Team Members, Services, Workflow data) to the module scope to reduce heap allocation and GC pressure.
     - **SVG Efficiency**: Memoized the `HeroNetworkMap` component to prevent expensive re-calculation of animated paths on parent state updates.
     - **EventHandler Memoization**: Wrapped high-frequency handlers (Mouse movement, Scroll navigation) in `useCallback` to maintain stable reference equality.
+- **TestimonialsCarousel Technical Fixes (2026-04-09)**:
+    - **Hook Stability**: Resolved the "useEffect dependency array changed size" error by re-adding `activeIndex` to the auto-advance logic. This also improved UX by ensuring the 4.5s timer resets on manual navigation.
+    - **TypeScript Type Safety**: Refactored `trustBadgeVariants` to adhere to correct Framer Motion `Variants` typing, resolving an error where `animate` was incorrectly nested inside a `Variant` object.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
@@ -146,3 +149,4 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - **Navbar Polish (2026-04-09)**: Finalized navigation hierarchy and link density for mobile parity.
 - **Heading Clipping (2026-04-09)**: Resolved Workflow heading overflow on mobile by implementing responsive styling (`text-2xl` for sm).
 - **Placeholder Cleanup (2026-04-09)**: Updated hardcoded WhatsApp number in `WhatsAppButton.tsx`.
+- **TestimonialsCarousel Bugs (2026-04-09)**: Fixed a runtime Hook error (dependency array size mismatch) and a TypeScript typing error in the floating icons' variants.

@@ -3,6 +3,7 @@ Last updated: 2026-04-06
 
 ## Current active task
 - [x] Performance & Clean Code Audit
+- [x] TestimonialsCarousel Bug Fixes
 - [ ] Final Lighthouse Audit
 - [ ] Image Optimization Deployment
 
@@ -287,3 +288,12 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
 - **Status**: Runtime performance significantly improved; ready for final build and Lighthouse verification.
 - **Left off at**: `app/page.tsx` (Complete).
 - **Pushed**: `refactor: performance and clean code audit optimizations` at 17:35
+- **Pushed**: `fix: testimonials-carousel hook stability and typescript typing` at 23:15
+
+### RECAP — [2026-04-09 23:15]
+- **Built**:       N/A (Corrective Refactor)
+- **Changed**:     `TestimonialsCarousel.tsx` — Fixed incorrectly nested Framer Motion variants that were violating the `Variants` type.
+- **Fixed**:       Resolved `The final argument passed to useEffect changed size` React error by stabilizing the Hook dependency list.
+- **Fixed**:       Improved auto-advance UX by ensuring timer resets on user interaction.
+- **Pending**:     Final Lighthouse verification and Image optimization.
+- **Left off at**: Audit phase complete. Ready for final checks.

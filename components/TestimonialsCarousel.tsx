@@ -63,19 +63,23 @@ const buttonZoom: Variants = {
 
 const trustBadgeVariants: Variants = {
   quoteLeft: {
-    animate: { y: [0, -20, 0], rotate: [-15, -10, -15] },
+    y: [0, -20, 0],
+    rotate: [-15, -10, -15],
     transition: { duration: 8, repeat: Infinity }
   },
   quoteRight: {
-    animate: { y: [0, 20, 0], rotate: [15, 20, 15] },
+    y: [0, 20, 0],
+    rotate: [15, 20, 15],
     transition: { duration: 10, repeat: Infinity, delay: 1 }
   },
   shield: {
-    animate: { scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] },
+    scale: [1, 1.1, 1],
+    opacity: [0.1, 0.2, 0.1],
     transition: { duration: 6, repeat: Infinity }
   },
   check: {
-    animate: { scale: [1.1, 1, 1.1], opacity: [0.2, 0.1, 0.2] },
+    scale: [1.1, 1, 1.1],
+    opacity: [0.2, 0.1, 0.2],
     transition: { duration: 7, repeat: Infinity, delay: 2 }
   }
 };
@@ -167,7 +171,7 @@ export default function TestimonialsCarousel() {
       setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, [phase]);
+  }, [phase, activeIndex]);
 
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
@@ -227,16 +231,16 @@ export default function TestimonialsCarousel() {
             {/* Floating Icons with parallax-style motion */}
             <motion.div 
               className="absolute top-[15%] left-[8%] text-pharma-teal/10 rotate-[-15deg]"
-              variants={trustBadgeVariants.quoteLeft as Variants}
-              animate="animate"
+              variants={trustBadgeVariants}
+              animate="quoteLeft"
             >
               <Quote size={200} strokeWidth={0.5} />
             </motion.div>
             <motion.div 
               className="absolute bottom-[20%] right-[10%] text-blue-500/10 rotate-[15deg]"
               style={{ scaleX: -1 }}
-              variants={trustBadgeVariants.quoteRight as Variants}
-              animate="animate"
+              variants={trustBadgeVariants}
+              animate="quoteRight"
             >
               <Quote size={240} strokeWidth={0.5} />
             </motion.div>
@@ -244,15 +248,15 @@ export default function TestimonialsCarousel() {
             {/* Smaller floating trust badges */}
             <motion.div 
               className="absolute top-[40%] right-[12%] text-slate-400/20"
-              variants={trustBadgeVariants.shield as Variants}
-              animate="animate"
+              variants={trustBadgeVariants}
+              animate="shield"
             >
               <ShieldCheck size={80} />
             </motion.div>
             <motion.div 
               className="absolute bottom-[40%] left-[12%] text-slate-400/20"
-              variants={trustBadgeVariants.check as Variants}
-              animate="animate"
+              variants={trustBadgeVariants}
+              animate="check"
             >
               <CheckCircle2 size={60} />
             </motion.div>
