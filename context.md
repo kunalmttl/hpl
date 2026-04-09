@@ -149,4 +149,4 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - **Navbar Polish (2026-04-09)**: Finalized navigation hierarchy and link density for mobile parity.
 - **Heading Clipping (2026-04-09)**: Resolved Workflow heading overflow on mobile by implementing responsive styling (`text-2xl` for sm).
 - **Placeholder Cleanup (2026-04-09)**: Updated hardcoded WhatsApp number in `WhatsAppButton.tsx`.
-- **TestimonialsCarousel Bugs (2026-04-09)**: Fixed a runtime Hook error (dependency array size mismatch) and a TypeScript typing error in the floating icons' variants.
+- **TestimonialsCarousel Bugs (2026-04-09)**: Fixed a runtime Hook error (dependency array size mismatch) and a TypeScript typing error in the floating icons' variants. Pushed to GitHub.
