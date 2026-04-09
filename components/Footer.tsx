@@ -141,10 +141,10 @@ export default function Footer() {
               variants={containerVariants}
               className="flex flex-col gap-4"
             >
-              <motion.div variants={itemVariants}><FooterLink href="/services#cfa">C&amp;F Agency</FooterLink></motion.div>
-              <motion.div variants={itemVariants}><FooterLink href="/services#super-stockist">Super Stockist</FooterLink></motion.div>
-              <motion.div variants={itemVariants}><FooterLink href="/services#consignee">Consignee Agent</FooterLink></motion.div>
-              <motion.div variants={itemVariants}><FooterLink href="/services#drug-house">Hindustan Drug House</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#solutions">C&amp;F Agency</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#solutions">Super Stockist</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#solutions">Consignee Agent</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#solutions">Hindustan Drug House</FooterLink></motion.div>
             </motion.div>
           </motion.div>
 
@@ -155,8 +155,8 @@ export default function Footer() {
               variants={containerVariants}
               className="flex flex-col gap-4"
             >
-              <motion.div variants={itemVariants}><FooterLink href="/about">About</FooterLink></motion.div>
-              <motion.div variants={itemVariants}><FooterLink href="/services">Services</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#team">About</FooterLink></motion.div>
+              <motion.div variants={itemVariants}><FooterLink href="/#solutions">Services</FooterLink></motion.div>
               <motion.div variants={itemVariants}><FooterLink href="/contact">Contact</FooterLink></motion.div>
               <motion.div variants={itemVariants}><FooterLink href="/contact">Partner With Us</FooterLink></motion.div>
             </motion.div>
