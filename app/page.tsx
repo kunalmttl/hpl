@@ -203,7 +203,7 @@ export default function Home() {
   const handleHeroMouseLeave = () => mouseX.set(0);
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-background pt-24 pb-12">
+    <div className="relative flex flex-col w-full min-h-screen bg-background pt-24 pb-12">
       
       <section 
         id="hero" 
@@ -511,7 +511,7 @@ export default function Home() {
       <section 
         id="workflow" 
         ref={workflowRef}
-        className="pt-12 pb-24 flex flex-col items-center px-4 overflow-hidden relative bg-background snap-start"
+        className="pt-12 pb-24 flex flex-col items-center px-4 overflow-hidden relative bg-background snap-start scroll-mt-24"
         aria-label="Process Workflow"
       >
         <motion.div
@@ -519,13 +519,13 @@ export default function Home() {
           custom={isIntroDone}
           initial="hidden"
           animate={isWorkflowInView ? "visible" : "hidden"}
-          className="flex flex-col items-center text-center w-full mb-10"
+          className="flex flex-col items-center text-center w-full mb-10 px-4"
         >
           <motion.h2 variants={itemSlideUp} className="text-[12px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-3 font-subtext">How It Works</motion.h2>
-          <motion.div variants={itemSlideUp}>
+          <motion.div variants={itemSlideUp} className="w-full">
             <TypewriterHeading 
               text="From Manufacturer to Market"
-              className="text-3xl md:text-4xl font-bold text-slate-900 mb-0 text-center tracking-tight"
+              className="text-2xl md:text-4xl font-bold text-slate-900 mb-0 text-center tracking-tight"
             />
           </motion.div>
         </motion.div>

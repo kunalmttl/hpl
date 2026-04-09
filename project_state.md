@@ -2,18 +2,8 @@
 Last updated: 2026-04-06
 
 ## Current active task
-- [x] Initial alignment & context gathering
-- [x] Phase 1: Project Scaffolding
-- [x] Phase 1: Page Implementation (Home, About, Services, Contact)
-- [x] Phase 1: Polish & Optimization (Intro Animation & Navbar Refinement)
-- [x] Phase 1: Brand Carousel Section
-- [x] Phase 1: Seamless Layout Cleanup
-- [x] Phase 1: TypewriterHeading Integration
-- [x] Phase 1: High-Fidelity Asset Integration
-- [x] Phase 1: Full-Page Scroll Snapping
-- [x] Phase 1: Carousel Card Refinement (Vertical Rectangular Cards)
-- [x] Phase 1: Testimonials Carousel (Hard-coded assets & animation)
-- [x] Phase 1: Envelope Animation (950x860 scaled, multi-layer)
+- [x] Bug Resolution Phase (B002-B005)
+- [ ] Final Performance (Lighthouse) Audit
 
 ## Feature status
 | Feature | Status | Notes |
@@ -46,6 +36,10 @@ Last updated: 2026-04-06
 | Single-Page Mode (SPA) | ✅ Done | Consolidated all core content into a single fluid landing page with anchor links and smart navigation. |
 | Accessibility Audit | ✅ Done | Implemented global ARIA landmarks, roles, and aria-hidden for motion elements. |
 | Mobile Polish | ✅ Done | Resolved Brand Carousel overlap and Core Solutions legibility fixes. |
+| Bug 002: WhatsApp Data | ✅ Done | Replaced placeholder with +91 9300001411 |
+| Bug 003: Heading Clipping | ✅ Done | Responsive text scaling for Workflow section |
+| Bug 004: Navbar Polish | ✅ Done | Verified navigation link density on mobile viewports. |
+| Bug 005: Code Smell | ✅ Done | Removed debug logs from contact page |
 
 ## Pending tasks
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
@@ -86,6 +80,7 @@ Last updated: 2026-04-06
 - Footer Content Corrections: **COMPLETE** [2026-04-06]
 - Core Solutions High-Fidelity Refinement: **COMPLETE** [2026-04-06]
 - **🏁 LANDING PAGE: COMPLETE** [2026-04-06]
+- **🏁 BUG RESOLUTION: COMPLETE** [2026-04-09]
 
 ## Known issues
 - **BrandCarousel Mobile Overlap:** The left/right carousel centers at 0 and 100% width causing image overlap on very narrow screens. Reverted to stable desktop version for now.
@@ -132,7 +127,8 @@ Last updated: 2026-04-06
 ### RECAP (2026-04-03)
 ### Brand Carousel Refinement: Absolute Symmetry & Spacing Balance
 - **Symmetry Unified**: Replaced conditional logic with a single `translateX: "-50%"` centered anchor for both spheres. This ensures the left carousel is perfectly clear of the text and mirrors the right side exactly.
-- **Tuned Radius**: Finalized the radius at **240px** (Desktop) and **120px** (Mobile) to create a centered, balanced "corridor" for the text with exactly equal margins to the carousel cards.
+- **Tuned Radius**: Finalized the radius at **240px** (Desktop) and **120px** (Mobile) to
+ create a centered, balanced "corridor" for the text with exactly equal margins to the carousel cards.
 - **Visual Polish**: Verified text sizing consistency (64px heading) and high-fidelity 3D depth across the section.
 - **Section Reset**: Cleared the "Who We Work With" bento grid section in `app/page.tsx`.
 - **Testimonials Implementation**: Built the `TestimonialsCarousel.tsx` featuring the envelope-to-fan animation sequence. Successfully integrated into the main page. (Note: Baseline only, more work needed).
@@ -275,3 +271,10 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
 +- **Fixed**: Typo in Hero mission statement ("Pharam" → "Pharma").
 +- **Verified**: Visible focus states for keyboard navigation and comprehensive layout audit via Puppeteer.
 +- **Status**: Core development complete; site is now fully responsive and accessible.
+
+### RECAP — [2026-04-09 17:15]
+- **Built**:       Finalized mobile Navbar architecture.
+- **Changed**:     Updated `WhatsAppButton.tsx` with production contact data.
+- **Fixed**:       Bug 003 (Heading clipping), Bug 004 (Navbar bunching), Bug 005 (Debug logs).
+- **Pending**:     Performance Audit, Image Optimization (Low Priority).
+- **Left off at**: `app/page.tsx` (Workflow section responsiveness).

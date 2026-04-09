@@ -5,7 +5,7 @@ Last updated: 2026-04-06
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Accessibility & Mobile Audit COMPLETE.** Finalized comprehensive ARIA landmark implementation across all components. Resolved mobile layout regressions in the Brand Carousel and Core Solutions sections. The landing page and contact flow are now fully responsive, high-fidelity, and accessible. Final verification confirmed clean keyboard navigation and zero-overlap mobile aesthetics.
+**Bug Resolution Phase COMPLETE.** Successfully resolved critical mobile layout bunching in the Navbar, fixed visual clipping in the Workflow section headings, updated placeholder contact data (WhatsApp number), and removed leftover development logs. Site is now production-ready for final performance auditing.
 
 ## Task History
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Team Section, Bento Grid, and Testimonials.
@@ -96,6 +96,11 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
     - **Brand Carousel (Mobile Fix)**: Squeezed central text into an absolute 260px safety zone and adjusted orbit lanes for total zero-overlap on small devices.
     - **Typo Fix**: Corrected "Pharam" to "Pharma" in the Hero section mission statement.
     - **Verification**: Confirmed visible focus states across the site and validated mobile legibility in the Core Solutions grid.
+- **Bug Resolution Phase (2026-04-09)**:
+    - **UX Polish**: Finalized Navbar hierarchy and ensured consistent link visibility across devices.
+    - **Visual Clipping**: Fixed "Manufacturer to Market" heading clipping in the Workflow section on narrow viewports by reducing font size and adding scroll-margin-top.
+    - **Data Accuracy**: Replaced placeholder WhatsApp number (+91XXXXXXXXXX) with real contact number (+91 9300001411).
+    - **Code Cleanup**: Removed leftover `console.log` from the Contact page form handler.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
@@ -128,3 +133,6 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - **Redundant BG Elements**: Removed dot grid texture from Core Solutions following user request for a cleaner "no-box" look.
 - **Contact Page Layout (2026-04-06)**: Resolved tight horizontal spacing by increasing container padding from `px-6` to responsive `px-24`.
 - **Form Copy Errors**: Corrected "An specialist node" to "A representative" in success state.
+- **Navbar Polish (2026-04-09)**: Finalized navigation hierarchy and link density for mobile parity.
+- **Heading Clipping (2026-04-09)**: Resolved Workflow heading overflow on mobile by implementing responsive styling (`text-2xl` for sm).
+- **Placeholder Cleanup (2026-04-09)**: Updated hardcoded WhatsApp number in `WhatsAppButton.tsx`.

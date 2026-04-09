@@ -48,7 +48,6 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     // Mocking API call with premium delay
     await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log("Transmission Successful:", data);
     setPhase("success");
   };
 
