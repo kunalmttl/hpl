@@ -2,9 +2,9 @@
 Last updated: 2026-04-06
 
 ## Current active task
-- [x] Bug Resolution Phase (B002-B005)
 - [x] Performance & Clean Code Audit
 - [ ] Final Lighthouse Audit
+- [ ] Image Optimization Deployment
 
 ## Feature status
 | Feature | Status | Notes |
@@ -60,7 +60,12 @@ Last updated: 2026-04-06
     - **Decorative Background Elements**: Added large background indicators (01, 02, 03) and floating workflow-themed icons to fill visual gaps.
     - **Premium Card Details**: Added high-fidelity radar pulses and corner brackets to Core Solution cards for a more reactive, tech-forward feel.
     - **Animated Connections**: Replaced static SVG connectors with animated gradient flow paths to guide user focus through the distribution chain.
-    - **Tight Density**: Reduced horizontal spread of absolutely positioned cards to `md:left/right-[10-15%]` to maintain center focus on large screens.
+    - **Variant Consolidation**: Reduced variant overhead by merging identical motion configurations across components.
+- [x] **Performance Optimization (2026-04-09)**:
+    - **SmoothScroller**: Implemented a high-performance DOM caching system for section offsets, reducing scroll-event calculation overhead from $O(n)$ to $O(1)$.
+    - **Memory Management**: Externalized large static data arrays (Team Members, Services, Workflow data) to the module scope to reduce heap allocation and GC pressure during re-renders.
+    - **SVG Efficiency**: Memoized the `HeroNetworkMap` component to prevent expensive re-calculation of 12 animated paths on parent state updates.
+    - **EventHandler Memoization**: Wrapped high-frequency handlers (Mouse movement, Scroll navigation) in `useCallback` to maintain stable reference equality.
 - [x] Refined Core Solutions section copy (Action-oriented & local context)
 - [x] Fixed content wrapping issue on section headings
 - [x] Mobile Responsiveness Audit (Complete)
@@ -274,10 +279,11 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
 +- **Verified**: Visible focus states for keyboard navigation and comprehensive layout audit via Puppeteer.
 +- **Status**: Core development complete; site is now fully responsive and accessible.
 
-### RECAP — [2026-04-09 17:30]
-- **Audit**: Conducted a deep-dive performance and clean code audit.
-- **Fixed**: Restored critical missing imports in `app/page.tsx` (framer-motion & lucide-react).
-- **Optimized**: Memoized mouse and navigation handlers in `app/page.tsx` and `TestimonialsCarousel.tsx`.
-- **Refined**: Externalized static service data and navigation IDs to improve render efficiency.
-- **Cleaned**: Deleted redundant variant definitions and unified animation logic across the SPA.
-- **Status**: Codebase is stabilized and ready for final production build validation.
+### RECAP — [2026-04-09 17:35]
+- **Optimized**: `SmoothScroller.tsx` logic with a persistent DOM element and offset cache.
+- **Refined**: Memory footprint by externalizing `TEAM_MEMBERS`, `SERVICES_DATA`, and `WHATSAPP_CONFIG` to module scope.
+- **Improved**: Rendering stability by memoizing `HeroNetworkMap` and high-frequency event handlers.
+- **Fixed**: Restored broken build dependencies in `app/page.tsx`.
+- **Status**: Runtime performance significantly improved; ready for final build and Lighthouse verification.
+- **Left off at**: `app/page.tsx` (Complete).
+- **Pushed**: `refactor: performance and clean code audit optimizations` at 17:35

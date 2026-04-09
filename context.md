@@ -106,6 +106,11 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
     - **Memoization**: Implemented `useCallback` for high-frequency event handlers in `app/page.tsx` (Hero mouse movement) and `TestimonialsCarousel.tsx` (Navigation).
     - **Static Data Externalization**: Moved `SERVICES_DATA` and `OBSERVER_IDS` to the top-level scope to prevent redundant memory allocations and garbage collection overhead during renders.
     - **Variant Consolidation**: Reduced variant overhead by merging identical motion configurations across components.
+- **Performance Optimization (2026-04-09)**:
+    - **SmoothScroller**: Implemented a high-performance DOM caching system for section offsets, reducing scroll-event calculation overhead from constant DOM lookups.
+    - **Memory Management**: Externalized large static data arrays (Team Members, Services, Workflow data) to the module scope to reduce heap allocation and GC pressure.
+    - **SVG Efficiency**: Memoized the `HeroNetworkMap` component to prevent expensive re-calculation of animated paths on parent state updates.
+    - **EventHandler Memoization**: Wrapped high-frequency handlers (Mouse movement, Scroll navigation) in `useCallback` to maintain stable reference equality.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
