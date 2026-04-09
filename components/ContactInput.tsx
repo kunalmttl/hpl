@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ContactInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,7 +11,21 @@ interface ContactInputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 export const ContactInput = React.forwardRef<HTMLInputElement, ContactInputProps>(
   ({ label, error, onFocus, onBlur, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [hasValue, setHasValue] = useState(!!props.defaultValue || !!props.value);
+    const [hasValue, setHasValue] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    // Sync hasValue on mount and when props change
+    useEffect(() => {
+      const checkValue = () => {
+        if (inputRef.current) {
+          setHasValue(!!inputRef.current.value);
+        }
+      };
+      
+      checkValue();
+      const timer = setTimeout(checkValue, 100);
+      return () => clearTimeout(timer);
+    }, [props.value, props.defaultValue]);
 
     // Update hasValue when internal value changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +49,11 @@ export const ContactInput = React.forwardRef<HTMLInputElement, ContactInputProps
         <div className="relative">
           <input
             {...props}
-            ref={ref}
+            ref={(node) => {
+              inputRef.current = node;
+              if (typeof ref === "function") ref(node);
+              else if (ref) ref.current = node;
+            }}
             onFocus={(e) => {
               setIsFocused(true);
               onFocus?.(e);

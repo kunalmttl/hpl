@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ContactTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -11,7 +11,21 @@ interface ContactTextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 export const ContactTextarea = React.forwardRef<HTMLTextAreaElement, ContactTextareaProps>(
   ({ label, error, onFocus, onBlur, rows = 5, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [hasValue, setHasValue] = useState(!!props.defaultValue || !!props.value);
+    const [hasValue, setHasValue] = useState(false);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    // Sync hasValue on mount and when props change
+    useEffect(() => {
+      const checkValue = () => {
+        if (textareaRef.current) {
+          setHasValue(!!textareaRef.current.value);
+        }
+      };
+      
+      checkValue();
+      const timer = setTimeout(checkValue, 100);
+      return () => clearTimeout(timer);
+    }, [props.value, props.defaultValue]);
 
     // Update hasValue when internal value changes
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,7 +49,11 @@ export const ContactTextarea = React.forwardRef<HTMLTextAreaElement, ContactText
         <div className="relative">
           <textarea
             {...props}
-            ref={ref}
+            ref={(node) => {
+              textareaRef.current = node;
+              if (typeof ref === "function") ref(node);
+              else if (ref) ref.current = node;
+            }}
             rows={rows}
             onFocus={(e) => {
               setIsFocused(true);

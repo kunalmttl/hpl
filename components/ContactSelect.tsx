@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
@@ -13,7 +13,22 @@ interface ContactSelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 export const ContactSelect = React.forwardRef<HTMLSelectElement, ContactSelectProps>(
   ({ label, error, options, onFocus, onBlur, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [hasValue, setHasValue] = useState(!!props.defaultValue || !!props.value);
+    const [hasValue, setHasValue] = useState(false);
+    const selectRef = useRef<HTMLSelectElement | null>(null);
+
+    // Sync hasValue on mount and when props change
+    useEffect(() => {
+      const checkValue = () => {
+        if (selectRef.current) {
+          setHasValue(!!selectRef.current.value);
+        }
+      };
+      
+      checkValue();
+      // Also check after a small delay to handle browser autofill or RHF initialization
+      const timer = setTimeout(checkValue, 100);
+      return () => clearTimeout(timer);
+    }, [props.value, props.defaultValue]);
 
     // Update hasValue when internal value changes
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -37,7 +52,11 @@ export const ContactSelect = React.forwardRef<HTMLSelectElement, ContactSelectPr
         <div className="relative">
           <select
             {...props}
-            ref={ref}
+            ref={(node) => {
+              selectRef.current = node;
+              if (typeof ref === "function") ref(node);
+              else if (ref) ref.current = node;
+            }}
             onFocus={(e) => {
               setIsFocused(true);
               onFocus?.(e);
