@@ -14,6 +14,8 @@ const navLinks = [
   { name: "About", ids: ["team", "testimonials"], href: "/#team" },
 ];
 
+const OBSERVER_IDS = [...navLinks.flatMap(l => l.ids), "footer"];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
@@ -56,7 +58,7 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-    [...navLinks.flatMap(l => l.ids), "footer"].forEach((id) => {
+    OBSERVER_IDS.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });

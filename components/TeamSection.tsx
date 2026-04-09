@@ -7,6 +7,21 @@ import { TypewriterHeading } from "./TypewriterHeading";
 import Image from "next/image";
 import { Users, Award } from "lucide-react";
 
+const TEAM_MEMBERS = [
+  {
+    name: "Mukesh Modi",
+    title: "Founder & Managing Director",
+    bio: "With over 15 years connecting manufacturers to Central India's vast pharma network. Mukesh leads HPL's strategic roadmap, ensuring absolute compliance, robust supply chains, and unwavering trust at every node of distribution.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    name: "Tripti Modi",
+    title: "Head of Operations",
+    bio: "Tripti drives the operational heartbeat of HPL. She ensures completely seamless, error-free warehouse execution, day-to-day regulatory compliance, and accelerates billing workflows to get medicines where they're needed faster.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
+  }
+];
+
 export const TeamSection = () => {
   const { isIntroDone } = useNavbarLogoRef();
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,20 +49,6 @@ export const TeamSection = () => {
     }
   };
 
-  const teamMembers = [
-    {
-      name: "Mukesh Modi",
-      title: "Founder & Managing Director",
-      bio: "With over 15 years connecting manufacturers to Central India's vast pharma network. Mukesh leads HPL's strategic roadmap, ensuring absolute compliance, robust supply chains, and unwavering trust at every node of distribution.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      name: "Tripti Modi",
-      title: "Head of Operations",
-      bio: "Tripti drives the operational heartbeat of HPL. She ensures completely seamless, error-free warehouse execution, day-to-day regulatory compliance, and accelerates billing workflows to get medicines where they're needed faster.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
-    }
-  ];
 
   return (
     <section 
@@ -79,7 +80,7 @@ export const TeamSection = () => {
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full relative z-10">
-          {teamMembers.map((member, i) => (
+          {TEAM_MEMBERS.map((member, i) => (
             <motion.div 
               key={i}
               variants={itemSlideUp}

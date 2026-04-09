@@ -2,8 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import { motion, AnimatePresence, Variants, useInView, useMotionValue, useTransform, useSpring } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const TestimonialsCarousel = dynamic(() => import("@/components/TestimonialsCarousel"), { ssr: false });
+const BrandCarousel = dynamic(() => import("@/components/BrandCarousel").then(mod => mod.BrandCarousel), { ssr: false });
+const HeroNetworkMap = dynamic(() => import("@/components/HeroNetworkMap").then(mod => mod.HeroNetworkMap), { ssr: false });
+const TeamSection = dynamic(() => import("@/components/TeamSection").then(mod => mod.TeamSection), { ssr: false });
+
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -13,16 +18,49 @@ import {
   Truck, 
   BarChart3,
   CheckCircle2,
-  ChevronRight,
-  Star,
   Package
 } from "lucide-react";
-import { BrandCarousel } from "@/components/BrandCarousel";
+import { motion, Variants, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { CoreSolutionCard } from "@/components/CoreSolutionCard";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
-import { HeroNetworkMap } from "@/components/HeroNetworkMap";
-import { TeamSection } from "@/components/TeamSection";
+
+// --- Static Data ---
+
+const SERVICES_DATA = [
+  {
+    title: "C&F Agency",
+    desc: "We store, manage, and bill stock on behalf of pharma manufacturers. Your inventory, our warehouse, ERP-tracked.",
+    image: "/infographics/cf-agency.png",
+    icon: Warehouse,
+    accentColor: "var(--color-pharma-teal)",
+    accentBg: "rgba(15, 118, 110, 0.1)",
+  },
+  {
+    title: "Super Stockist",
+    desc: "HPL buys and holds stock directly, then distributes to sub-stockists and chemists across 12+ districts of Madhya Pradesh.",
+    image: "/infographics/super-stockist.png",
+    icon: Truck,
+    accentColor: "var(--color-blue-500)",
+    accentBg: "rgba(59, 130, 246, 0.1)",
+  },
+  {
+    title: "Consignee Agent",
+    desc: "We act as the manufacturer's local representative — receiving goods, managing documentation, and coordinating dispatch to buyers in MP.",
+    image: "/infographics/consignee-agent.png",
+    icon: ShieldCheck,
+    accentColor: "var(--color-amber-500)",
+    accentBg: "rgba(245, 158, 11, 0.1)",
+  },
+  {
+    title: "Hindustan Drug House",
+    desc: "HPL's own distribution brand — directly supplying chemists and pharmacies in Indore's Dawa Bazaar and surrounding areas.",
+    image: "/infographics/drug-house.png",
+    icon: Zap,
+    accentColor: "var(--color-rose-500)",
+    accentBg: "rgba(244, 63, 94, 0.1)",
+  },
+];
 
 const cardVariantsLeft: Variants = {
   hidden: { opacity: 0, x: -40, rotate: -15, y: 40 },
@@ -164,18 +202,6 @@ const sectionSubtitleFade: Variants = {
   }
 };
 
-const sectionDescFade: Variants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { 
-    y: 0, 
-    opacity: 1, 
-    transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1]
-    } 
-  }
-};
-
 export default function Home() {
   const { isIntroDone } = useNavbarLogoRef();
 
@@ -196,11 +222,14 @@ export default function Home() {
   const p3X = useTransform(springX, [-700, 700], [-12, 12]);
   const p4X = useTransform(springX, [-700, 700], [-7,  7]);
 
-  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleHeroMouseMove = React.useCallback((e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left - rect.width / 2);
-  };
-  const handleHeroMouseLeave = () => mouseX.set(0);
+  }, [mouseX]);
+
+  const handleHeroMouseLeave = React.useCallback(() => {
+    mouseX.set(0);
+  }, [mouseX]);
 
   return (
     <div className="relative flex flex-col w-full min-h-screen bg-background pt-24 pb-12">
@@ -443,8 +472,8 @@ export default function Home() {
             />
           </motion.div>
           <motion.p 
-            variants={sectionDescFade}
-            className="text-slate-600 text-center max-w-2xl md:max-w-3xl mb-14 text-[16px] leading-relaxed font-subtext"
+            variants={sectionSubtitleFade}
+            className="text-slate-600 text-center max-w-2xl md:max-w-3xl mb-14 text-[16px] leading-relaxed font-subtext px-4"
           >
             C&F agency, super stockist, consignee agent, and direct distribution — all from Indore&apos;s Dawa Bazaar.
           </motion.p>
@@ -459,40 +488,7 @@ export default function Home() {
           animate={isSolutionsInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full z-10 relative"
         >
-          {[
-            {
-              title: "C&F Agency",
-              desc: "We store, manage, and bill stock on behalf of pharma manufacturers. Your inventory, our warehouse, ERP-tracked.",
-              image: "/infographics/cf-agency.png",
-              icon: Warehouse,
-              accentColor: "var(--color-pharma-teal)",
-              accentBg: "rgba(15, 118, 110, 0.1)",
-            },
-            {
-              title: "Super Stockist",
-              desc: "HPL buys and holds stock directly, then distributes to sub-stockists and chemists across 12+ districts of Madhya Pradesh.",
-              image: "/infographics/super-stockist.png",
-              icon: Truck,
-              accentColor: "var(--color-blue-500)",
-              accentBg: "rgba(59, 130, 246, 0.1)",
-            },
-            {
-              title: "Consignee Agent",
-              desc: "We act as the manufacturer's local representative — receiving goods, managing documentation, and coordinating dispatch to buyers in MP.",
-              image: "/infographics/consignee-agent.png",
-              icon: ShieldCheck,
-              accentColor: "var(--color-amber-500)",
-              accentBg: "rgba(245, 158, 11, 0.1)",
-            },
-            {
-              title: "Hindustan Drug House",
-              desc: "HPL's own distribution brand — directly supplying chemists and pharmacies in Indore's Dawa Bazaar and surrounding areas.",
-              image: "/infographics/drug-house.png",
-              icon: Zap,
-              accentColor: "var(--color-rose-500)",
-              accentBg: "rgba(244, 63, 94, 0.1)",
-            },
-          ].map((service, i) => (
+          {SERVICES_DATA.map((service, i) => (
             <CoreSolutionCard
               key={i}
               title={service.title}

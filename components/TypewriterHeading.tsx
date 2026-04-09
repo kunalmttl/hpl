@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
+import React, { useRef, useMemo } from "react";
+import { motion, useInView, Variants } from "framer-motion";
 
 interface Segment {
   text: string;
@@ -19,6 +18,42 @@ interface TypewriterHeadingProps {
   once?: boolean;
 }
 
+const containerVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.01,
+      staggerDirection: -1, // Reverse typing when hiding
+    }
+  },
+  visible: (delay: number) => ({
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03, // Slightly slower, more readable typing
+      delayChildren: delay + 0.1,
+    },
+  })
+};
+
+const childVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    x: -2,
+    transition: {
+      duration: 0.1
+    }
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20
+    }
+  },
+};
+
 export const TypewriterHeading = ({ 
   segments, 
   text,
@@ -27,49 +62,14 @@ export const TypewriterHeading = ({
   delay = 0,
   once = true 
 }: TypewriterHeadingProps) => {
-  const { isIntroDone } = useNavbarLogoRef();
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.1, once });
 
   // Convert string or text prop to segments for consistency
-  const finalSegments = text ? [{ text }] : 
-                       (typeof segments === "string" ? [{ text: segments }] : segments || []);
-
-  const containerVariants: any = {
-    hidden: { 
-      opacity: 0,
-      transition: {
-        staggerChildren: 0.01,
-        staggerDirection: -1, // Reverse typing when hiding
-      }
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03, // Slightly slower, more readable typing
-        delayChildren: delay + 0.1,
-      },
-    }
-  };
-
-  const childVariants: any = {
-    hidden: { 
-      opacity: 0, 
-      x: -2,
-      transition: {
-        duration: 0.1
-      }
-    },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20
-      }
-    },
-  };
+  const finalSegments = useMemo(() => {
+    return text ? [{ text }] : 
+           (typeof segments === "string" ? [{ text: segments }] : segments || []);
+  }, [text, segments]);
 
   return (
     <Component ref={ref} className={`${className}`}>
@@ -77,6 +77,7 @@ export const TypewriterHeading = ({
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
+        custom={delay}
         className="relative"
       >
         {finalSegments.map((segment: Segment, sIndex: number) => (

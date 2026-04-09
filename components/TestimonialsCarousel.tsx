@@ -44,6 +44,57 @@ const testimonials = [
 
 type Phase = "hidden" | "envelope-up" | "card-rising" | "carousel";
 
+const ratingArray = [...Array(5)];
+
+const buttonZoom: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 150,
+      damping: 15,
+      mass: 0.8
+    }
+  }
+};
+
+const trustBadgeVariants: Variants = {
+  quoteLeft: {
+    animate: { y: [0, -20, 0], rotate: [-15, -10, -15] },
+    transition: { duration: 8, repeat: Infinity }
+  },
+  quoteRight: {
+    animate: { y: [0, 20, 0], rotate: [15, 20, 15] },
+    transition: { duration: 10, repeat: Infinity, delay: 1 }
+  },
+  shield: {
+    animate: { scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] },
+    transition: { duration: 6, repeat: Infinity }
+  },
+  check: {
+    animate: { scale: [1.1, 1, 1.1], opacity: [0.2, 0.1, 0.2] },
+    transition: { duration: 7, repeat: Infinity, delay: 2 }
+  }
+};
+
+const headingContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const headingItemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
+};
+
 export default function TestimonialsCarousel() {
   const { isIntroDone } = useNavbarLogoRef();
   const [phase, setPhase] = useState<Phase>("hidden");
@@ -56,20 +107,6 @@ export default function TestimonialsCarousel() {
   const cardControls = useAnimationControls();
   const layersControls = useAnimationControls();
   
-  const buttonZoom: Variants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.8
-      }
-    }
-  };
-
   // Handle Phase Transitions
   useEffect(() => {
     if (isIntroDone && inView && phase === "hidden") {
@@ -131,8 +168,13 @@ export default function TestimonialsCarousel() {
     return () => clearInterval(interval);
   }, [phase, activeIndex]);
 
-  const handleNext = () => setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const handleNext = React.useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  const handlePrev = React.useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
 
   return (
     <section 
@@ -184,16 +226,16 @@ export default function TestimonialsCarousel() {
             {/* Floating Icons with parallax-style motion */}
             <motion.div 
               className="absolute top-[15%] left-[8%] text-pharma-teal/10 rotate-[-15deg]"
-              animate={{ y: [0, -20, 0], rotate: [-15, -10, -15] }}
-              transition={{ duration: 8, repeat: Infinity }}
+              variants={trustBadgeVariants.quoteLeft as Variants}
+              animate="animate"
             >
               <Quote size={200} strokeWidth={0.5} />
             </motion.div>
             <motion.div 
               className="absolute bottom-[20%] right-[10%] text-blue-500/10 rotate-[15deg]"
               style={{ scaleX: -1 }}
-              animate={{ y: [0, 20, 0], rotate: [15, 20, 15] }}
-              transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+              variants={trustBadgeVariants.quoteRight as Variants}
+              animate="animate"
             >
               <Quote size={240} strokeWidth={0.5} />
             </motion.div>
@@ -201,15 +243,15 @@ export default function TestimonialsCarousel() {
             {/* Smaller floating trust badges */}
             <motion.div 
               className="absolute top-[40%] right-[12%] text-slate-400/20"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
-              transition={{ duration: 6, repeat: Infinity }}
+              variants={trustBadgeVariants.shield as Variants}
+              animate="animate"
             >
               <ShieldCheck size={80} />
             </motion.div>
             <motion.div 
               className="absolute bottom-[40%] left-[12%] text-slate-400/20"
-              animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.1, 0.2] }}
-              transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+              variants={trustBadgeVariants.check as Variants}
+              animate="animate"
             >
               <CheckCircle2 size={60} />
             </motion.div>
@@ -218,44 +260,26 @@ export default function TestimonialsCarousel() {
       </div>
       {/* Section Heading */}
       <motion.div 
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.15,
-              delayChildren: 0.1
-            }
-          }
-        }}
+        variants={headingContainerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         className="text-center z-10 mb-6 px-4"
       >
         <motion.h2 
-          variants={{
-            hidden: { y: 20, opacity: 0 },
-            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
-          }}
+          variants={headingItemVariants}
           className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3"
         >
           Words of Trust
         </motion.h2>
         <motion.h3 
-          variants={{
-            hidden: { y: 20, opacity: 0 },
-            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
-          }}
+          variants={headingItemVariants}
           className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center"
         >
           What our partners say
         </motion.h3>
         <motion.p 
-          variants={{
-            hidden: { y: 20, opacity: 0 },
-            visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
-          }}
+          variants={headingItemVariants}
           className="text-slate-500 text-sm text-center max-w-md mb-6 font-subtext mx-auto px-4"
         >
           Trusted by manufacturers, distributors, and chemist networks across Madhya Pradesh.
@@ -419,7 +443,7 @@ function TestimonialCard({ data }: { data: any }) {
 
       {/* 5 Amber Stars */}
       <div className="flex text-amber-400 gap-0.5 mt-4" aria-label={`${data.rating} out of 5 stars`}>
-        {[...Array(5)].map((_, i) => (
+        {ratingArray.map((_, i) => (
           <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
         ))}
       </div>

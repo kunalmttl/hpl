@@ -4,6 +4,15 @@ import { useEffect } from "react";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 import Lenis from "lenis";
 
+const SNAP_SECTIONS = [
+  "#hero", 
+  "#brands", 
+  "#solutions", 
+  "#workflow", 
+  "#partners", 
+  "#testimonials"
+];
+
 export default function SmoothScroller() {
   const { isIntroDone } = useNavbarLogoRef();
 
@@ -29,14 +38,21 @@ export default function SmoothScroller() {
 
     // SECTION SNAPPING LOGIC
     let isAnimating = false;
-    const snapSections = [
-      "#hero", 
-      "#brands", 
-      "#solutions", 
-      "#workflow", 
-      "#partners", 
-      "#testimonials"
-    ];
+    
+    // Cache elements and their offsets to avoid DOM query on every tick
+    // We re-query only if the window is resized or initially
+    let cachedSections: { element: HTMLElement; offset: number }[] = [];
+    
+    const updateCache = () => {
+      cachedSections = SNAP_SECTIONS
+        .map(id => document.querySelector(id) as HTMLElement)
+        .filter(Boolean)
+        .map(el => ({ element: el, offset: el.offsetTop }))
+        .sort((a, b) => a.offset - b.offset);
+    };
+
+    updateCache();
+    window.addEventListener("resize", updateCache);
 
     const handleWheel = (e: WheelEvent) => {
       // Prevent snapping if we are already moving to a section
@@ -48,19 +64,13 @@ export default function SmoothScroller() {
       // Threshold to avoid sensitive trackpads triggering jumping
       if (Math.abs(delta) < 20) return;
 
-      // Find all sections and their offsets
-      const sections = snapSections
-        .map(id => document.querySelector(id) as HTMLElement)
-        .filter(Boolean)
-        .sort((a, b) => a.offsetTop - b.offsetTop);
-
       if (delta > 0) {
         // Scroll Down -> Find first section that is below current scroll position
-        const next = sections.find(s => s.offsetTop > currentScroll + 100);
+        const next = cachedSections.find(s => s.offset > currentScroll + 100);
         if (next) {
           e.preventDefault();
           isAnimating = true;
-          lenis.scrollTo(next, {
+          lenis.scrollTo(next.element, {
             onComplete: () => {
               // Wait a bit before allowing next snap to prevent rapid firing
               setTimeout(() => { isAnimating = false; }, 400);
@@ -69,11 +79,11 @@ export default function SmoothScroller() {
         }
       } else {
         // Scroll Up -> Find section that is above current scroll position
-        const prev = sections.slice().reverse().find(s => s.offsetTop < currentScroll - 100);
+        const prev = [...cachedSections].reverse().find(s => s.offset < currentScroll - 100);
         if (prev) {
           e.preventDefault();
           isAnimating = true;
-          lenis.scrollTo(prev, {
+          lenis.scrollTo(prev.element, {
             onComplete: () => {
               setTimeout(() => { isAnimating = false; }, 400);
             }
@@ -125,8 +135,9 @@ export default function SmoothScroller() {
       cancelAnimationFrame(rafId);
       lenis.destroy();
       document.removeEventListener("click", handleAnchorClick);
-      window.removeEventListener("wheel", handleWheel);
+          window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", updateCache);
     };
   }, [isIntroDone]);
 

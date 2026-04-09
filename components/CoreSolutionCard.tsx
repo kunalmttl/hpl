@@ -53,6 +53,18 @@ const imageVariants: Variants = {
   }
 };
 
+const pulseVariants: Variants = {
+  animate: { 
+    scale: [1, 1.4, 1], 
+    opacity: [0.3, 0, 0.3],
+    transition: { 
+      duration: 2, 
+      repeat: Infinity, 
+      ease: "easeOut" 
+    }
+  }
+};
+
 export function CoreSolutionCard({
   title,
   description,
@@ -107,8 +119,8 @@ export function CoreSolutionCard({
         {/* Floating accent icon badge with Radar Pulse */}
         <div className="absolute top-6 right-6 z-20">
           <motion.div 
-            animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+            variants={pulseVariants}
+            animate="animate"
             className="absolute inset-0 rounded-2xl bg-pharma-teal/20 will-change-[transform,opacity]"
           />
           <motion.div

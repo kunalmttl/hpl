@@ -4,15 +4,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
+const WHATSAPP_NUMBER = "919300001411";
+const MESSAGE = "Hello HPL, I'm interested in your logistics services.";
+const ENCODED_MESSAGE = encodeURIComponent(MESSAGE);
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${ENCODED_MESSAGE}`;
+
 export default function WhatsAppButton() {
-  const whatsappNumber = "919300001411"; // Real contact number
-  const message = "Hello HPL, I'm interested in your logistics services.";
-  const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
   return (
     <motion.a
-      href={whatsappUrl}
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

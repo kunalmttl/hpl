@@ -27,60 +27,60 @@ const IconWhatsApp = () => (
   </svg>
 );
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+const footerMainVariants: Variants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 1, 
+      ease: [0.16, 1, 0.3, 1] 
+    }
+  }
+};
+
+const buttonZoom: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 150,
+      damping: 15,
+      mass: 0.8
+    }
+  }
+};
+
 export default function Footer() {
   const { isIntroDone } = useNavbarLogoRef();
-  const currentYear = new Date().getFullYear();
+  const currentYear = React.useMemo(() => new Date().getFullYear(), []);
   const footerRef = React.useRef(null);
   const isFooterInView = useInView(footerRef, { amount: 0.1, once: false });
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
-  const footerMainVariants: Variants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 1, 
-        ease: [0.16, 1, 0.3, 1] 
-      }
-    }
-  };
-
-  const buttonZoom: Variants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.8
-      }
-    }
-  };
 
   return (
     <footer 

@@ -101,6 +101,11 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
     - **Visual Clipping**: Fixed "Manufacturer to Market" heading clipping in the Workflow section on narrow viewports by reducing font size and adding scroll-margin-top.
     - **Data Accuracy**: Replaced placeholder WhatsApp number (+91XXXXXXXXXX) with real contact number (+91 9300001411).
     - **Code Cleanup**: Removed leftover `console.log` from the Contact page form handler.
+- **Clean Code & Performance Refactor (2026-04-09)**:
+    - **Import Restoration**: Fixed a critical bug in `app/page.tsx` where `framer-motion` and `lucide-react` symbols were missing from the scope.
+    - **Memoization**: Implemented `useCallback` for high-frequency event handlers in `app/page.tsx` (Hero mouse movement) and `TestimonialsCarousel.tsx` (Navigation).
+    - **Static Data Externalization**: Moved `SERVICES_DATA` and `OBSERVER_IDS` to the top-level scope to prevent redundant memory allocations and garbage collection overhead during renders.
+    - **Variant Consolidation**: Reduced variant overhead by merging identical motion configurations across components.
 
 ## Technical Details
 - **Framework**: Next.js 16 (App Router)
