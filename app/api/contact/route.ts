@@ -11,6 +11,7 @@ const ENQUIRY_LABELS: Record<string, string> = {
 
 export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
+  const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL;
   
   if (!apiKey) {
     return NextResponse.json(
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
 
     const { data, error } = await resend.emails.send({
       from: "HPL Enquiry <onboarding@resend.dev>",
-      to: ["kunalmittal.km@outlook.com"],
+      to: [recipientEmail || "kunalmittal.km@outlook.com"],
       subject: `Enquiry: ${subject} (${name})`,
       replyTo: email,
       html: `
