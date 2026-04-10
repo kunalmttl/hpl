@@ -1,5 +1,5 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-06
+Last updated: 2026-04-10
 
 ## Current active task
 - [x] Contact Form Resend Integration & Hardening
@@ -43,6 +43,8 @@ Last updated: 2026-04-06
 | Bug 003: Heading Clipping | ✅ Done | Responsive text scaling for Workflow section |
 | Bug 004: Navbar Polish | ✅ Done | Verified navigation link density on mobile viewports. |
 | Bug 005: Code Smell | ✅ Done | Removed debug logs from contact page |
+| Brand Conveyor | ✅ Done | Infinite horizontal marquee with edge-fade masking. |
+| Team Update | ✅ Done | Replaced founders with Anil Kumar Sen & Pradeep Artwani (Company Directors). |
 | Performance Refactor | ✅ Done | Memoization, Static Data Externalization, Unified Variants |
 
 ## Pending tasks
@@ -55,6 +57,14 @@ Last updated: 2026-04-06
 - [x] **Footer Optimization**: Optimize Footer performance (watermark blur reduction, hardware acceleration) (2026-04-05)
 - [x] Standardize animation sequence for section headings and subtexts (Heading -> Subtext/Description delay) (2026-04-05)
 - [x] Implement reverse-stagger exit animations for all major sections (2026-04-05)
+## RECAP: 2026-04-10
+1.  **Leadership Update**: Successfully updated the "People Behind HPL" section with real data for **Anil Kumar Sen** and **Pradeep Artwani**. Optimized portrait cropping using `object-top` to resolve head-clipping issues.
+2.  **Brand Conveyor**: Added a new horizontal `BrandConveyor` section with:
+    *   Infinite "right-to-left" marquee animation for pharma partners.
+    *   Edge-fade transparency masking for a high-end transition.
+    *   Premium `TT Neoris` typography.
+    *   Individual brand hover-highlight states for improved interactivity.
+3.  **UI Polish**: Balanced the vertical rhythm between the Hero, Brand sections, and Core Solutions grid.
 - [x] **Hero Spacing Layout**: Tightened the Hero section layout by reducing
     - **Hero Top Space**: Reduced combined top padding (parent container + section) to 24-28 units (96-112px) to clear the fixed Navbar while avoiding excessive "blank space" before the title.
 - [x] **Density & Texture (Latest)**:

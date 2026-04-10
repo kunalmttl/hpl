@@ -9,16 +9,16 @@ import { Users, Award } from "lucide-react";
 
 const TEAM_MEMBERS = [
   {
-    name: "Mukesh Modi",
-    title: "Founder & Managing Director",
-    bio: "With over 15 years connecting manufacturers to Central India's vast pharma network. Mukesh leads HPL's strategic roadmap, ensuring absolute compliance, robust supply chains, and unwavering trust at every node of distribution.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop"
+    name: "Anil Kumar Sen",
+    title: "Company Director",
+    bio: "With over 15 years connecting manufacturers to Central India's vast pharma network. Anil leads HPL's strategic roadmap, ensuring absolute compliance, robust supply chains, and unwavering trust at every node of distribution.",
+    image: "/people/anil kumar sen.avif"
   },
   {
-    name: "Tripti Modi",
-    title: "Head of Operations",
-    bio: "Tripti drives the operational heartbeat of HPL. She ensures completely seamless, error-free warehouse execution, day-to-day regulatory compliance, and accelerates billing workflows to get medicines where they're needed faster.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
+    name: "Pradeep Artwani",
+    title: "Company Director",
+    bio: "Pradeep drives the operational heartbeat of HPL. He ensures completely seamless, error-free warehouse execution, day-to-day regulatory compliance, and accelerates billing workflows to get medicines where they're needed faster.",
+    image: "/people/pradeep artwani.avif"
   }
 ];
 
@@ -91,7 +91,7 @@ export const TeamSection = () => {
                 src={member.image} 
                 alt={member.name} 
                 fill
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               
@@ -101,7 +101,7 @@ export const TeamSection = () => {
               {/* Experience Badge */}
               <div className="absolute top-6 left-6 z-20">
                 <div className="px-4 py-1.5 rounded-full bg-pharma-teal/90 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider shadow-lg">
-                  {i === 0 ? "15+ Years Exp" : "Operations Lead"}
+                  {member.title}
                 </div>
               </div>
 

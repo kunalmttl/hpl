@@ -8,6 +8,7 @@ const TestimonialsCarousel = dynamic(() => import("@/components/TestimonialsCaro
 const BrandCarousel = dynamic(() => import("@/components/BrandCarousel").then(mod => mod.BrandCarousel), { ssr: false });
 const HeroNetworkMap = dynamic(() => import("@/components/HeroNetworkMap").then(mod => mod.HeroNetworkMap), { ssr: false });
 const TeamSection = dynamic(() => import("@/components/TeamSection").then(mod => mod.TeamSection), { ssr: false });
+const BrandConveyor = dynamic(() => import("@/components/BrandConveyor").then(mod => mod.BrandConveyor), { ssr: false });
 
 import { 
   ArrowRight, 
@@ -346,10 +347,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* BRAND CAROUSEL SECTION */}
       <section id="brands">
         <BrandCarousel />
       </section>
+
+      <BrandConveyor />
 
       {/* SERVICES SECTION */}
       <section 

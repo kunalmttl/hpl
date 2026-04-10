@@ -111,7 +111,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
           fill="#0F766E"
           initial={{ r: 0 }}
           animate={isActive ? { r: 10 } : { r: 0 }}
-          transition={{ type: "spring", stiffness: 120, damping: 12, delay: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         />
 
         {/* Hub inner glow ring */}
@@ -120,7 +120,7 @@ export function HeroNetworkMap({ isActive = true }: Props) {
           fill="none" stroke="#0F766E" strokeWidth={2}
           initial={{ r: 0, opacity: 0 }}
           animate={isActive ? { r: 18, opacity: [0, 0.5, 0.2] } : { r: 0, opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
         />
       </svg>
     </div>
