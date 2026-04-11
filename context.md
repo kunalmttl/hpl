@@ -11,7 +11,9 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Team Section, Bento Grid, and Testimonials.
 - Added **`TeamSection.tsx`**: Integrated an "Our Team" dual-card component following the 'How It Works' section. Features Anil Kumar Sen and Pradeep Artwani (Company Directors) in ultra-premium 4:5 aspect ratio portraits with hover bio reveals.
 - Updated **`TeamSection.tsx` (2026-04-10)**: Replaced previous placeholders with real data for Anil Kumar Sen and Pradeep Artwani. Fixed head cropping issues using `object-top`.
-- Added **`BrandConveyor.tsx` (2026-04-10)**: Implemented a horizontal infinite marquee of pharma brands with edge-fading effects, premium `TT Neoris` typography, and individual item hover highlights. Positioned between existing `BrandCarousel` and `solutions` sections with balanced spacing.
+- Added **`BrandConveyor.tsx` (2026-04-10)**: Implemented a horizontal infinite marquee of pharma brands with edge-fading effects, premium `TT Neoris` typography, and individual item hover highlights.
+    - **Update (2026-04-11)**: Integrated real partner data (15+ manufacturers), implemented 3-line text wrapping with center alignment, and aesthetic height-clamping (no ellipsis dots).
+- Refined **`app/api/contact/route.ts`**: Updated the email handler to use `CONTACT_RECIPIENT_EMAIL` environment variable for dynamic routing of enquiries.
 - Implemented a complex `BrandCarousel` component with dual-direction infinite rotation synced to scroll.
 - Refined the Navbar into a compact, centered floating pill design.
 - Implemented **Full-Page Section Snapping** using a custom Lenis-integrated wheel controller.
