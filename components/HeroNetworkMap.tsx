@@ -126,3 +126,5 @@ export function HeroNetworkMap({ isActive = true }: Props) {
     </div>
   );
 }
+
+export default HeroNetworkMap;

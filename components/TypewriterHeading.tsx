@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useRef, useMemo } from "react";
-import { motion, useInView, Variants } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 interface Segment {
   text: string;

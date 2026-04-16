@@ -9,7 +9,8 @@ import {
   MapPin,
   Warehouse
 } from "lucide-react";
-import { motion, Variants, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 
 // Custom Brand Icons

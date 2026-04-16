@@ -5,9 +5,14 @@ Last updated: 2026-04-10 (RECAP)
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Project Finalization COMPLETE.** Successfully integrated the B2B contact form with **Resend**, implemented a robust DOM-synchronized floating label system to prevent UI overlap, and designed a premium "Pharma-Tech" high-fidelity email template for professional enquiry reporting. Site is fully production-ready and tested.
+**Advanced SEO Strategy Phase 2 COMPLETE.** Implemented deep structured data (JSON-LD) across all core pages, including multi-entity `@graph` schemas for `LocalBusiness`, `LogisticsCompany`, `FAQPage`, `ServiceCatalog`, and `BreadcrumbList`. Optimized metadata for high-intent pharma keywords (CFA, C&F Agent) and configured robust social sharing (Twitter Cards, OpenGraph). Site is now a high-authority target for pharmaceutical distribution searches in Madhya Pradesh.
 
 ## Task History
+- **Advanced SEO Phase 2 (2026-04-16)**:
+    - **Global Layout (`layout.tsx`)**: Implemented a comprehensive `@graph` schema combining `LocalBusiness`, `BreadcrumbList`, and `Organization` linked to the official LinkedIn handle. Standardized metadata templates for title inheritance.
+    - **Home Page (`page.tsx`)**: Injected `FAQPage` and `Service` schemas targeted at manufacturers. Optimized titles and descriptions for permutations like "CFA Indore" and "CF agents Madhya Pradesh."
+    - **Contact Page (`contact/page.tsx`)**: Added localized metadata and a 2-step `BreadcrumbList` schema.
+    - **Crawl Optimization (`sitemap.ts`)**: Fine-tuned indexing priorities and refresh frequencies for high-intent business routes.
 - Created a high-fidelity landing page with Hero, Stats, Core Solutions, Workflow, Team Section, Bento Grid, and Testimonials.
 - Added **`TeamSection.tsx`**: Integrated an "Our Team" dual-card component following the 'How It Works' section. Features Anil Kumar Sen and Pradeep Artwani (Company Directors) in ultra-premium 4:5 aspect ratio portraits with hover bio reveals.
 - Updated **`TeamSection.tsx` (2026-04-10)**: Replaced previous placeholders with real data for Anil Kumar Sen and Pradeep Artwani. Fixed head cropping issues using `object-top`.
@@ -162,3 +167,4 @@ Hindustan Pharma Logistics (HPL) landing page and core platform.
 - **Project Cleanup (2026-04-09)**: Removed 20+ unused files including legacy page routes (`/about`, `/services`), redundant assets in `app/assets`, and unused shadcn boilerplate components. Updated `Footer.tsx` to use Home anchors.
 - **Contact Form Reliability**: Fixed a 500 error in the API route caused by a missing environment variable. Added robust error messaging to guide the user during setup.
 - **Resend Restriction Workaround**: Temporarily redirected test enquiries to the registered account email to bypass Resend's unverified domain restrictions during the pilot phase.
+- **Turbopack Panic (2026-04-16)**: Resolved a fatal compiler crash (`next-panic-7d9e64bb`) caused by a manual `<head>` tag in `app/layout.tsx` conflicting with the Metadata API in `--turbo` mode. Relocated JSON-LD script to the `<body>` to ensure spec compliance and bundler stability.

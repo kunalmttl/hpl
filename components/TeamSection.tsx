@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useInView, Variants } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 import { TypewriterHeading } from "./TypewriterHeading";
 import Image from "next/image";
@@ -151,3 +152,5 @@ export const TeamSection = () => {
     </section>
   );
 };
+
+export default TeamSection;

@@ -64,3 +64,5 @@ export const BrandConveyor = () => {
     </div>
   );
 };
+
+export default BrandConveyor;

@@ -1,14 +1,21 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-10
+Last updated: 2026-04-16
 
-## Current active task
-- [x] Contact Form Resend Integration & Hardening
-- [x] Premium Email Template Design
-- [x] Floating Label UI Fix (DOM Synchronization)
+## RECAP: 2026-04-11
+1.  **Brand Conveyor Refinement**:
+    *   Integrated full list of 15+ real partner pharmaceutical and health care brands.
+    *   Implemented 3-line text wrapping with `text-center` alignment for balanced multi-line names.
+    *   Aesthetic Crop: Removed ellipsis (`...`) truncation in favor of a clean `max-height` crop (`3.3em`) for a more premium "Corridor" look.
+    *   Stability: Added `shrink-0` to brand icons to prevent layout shifting during text wraps.
+2.  **Contact API Dynamic Routing**:
+    *   Refactored enquiry handler to use `CONTACT_RECIPIENT_EMAIL` environment variable, enabling easy recipient swaps without code changes.
+    *   Synchronized local environment with new variables.
+
+## Current Task Status
+- [x] Brand Conveyor Real Data & Wrapping
+- [x] Contact API Env Variable Refactor
+- [x] Advanced SEO Phase 2 (Structured Data, Meta, Sitemap)
 - [ ] Final Lighthouse Audit
-- [ ] Image Optimization Deployment
-
-## Feature status
 | Feature | Status | Notes |
 |---------|--------|-------|
 | Project Context Setup | ✅ Done | Context captured in `context.md` |
@@ -46,6 +53,7 @@ Last updated: 2026-04-10
 | Brand Conveyor | ✅ Done | Infinite horizontal marquee with edge-fade masking. |
 | Team Update | ✅ Done | Replaced founders with Anil Kumar Sen & Pradeep Artwani (Company Directors). |
 | Performance Refactor | ✅ Done | Memoization, Static Data Externalization, Unified Variants |
+| **Advanced SEO Phase 2** | ✅ Done | Deep JSON-LD (FAQ, Service, Breadcrumbs), standardized meta, and crawl optimization. |
 
 ## Pending tasks
 - [x] Phase 1: Carousel Card Refinement (Radius reduction & 3D Depth)
@@ -57,7 +65,13 @@ Last updated: 2026-04-10
 - [x] **Footer Optimization**: Optimize Footer performance (watermark blur reduction, hardware acceleration) (2026-04-05)
 - [x] Standardize animation sequence for section headings and subtexts (Heading -> Subtext/Description delay) (2026-04-05)
 - [x] Implement reverse-stagger exit animations for all major sections (2026-04-05)
-## RECAP: 2026-04-10
+- [x] **Advanced SEO Phase 2**: Structured Data, Metadata permutations, and Sitemap tuning (2026-04-16)
+## RECAP: 2026-04-16
+1.  **Advanced SEO (Phase 2)**:
+    *   **Structured Data**: Upgraded to multi-entity JSON-LD (LocalBusiness, BreadcrumbList, FAQPage, ServiceCatalog) for deep authority signal.
+    *   **Metadata Evolution**: Aligned titles/descriptions with industry permutations (CFA, CFA Agent, CF Agent) per manufacturer search intent.
+    *   **Crawl Directives**: Updated `sitemap.ts` and `robots.ts` with production-grade priorities.
+    *   **Entity Linking**: Integrated official LinkedIn presence into business schema group.
 1.  **Leadership Update**: Successfully updated the "People Behind HPL" section with real data for **Anil Kumar Sen** and **Pradeep Artwani**. Optimized portrait cropping using `object-top` to resolve head-clipping issues.
 2.  **Brand Conveyor**: Added a new horizontal `BrandConveyor` section with:
     *   Infinite "right-to-left" marquee animation for pharma partners.

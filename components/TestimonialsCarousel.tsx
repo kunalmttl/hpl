@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import { 
-  motion, 
+  motion,
   AnimatePresence, 
   useInView, 
   useAnimationControls,
-  Variants 
 } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";

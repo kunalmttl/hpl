@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
 interface CoreSolutionCardProps {

@@ -2,13 +2,13 @@
 
 import React, { useRef } from "react";
 import { 
-  motion, 
-  useScroll, 
-  useSpring, 
+  motion,
+  useScroll,
+  useSpring,
   useTime, 
   useTransform,
-  Variants
 } from "framer-motion";
+import type { Variants } from "framer-motion";
 import Image from "next/image";
 import { TypewriterHeading } from "./TypewriterHeading";
 
@@ -321,3 +321,5 @@ export const BrandCarousel = () => {
     </section>
   );
 };
+
+export default BrandCarousel;
