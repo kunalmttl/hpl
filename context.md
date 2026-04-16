@@ -5,9 +5,10 @@ Last updated: 2026-04-10 (RECAP)
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Advanced SEO Strategy Phase 2 COMPLETE.** Implemented deep structured data (JSON-LD) across all core pages, including multi-entity `@graph` schemas for `LocalBusiness`, `LogisticsCompany`, `FAQPage`, `ServiceCatalog`, and `BreadcrumbList`. Optimized metadata for high-intent pharma keywords (CFA, C&F Agent) and configured robust social sharing (Twitter Cards, OpenGraph). Site is now a high-authority target for pharmaceutical distribution searches in Madhya Pradesh.
+**Advanced SEO Strategy Phase 2 COMPLETE.** Implemented deep structured data (JSON-LD), optimized metadata for high-intent pharma keywords, and standardized website titles for a premium, logically consistent feel (standardizing on "C&F Agent"). Site is now a high-authority target for pharmaceutical distribution searches in Madhya Pradesh.
 
 ## Task History
+- **Branding Refinement (2026-04-16)**: Standardized website titles across `layout.tsx` and `page.tsx` to remove redundancy between "CFA" and "C&F Agent," adopting a more premium, logically consistent naming convention.
 - **Advanced SEO Phase 2 (2026-04-16)**:
     - **Global Layout (`layout.tsx`)**: Implemented a comprehensive `@graph` schema combining `LocalBusiness`, `BreadcrumbList`, and `Organization` linked to the official LinkedIn handle. Standardized metadata templates for title inheritance.
     - **Home Page (`page.tsx`)**: Injected `FAQPage` and `Service` schemas targeted at manufacturers. Optimized titles and descriptions for permutations like "CFA Indore" and "CF agents Madhya Pradesh."

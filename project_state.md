@@ -72,6 +72,8 @@ Last updated: 2026-04-16
     *   **Metadata Evolution**: Aligned titles/descriptions with industry permutations (CFA, CFA Agent, CF Agent) per manufacturer search intent.
     *   **Crawl Directives**: Updated `sitemap.ts` and `robots.ts` with production-grade priorities.
     *   **Entity Linking**: Integrated official LinkedIn presence into business schema group.
+2.  **Branding Refinement**:
+    *   Standardized titles across the site to prioritize "C&F Agent" as the premium, logically-consistent term, ensuring a cleaner professional appearance.
 1.  **Leadership Update**: Successfully updated the "People Behind HPL" section with real data for **Anil Kumar Sen** and **Pradeep Artwani**. Optimized portrait cropping using `object-top` to resolve head-clipping issues.
 2.  **Brand Conveyor**: Added a new horizontal `BrandConveyor` section with:
     *   Infinite "right-to-left" marquee animation for pharma partners.

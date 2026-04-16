@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HomeContent } from "@/components/HomeContent";
 
 export const metadata: Metadata = {
-  title: "Hindustan Pharma Logistics | CFA, C&F Agent & Super Stockist Indore",
+  title: "Hindustan Pharma Logistics | Premium C&F Agent & Super Stockist Indore",
   description: "HPL is Central India's leading C&F agent (CFA) and super stockist. Trusted pharma logistics hub in Indore serving 60+ manufacturers since 2009.",
   keywords: [
     "C&F agent Indore", 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.hplco.in/",
     siteName: "Hindustan Pharma Logistics",
-    title: "Hindustan Pharma Logistics | Premier CFA & C&F Agent in Indore",
+    title: "HPL — Hindustan Pharma Logistics | Central India's Premier C&F Agent",
     description: "Centrally located pharma logistics hub in Indore serving 60+ manufacturers across 12+ districts of Madhya Pradesh.",
     images: [{
       url: "/og-image.png",
