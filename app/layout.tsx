@@ -29,7 +29,7 @@ const clarityCity = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.hplco.in'),
   title: {
-    default: "HPL — Hindustan Pharma Logistics | Premium C&F Agent & Super Stockist",
+    default: "HPL — Hindustan Pharma Logistics | C&F Agent & Super Stockist",
     template: "%s | HPL"
   },
   description: "Hindustan Pharma Logistics is a trusted C&F agent (CFA), super stockist and consignee agent for pharma manufacturers across Madhya Pradesh. Based in Indore since 2009.",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://www.hplco.in',
     siteName: 'Hindustan Pharma Logistics',
-    title: "HPL — Hindustan Pharma Logistics | Premium C&F Agent & Super Stockist",
+    title: "HPL — Hindustan Pharma Logistics | C&F Agent & Super Stockist",
     description: "Centrally located pharma logistics hub in Indore serving 60+ manufacturers across Madhya Pradesh.",
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: "Hindustan Pharma Logistics - Central India's Trusted Pharma Partner" }]
   },
