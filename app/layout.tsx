@@ -29,10 +29,10 @@ const clarityCity = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.hplco.in'),
   title: {
-    default: "HPL — Hindustan Pharma Logistics | C&F Agent & Super Stockist",
+    default: "Hindustan Pharma Logistics | C&F Agent, Consignee & Super Stockist",
     template: "%s | HPL"
   },
-  description: "Hindustan Pharma Logistics is a trusted C&F agent (CFA), super stockist and consignee agent for pharma manufacturers across Madhya Pradesh. Based in Indore since 2009.",
+  description: "Hindustan Pharma Logistics is a trusted C&F agent, super stockist and consignee agent for pharma manufacturers across Madhya Pradesh. Based in Indore since 2009.",
   keywords: ["C&F agent Indore", "CFA Indore", "CF agent pharma", "pharma super stockist Madhya Pradesh", 
              "consignee agent pharma MP", "pharmaceutical logistics Indore",
              "Hindustan Pharma Logistics", "pharma distributor Indore"],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://www.hplco.in',
     siteName: 'Hindustan Pharma Logistics',
-    title: "HPL — Hindustan Pharma Logistics | C&F Agent & Super Stockist",
+    title: "Hindustan Pharma Logistics | C&F Agent, Consignee & Super Stockist",
     description: "Centrally located pharma logistics hub in Indore serving 60+ manufacturers across Madhya Pradesh.",
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: "Hindustan Pharma Logistics - Central India's Trusted Pharma Partner" }]
   },
@@ -87,7 +87,7 @@ const structuredData = {
         "opens": "10:00",
         "closes": "18:00"
       },
-      "description": "C&F agent (CFA), super stockist and consignee agent for pharma manufacturers in Madhya Pradesh. Serving 60+ manufacturers since 2009.",
+      "description": "C&F agent, super stockist and consignee agent for pharma manufacturers in Madhya Pradesh. Serving 60+ manufacturers since 2009.",
       "foundingDate": "2009",
       "areaServed": {
         "@type": "State",

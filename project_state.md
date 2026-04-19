@@ -1,5 +1,5 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-16
+Last updated: 2026-04-19 (RECAP)
 
 ## RECAP: 2026-04-11
 1.  **Brand Conveyor Refinement**:
@@ -14,7 +14,9 @@ Last updated: 2026-04-16
 ## Current Task Status
 - [x] Brand Conveyor Real Data & Wrapping
 - [x] Contact API Env Variable Refactor
-- [x] Advanced SEO Phase 2 (Structured Data, Meta, Sitemap)
+- [x] Advanced SEO Phase 2 (Verified, Indexing #3)
+- [x] SEO Title & Keyword Refinement (Removed redundancy, added Consignee focus)
+- [x] Branding: Circled Favicon & Apple Icon
 - [ ] Final Lighthouse Audit
 | Feature | Status | Notes |
 |---------|--------|-------|
@@ -31,7 +33,7 @@ Last updated: 2026-04-16
 | Typography System | ✅ Done | Integrated Open Sans, TT Neoris, Clarity City |
 | Intro Animation | ✅ Done | Zero-gap branding lockup + precise centering |
 | Compact Navbar | ✅ Done | High-end floating pill with dynamic grouped scroll-spy logic. |
-| Brand Carousel Section | ✅ Done | Dual-direction infinite rotation (Clockwise/Anti-clockwise) |
+| Brand Carousel Section | ✅ Done | Dual-sphere 16-card 3D orbit using 12 premium WebP images with infinite loop logic. |
 | Seamless Layout | ✅ Done | Removed all outlining boxes and section bgs |
 | Typewriter Headings | ✅ Done | Bidirectional scroll-triggered typing on all section headers |
 | Full-Page Snap | ✅ Done | Intercepted wheel for section-by-section landing |
@@ -65,13 +67,22 @@ Last updated: 2026-04-16
 - [x] **Footer Optimization**: Optimize Footer performance (watermark blur reduction, hardware acceleration) (2026-04-05)
 - [x] Standardize animation sequence for section headings and subtexts (Heading -> Subtext/Description delay) (2026-04-05)
 - [x] Implement reverse-stagger exit animations for all major sections (2026-04-05)
-- [x] **Advanced SEO Phase 2**: Structured Data, Metadata permutations, and Sitemap tuning (2026-04-16)
+- [x] **Advanced SEO Phase 2**: Structured Data, Metadata permutations, Sitemap tuning, and Google Search Console verification (2026-04-16)
 ## RECAP: 2026-04-16
-1.  **Advanced SEO (Phase 2)**:
+1.  **Brand Carousel (Orbital Refresh)**:
+    *   **New Assets**: Replaced 8 generated images with 12 premium customer-provided `.webp` files.
+    *   **Loop Logic**: Orchestrated a 16-card system (8 left, 8 right) that loops through the 12 images without duplication between spheres.
+    *   **Cleanup**: Deleted 8 legacy library-generated `.png` files to optimize repository weight.
+2.  **Advanced SEO (Phase 2)**:
     *   **Structured Data**: Upgraded to multi-entity JSON-LD (LocalBusiness, BreadcrumbList, FAQPage, ServiceCatalog) for deep authority signal.
     *   **Metadata Evolution**: Aligned titles/descriptions with industry permutations (CFA, CFA Agent, CF Agent) per manufacturer search intent.
     *   **Crawl Directives**: Updated `sitemap.ts` and `robots.ts` with production-grade priorities.
     *   **Entity Linking**: Integrated official LinkedIn presence into business schema group.
+3.  **GSC Verification & Indexing**:
+    *   **Verified Ownership**: Confirmed `hplco.in` via Google Search Console.
+    *   **Sitemap Success**: Submitted dynamic sitemap; processed with zero errors.
+    *   **Rich Result Validation**: Achieved 100% Green Status for FAQ, LocalBusiness, Organisation, and Breadcrumb schemas.
+    *   **Indexing**: Confirmed core URLs are now live and crawled by Googlebot.
 2.  **Branding Refinement**:
     *   Standardized titles across the site to prioritize "C&F Agent" as the premium, logically-consistent term, ensuring a cleaner professional appearance.
 1.  **Leadership Update**: Successfully updated the "People Behind HPL" section with real data for **Anil Kumar Sen** and **Pradeep Artwani**. Optimized portrait cropping using `object-top` to resolve head-clipping issues.

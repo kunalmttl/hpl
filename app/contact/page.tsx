@@ -3,8 +3,8 @@ import { ContactHero } from "@/components/ContactHero";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact HPL | CFA & C&F Agent Business Enquiries Indore",
-  description: "Get in touch with Hindustan Pharma Logistics for C&F agency (CFA), super stockist distribution, and business partnerships in Indore and Madhya Pradesh.",
+  title: "Contact HPL | C&F Agent & Consignee Business Enquiries Indore",
+  description: "Get in touch with Hindustan Pharma Logistics for C&F agency services, super stockist distribution, and business partnerships in Indore and Madhya Pradesh.",
   alternates: {
     canonical: "https://www.hplco.in/contact",
   }

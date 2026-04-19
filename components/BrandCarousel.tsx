@@ -64,14 +64,18 @@ const accentBadgeVariants: Variants = {
 };
 
 const images = [
-  "/carousel/warehouse.png",
-  "/carousel/delivery.png",
-  "/carousel/lab.png",
-  "/carousel/medicine.png",
-  "/carousel/logistics.png",
-  "/carousel/cold-chain.png",
-  "/carousel/worker.png",
-  "/carousel/pharmacy.png",
+  "/carousel/1.webp",
+  "/carousel/2.webp",
+  "/carousel/3.webp",
+  "/carousel/4.webp",
+  "/carousel/5.webp",
+  "/carousel/6.webp",
+  "/carousel/7.webp",
+  "/carousel/8.webp",
+  "/carousel/9.webp",
+  "/carousel/10.webp",
+  "/carousel/11.webp",
+  "/carousel/12.webp",
 ];
 
 const OrbitCard = ({ 
@@ -260,7 +264,7 @@ export const BrandCarousel = () => {
         {mounted && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <OrbitCard 
             key={`right-${i}`}
-            src={images[(i + 4) % 8]} 
+            src={images[(i + 8) % 12]} 
             index={i} 
             total={8} 
             rotation={rightRotation} 
