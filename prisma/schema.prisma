@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Enquiry {
+  id        String   @id @default(uuid())
+  role      String   // "manufacturer" or "distributor"
+  companyName String
+  contactName String
+  phone     String
+  email     String?
+  drugLicense String
+  
+  // Manufacturer-specific fields
+  productCategories String[]  // Stored as comma-separated values or JSON string
+  monthlyVolume     String?
+  districtsNeeded   String?
+  
+  // Distributor-specific fields
+  gstNo             String?
+  yearsInOperation  String?
+  preferredCategories String[]  // Stored as comma-separated values or JSON string
+  operatingDistricts String?
+  
+  // Shared optional
+  message         String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([createdAt])
+}
