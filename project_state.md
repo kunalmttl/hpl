@@ -17,7 +17,9 @@ Last updated: 2026-04-19 (RECAP)
 - [x] Advanced SEO Phase 2 (Verified, Indexing #3)
 - [x] SEO Title & Keyword Refinement (Removed redundancy, added Consignee focus)
 - [x] Branding: Circled Favicon & Apple Icon
-- [ ] Final Lighthouse Audit
+- [x] Contact3 Page Development (Multi-step enquiry form wizard with improved UX)
+- [x] API Endpoint Fix (Proper data persistence to Neon DB via Prisma)
+- [x] Final Lighthouse Audit
 | Feature | Status | Notes |
 |---------|--------|-------|
 | Project Context Setup | ✅ Done | Context captured in `context.md` |
@@ -337,11 +339,20 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
 - **Pending**:     Final Lighthouse verification and Image optimization.
 - **Left off at**: Project cleanup complete. Repository lean and production-ready.
  
- ### RECAP — [2026-04-09 23:45]
- - **Pushed**:      Synced all local performance and stability fixes to `main` branch.
- - **Cleaned**:     Removed legacy routes (`/about`, `/services`), redundant assets, and unused boilerplate.
- - **Refined**:     Updated `Footer.tsx` with smooth-scroll anchors for the unified SPA layout.
- - **Verified**:    Project structure is now lean and production-ready.
- - **Status**:      HPL Landing Page optimization and cleanup complete.
- - **Next Steps**:  Deploy to Vercel and conduct final production quality checks.
+### RECAP — [2026-04-09 23:45]
+  - **Pushed**:      Synced all local performance and stability fixes to `main` branch.
+  - **Cleaned**:     Removed legacy routes (`/about`, `/services`), redundant assets, and unused boilerplate.
+  - **Refined**:     Updated `Footer.tsx` with smooth-scroll anchors for the unified SPA layout.
+  - **Verified**:    Project structure is now lean and production-ready.
+  - **Status**:      HPL Landing Page optimization and cleanup complete.
+  - **Next Steps**:  Deploy to Vercel and conduct final production quality checks.
+
+### RECAP — [2026-05-14] - Contact3 Page Development & API Fix
+  - **Developed**:    Created `/contact3` page with improved multi-step enquiry form wizard
+  - **Components**:   Built reusable form components (RoleSelector, ContactInfoStep, ManufacturerBusinessStep, DistributorBusinessStep, RequirementsStep, ReviewStep, FormStepper)
+  - **UX Improvements**: Implemented progressive disclosure, better visual hierarchy, accessible checkboxes, and enhanced form validation
+  - **API Fix**:     Corrected `/api/enquiry` endpoint to properly save enquiry data to Neon DB via Prisma
+  - **Validation**:   Verified data persistence by checking neon.tech Prisma console dashboard
+  - **Status**:      Contact3 page is functional and ready for review as potential replacement for contact2
+  - **Next Steps**:  Review contact3 page feedback, decide on making it primary contact page, and prepare for final production deployment
 

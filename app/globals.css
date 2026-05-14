@@ -114,6 +114,23 @@
   .font-subtext {
     @apply font-subtext;
   }
+
+  /* Custom checkbox styles */
+  .sr-only {
+    @apply absolute inset-0 w-0 h-0 pointer-events-none opacity-0;
+  }
+
+  .peer {
+    @apply relative inline-block;
+  }
+
+  .peer-checked\:bg-\[\#0e7c6e\] {
+    @apply peer-checked:bg-[#0e7c6e];
+  }
+
+  .peer-checked\:border-\[\#0e7c6e\] {
+    @apply peer-checked:border-[#0e7c6e];
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
