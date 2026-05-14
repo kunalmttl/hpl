@@ -1,13 +1,21 @@
 import { Metadata } from "next";
 import { ContactHero } from "@/components/ContactHero";
-import { ContactForm } from "@/components/ContactForm";
+import { EnquiryFormV2 } from "@/components/contact/EnquiryFormV2";
 
 export const metadata: Metadata = {
-  title: "Contact HPL | C&F Agent & Consignee Business Enquiries Indore",
-  description: "Get in touch with Hindustan Pharma Logistics for C&F agency services, super stockist distribution, and business partnerships in Indore and Madhya Pradesh.",
+  title: "Partner With HPL | C&F Agent & Distributor Enquiries — Indore MP",
+  description:
+    "Submit a partnership enquiry to Hindustan Pharma Logistics. Whether you are a pharma manufacturer seeking a C&F agent or a distributor looking for verified stock, we respond within 24 hours.",
   alternates: {
     canonical: "https://www.hplco.in/contact",
-  }
+  },
+  openGraph: {
+    title: "Partner With HPL | C&F Agent & Distributor Enquiries",
+    description:
+      "Connect with Hindustan Pharma Logistics for C&F agency, super stockist, and distributor partnerships across Madhya Pradesh.",
+    url: "https://www.hplco.in/contact",
+    type: "website",
+  },
 };
 
 const contactSchema = {
@@ -17,9 +25,10 @@ const contactSchema = {
       "@type": "ContactPage",
       "@id": "https://www.hplco.in/contact/#webpage",
       "url": "https://www.hplco.in/contact",
-      "name": "Contact Hindustan Pharma Logistics",
-      "description": "Business enquiry and contact details for HPL pharma logistics services.",
-      "breadcrumb": { "@id": "https://www.hplco.in/#breadcrumb" }
+      "name": "Partner With Hindustan Pharma Logistics",
+      "description":
+        "Submit a manufacturer or distributor partnership enquiry to HPL. C&F agency, super stockist, and consignee agent services across Madhya Pradesh.",
+      "breadcrumb": { "@id": "https://www.hplco.in/contact/#breadcrumb" },
     },
     {
       "@type": "BreadcrumbList",
@@ -29,17 +38,17 @@ const contactSchema = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.hplco.in"
+          "item": "https://www.hplco.in",
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Contact",
-          "item": "https://www.hplco.in/contact"
-        }
-      ]
-    }
-  ]
+          "item": "https://www.hplco.in/contact",
+        },
+      ],
+    },
+  ],
 };
 
 export default function ContactPage() {
@@ -49,11 +58,11 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
-      <main className="min-h-screen bg-background pt-0 overflow-x-hidden">
+      <main className="min-h-screen bg-background overflow-x-hidden">
         <ContactHero />
-        <section className="pb-24">
-          <div className="container mx-auto px-8 md:px-16 lg:px-24">
-            <ContactForm />
+        <section className="pb-32 pt-4">
+          <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24 max-w-5xl">
+            <EnquiryFormV2 />
           </div>
         </section>
       </main>

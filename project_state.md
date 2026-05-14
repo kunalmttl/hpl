@@ -347,12 +347,12 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
   - **Status**:      HPL Landing Page optimization and cleanup complete.
   - **Next Steps**:  Deploy to Vercel and conduct final production quality checks.
 
-### RECAP — [2026-05-14] - Contact3 Page Development & API Fix
-  - **Developed**:    Created `/contact3` page with improved multi-step enquiry form wizard
+### RECAP — [2026-05-14] - Contact Page Development & API Fix
+  - **Developed**:    Created `/contact` page with improved multi-step enquiry form wizard
   - **Components**:   Built reusable form components (RoleSelector, ContactInfoStep, ManufacturerBusinessStep, DistributorBusinessStep, RequirementsStep, ReviewStep, FormStepper)
   - **UX Improvements**: Implemented progressive disclosure, better visual hierarchy, accessible checkboxes, and enhanced form validation
   - **API Fix**:     Corrected `/api/enquiry` endpoint to properly save enquiry data to Neon DB via Prisma
   - **Validation**:   Verified data persistence by checking neon.tech Prisma console dashboard
-  - **Status**:      Contact3 page is functional and ready for review as potential replacement for contact2
-  - **Next Steps**:  Review contact3 page feedback, decide on making it primary contact page, and prepare for final production deployment
+  - **Status**:      Contact page is functional and ready for use as the primary enquiry form
+  - **Next Steps**:  Prepare for final production deployment
 
