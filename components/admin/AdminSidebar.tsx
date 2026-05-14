@@ -106,22 +106,19 @@ export function AdminSidebar() {
   return (
     <aside className="fixed left-0 top-0 h-screen w-60 bg-white border-r border-border/40 flex flex-col z-40 select-none">
 
-      {/* ── Logo / Brand ──────────────────────────────────────────────────── */}
-      <div className="px-5 pt-6 pb-5 border-b border-border/40">
-        <div className="flex items-center gap-3">
-          {/* HPL icon — warehouse SVG matching site branding */}
-          <div className="w-9 h-9 rounded-xl bg-[#0e7c6e] flex items-center justify-center shrink-0">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-sm font-bold text-foreground leading-none">HPL</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5 leading-none">Admin Panel</p>
-          </div>
-        </div>
-      </div>
+       {/* ── Logo / Brand ──────────────────────────────────────────────────── */}
+       <div className="px-5 pt-6 pb-5 border-b border-border/40">
+         <div className="flex items-center gap-3">
+           {/* HPL logo — actual logo image */}
+           <div className="w-9 h-9 flex items-center justify-center shrink-0">
+             <img src="/logo.png" alt="HPL Logo" className="h-8 w-auto" />
+           </div>
+           <div>
+             <p className="text-sm font-bold text-foreground leading-none">HPL</p>
+             <p className="text-[11px] text-muted-foreground mt-0.5 leading-none">Admin Panel</p>
+           </div>
+         </div>
+       </div>
 
       {/* ── Main Nav ──────────────────────────────────────────────────────── */}
       <nav className="flex-1 px-3 pt-4 space-y-0.5 overflow-y-auto">
