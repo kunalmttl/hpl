@@ -11,11 +11,12 @@ export async function GET() {
     });
 
     const stats = {
-      total:         rows.reduce((s, r) => s + r._count._all, 0),
-      newCount:      rows.filter((r) => r.status === "new").reduce((s, r) => s + r._count._all, 0),
-      manufacturers: rows.filter((r) => r.role === "manufacturer").reduce((s, r) => s + r._count._all, 0),
-      distributors:  rows.filter((r) => r.role === "distributor").reduce((s, r) => s + r._count._all, 0),
-    };
+      total:         rows.reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      newCount:      rows.filter((r: any) => r.status === "new").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      manufacturers: rows.filter((r: any) => r.role === "manufacturer").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      distributors:  rows.filter((r: any) => r.role === "distributor").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+
+      };
 
     return NextResponse.json({ stats }, { status: 200 });
   } catch (err) {

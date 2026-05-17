@@ -23,7 +23,7 @@ export function DistributorBusinessStep({
   const toggleCategory = (category: string) => {
     onFieldUpdate("preferredCategories", 
       formData.preferredCategories.includes(category)
-        ? formData.preferredCategories.filter(c => c !== category)
+        ? formData.preferredCategories.filter((c: string) => c !== category)
         : [...formData.preferredCategories, category]
     );
   };
@@ -48,7 +48,7 @@ export function DistributorBusinessStep({
         <div className="grid gap-4 md:grid-cols-2">
           <FormField label="Drug License Number" required>
             <ContactInput
-              placeholder="Form 20B / 21B"
+              label="Form 20B / 21B"
               value={formData.drugLicense}
               onChange={(e) => onFieldUpdate("drugLicense", e.target.value)}
             />
@@ -56,7 +56,7 @@ export function DistributorBusinessStep({
 
           <FormField label="GST Number" required>
             <ContactInput
-              placeholder="23XXXXXXXXXXXZX"
+              label="23XXXXXXXXXXXZX"
               value={formData.gstNo}
               onChange={(e) => onFieldUpdate("gstNo", e.target.value)}
             />
@@ -78,7 +78,7 @@ export function DistributorBusinessStep({
 
           <FormField label="Operating Districts in MP">
             <ContactInput
-              placeholder="e.g. Indore, Ujjain, Ratlam"
+              label="e.g. Indore, Ujjain, Ratlam"
               value={formData.operatingDistricts}
               onChange={(e) => onFieldUpdate("operatingDistricts", e.target.value)}
             />

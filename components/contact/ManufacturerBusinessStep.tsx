@@ -23,7 +23,7 @@ export function ManufacturerBusinessStep({
   const toggleCategory = (category: string) => {
     onFieldUpdate("productCategories", 
       formData.productCategories.includes(category)
-        ? formData.productCategories.filter(c => c !== category)
+        ? formData.productCategories.filter((c: string) => c !== category)
         : [...formData.productCategories, category]
     );
   };
@@ -48,7 +48,7 @@ export function ManufacturerBusinessStep({
         <div className="grid gap-4 md:grid-cols-2">
           <FormField label="Drug License Number" required>
             <ContactInput
-              placeholder="e.g. MP/XX/XXXXX"
+              label="e.g. MP/XX/XXXXX"
               value={formData.drugLicense}
               onChange={(e) => onFieldUpdate("drugLicense", e.target.value)}
             />
@@ -99,7 +99,7 @@ export function ManufacturerBusinessStep({
 
         <FormField label="Districts Requiring Coverage">
           <ContactInput
-            placeholder="e.g. Ujjain, Dewas, Ratlam, Sehore"
+            label="e.g. Ujjain, Dewas, Ratlam, Sehore"
             value={formData.districtsNeeded}
             onChange={(e) => onFieldUpdate("districtsNeeded", e.target.value)}
           />

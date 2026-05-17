@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ContactHero } from "@/components/ContactHero";
-import { EnquiryFormV2 } from "@/components/contact2/EnquiryFormV2";
+import { EnquiryFormV2 } from "@/components/contact/EnquiryFormV2";
 
 export const metadata: Metadata = {
   title: "Partner With HPL | C&F Agent & Distributor Enquiries — Indore MP",

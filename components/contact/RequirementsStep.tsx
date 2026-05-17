@@ -24,7 +24,7 @@ export function RequirementsStep({
     // For simplicity, we'll use the same categories for both roles in requirements
     onFieldUpdate("productCategories", 
       formData.productCategories.includes(category)
-        ? formData.productCategories.filter(c => c !== category)
+        ? formData.productCategories.filter((c: string) => c !== category)
         : [...formData.productCategories, category]
     );
   };
@@ -80,7 +80,7 @@ export function RequirementsStep({
 
         <FormField label="Geographic Coverage Needed">
           <ContactInput
-            placeholder="e.g. Madhya Pradesh, Chhattisgarh, Rajasthan"
+            label="e.g. Madhya Pradesh, Chhattisgarh, Rajasthan"
             value={formData.districtsNeeded || ""}
             onChange={(e) => onFieldUpdate("districtsNeeded", e.target.value)}
           />
@@ -133,7 +133,7 @@ export function RequirementsStep({
 
         <FormField label="Additional Requirements">
           <ContactTextarea
-            placeholder="Any other details about your requirements..."
+            label="Any other details about your requirements..."
             value={formData.message || ""}
             onChange={(e) => onFieldUpdate("message", e.target.value)}
             rows={4}

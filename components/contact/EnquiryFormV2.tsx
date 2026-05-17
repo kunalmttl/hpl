@@ -82,8 +82,8 @@ const YEARS = ["Less than 1 year", "1 – 3 years", "3 – 7 years", "7+ years"]
 export function EnquiryFormV2() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
 
-  const updateField = (field: keyof Omit<FormData, "step" | "isSubmitting" | "submitted" | "error">, value: unknown) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const updateField = (field: string, value: unknown) => {
+    setFormData(prev => ({ ...prev, [field as keyof FormData]: value }));
   };
 
   const nextStep = () => {

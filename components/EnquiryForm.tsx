@@ -165,7 +165,7 @@ const slide = {
   initial: { opacity: 0, x: 32 },
   animate: { opacity: 1, x: 0 },
   exit: { opacity: 0, x: -32 },
-  transition: { duration: 0.28, ease: "easeInOut" },
+  transition: { duration: 0.28, ease: "easeInOut" as const },
 };
 
 // ─── Main Component ───────────────────────────────────────────────────────────

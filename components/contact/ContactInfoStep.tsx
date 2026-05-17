@@ -40,7 +40,7 @@ export function ContactInfoStep({
         <div className="grid gap-4 md:grid-cols-2">
           <FormField label="Company Name" required>
             <ContactInput
-              placeholder="e.g. Cipla Limited"
+              label="e.g. Cipla Limited"
               value={formData.companyName}
               onChange={(e) => onFieldUpdate("companyName", e.target.value)}
             />
@@ -48,7 +48,7 @@ export function ContactInfoStep({
 
           <FormField label="Contact Person" required>
             <ContactInput
-              placeholder="Full name"
+              label="Full name"
               value={formData.contactName}
               onChange={(e) => onFieldUpdate("contactName", e.target.value)}
             />
@@ -58,7 +58,7 @@ export function ContactInfoStep({
         <div className="grid gap-4 md:grid-cols-2">
           <FormField label="Phone Number" required>
             <ContactInput
-              placeholder="+91 XXXXX XXXXX"
+              label="+91 XXXXX XXXXX"
               type="tel"
               value={formData.phone}
               onChange={(e) => onFieldUpdate("phone", e.target.value)}
@@ -67,7 +67,7 @@ export function ContactInfoStep({
 
           <FormField label="Email Address">
             <ContactInput
-              placeholder="your@company.com"
+              label="your@company.com"
               type="email"
               value={formData.email}
               onChange={(e) => onFieldUpdate("email", e.target.value)}
@@ -77,7 +77,7 @@ export function ContactInfoStep({
 
         <FormField label="Additional Message">
           <ContactTextarea
-            placeholder="Any specific requirements or questions..."
+            label="Any specific requirements or questions..."
             value={formData.message}
             onChange={(e) => onFieldUpdate("message", e.target.value)}
             rows={3}

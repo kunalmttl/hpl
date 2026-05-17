@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavbarLogoRef } from "@/contexts/NavbarLogoRef";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export function ContactHeroV2() {
   const { isIntroDone } = useNavbarLogoRef();
@@ -16,14 +15,14 @@ export function ContactHeroV2() {
         <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="none">
           <defs>
             <linearGradient id="networkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#0e7c6e;stop-opacity:0.05" />
-              <stop offset="100%" style="stop-color:#0e7c6e;stop-opacity:0.01" />
+              <stop offset="0%" stopColor="#0e7c6e" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="#0e7c6e" stopOpacity="0.01" />
             </linearGradient>
           </defs>
-          <!-- Main Network Lines -->
+          {/* Main Network Lines */}
           <path d="M0,100 Q250,50 500,100 T1000,100" fill="none" stroke="url(#networkGradient)" strokeWidth="2" />
           <path d="M0,300 Q250,250 500,300 T1000,300" fill="none" stroke="url(#networkGradient)" strokeWidth="2" />
-          <!-- Network Nodes -->
+          {/* Network Nodes */}
           <circle cx="150" cy="120" r="3" fill="url(#networkGradient)" />
           <circle cx="350" cy="180" r="2.5" fill="url(#networkGradient)" />
           <circle cx="500" cy="120" r="3" fill="url(#networkGradient)" />
@@ -33,7 +32,7 @@ export function ContactHeroV2() {
           <circle cx="400" cy="320" r="3" fill="url(#networkGradient)" />
           <circle cx="600" cy="280" r="2.5" fill="url(#networkGradient)" />
           <circle cx="800" cy="320" r="3" fill="url(#networkGradient)" />
-          <!-- Connection Dots -->
+          {/* Connection Dots */}
           <circle cx="100" cy="150" r="1.5" fill="currentColor" opacity="0.3" />
           <circle cx="900" cy="350" r="1.5" fill="currentColor" opacity="0.3" />
         </svg>
@@ -91,14 +90,17 @@ export function ContactHeroV2() {
             </svg>
             Call Us Now
           </a>
-          <WhatsAppButton 
+          <a
+            href="https://wa.me/919300001411?text=Hello%20HPL%2C%20I%27m%20interested%20in%20your%20logistics%20services."
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-3 px-6 py-3 bg-[#25D366] text-white text-sm font-semibold rounded-xl hover:bg-[#1ebe5e] transition-all duration-200 shadow-md shadow-[#25D366]/20"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 6h8m0 0l-4 4m4-4l4-4m0 5h-3a2 2 0 00-2 2v1a2 2 0 002 2h3v-2a2 2 0 00-2-2zM2 12a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2v-2z" />
             </svg>
             WhatsApp Us
-          </WhatsAppButton>
+          </a>
         </div>
       </div>
     </section>
