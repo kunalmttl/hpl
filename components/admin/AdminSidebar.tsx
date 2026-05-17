@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useClerk, useUser } from "@clerk/nextjs";
+import { logout } from "@/app/actions/auth";
 import { motion } from "framer-motion";
 
 // ─── Nav Items ────────────────────────────────────────────────────────────────
@@ -95,8 +95,10 @@ function NavItem({
 // ─── Main Sidebar ─────────────────────────────────────────────────────────────
 export function AdminSidebar() {
   const pathname = usePathname();
-  const { signOut } = useClerk();
-  const { user } = useUser();
+
+  const handleSignOut = async () => {
+    await logout();
+  };
 
   const isActive = (href: string) => {
     if (href === "/admin") return pathname === "/admin";
@@ -143,7 +145,7 @@ export function AdminSidebar() {
 
         {/* Sign Out */}
         <button
-          onClick={() => signOut({ redirectUrl: "/" })}
+          onClick={handleSignOut}
           className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:bg-red-50 hover:text-red-500 transition-all duration-200 group"
         >
           <svg className="w-4 h-4 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,23 +156,15 @@ export function AdminSidebar() {
         </button>
 
         {/* User identity strip */}
-        {user && (
-          <div className="mt-3 px-4 py-3 rounded-xl bg-muted/40 flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full bg-[#0e7c6e] flex items-center justify-center shrink-0">
-              <span className="text-white text-[11px] font-semibold">
-                {user.firstName?.[0] ?? "A"}
-              </span>
-            </div>
-            <div className="overflow-hidden">
-              <p className="text-xs font-semibold text-foreground truncate leading-none">
-                {user.firstName ?? "Admin"}
-              </p>
-              <p className="text-[11px] text-muted-foreground mt-0.5 truncate leading-none">
-                {user.emailAddresses[0]?.emailAddress ?? ""}
-              </p>
-            </div>
+        <div className="mt-3 px-4 py-3 rounded-xl bg-muted/40 flex items-center gap-3">
+          <div className="w-7 h-7 rounded-full bg-[#0e7c6e] flex items-center justify-center shrink-0">
+            <span className="text-white text-[11px] font-semibold">A</span>
           </div>
-        )}
+          <div className="overflow-hidden">
+            <p className="text-xs font-semibold text-foreground truncate leading-none">Admin</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5 truncate leading-none">Authenticated</p>
+          </div>
+        </div>
       </div>
     </aside>
   );

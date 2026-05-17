@@ -365,3 +365,22 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
   - **Files Modified**: `app/layout.tsx`, `components/Navbar.tsx`, `components/IntroAnimation.tsx`
   - **Status**: Console warnings resolved; site ready for deployment
 
+### RECAP — [2026-05-17] - Auth System Migration (Clerk Removed)
+  - **Removed**: Clerk authentication package (`@clerk/nextjs`) and all associated imports from dependencies
+  - **Cleaned Up**: Removed Clerk auth calls from all admin API routes:
+    - `app/api/admin/enquiries/route.ts`: Removed `auth()` import and userId check
+    - `app/api/admin/enquiries/[id]/route.ts`: Removed Clerk auth middleware
+    - `app/api/admin/stats/route.ts`: Removed Clerk auth middleware
+  - **Updated Components**: 
+    - `components/admin/AdminSidebar.tsx`: Removed `useClerk()` and `useUser()` hooks, replaced with custom logout action
+    - Simplified user identity display to static "Admin" label (auth is now cookie-based via proxy.ts)
+  - **Authentication**: Admin routes now protected via:
+    - `proxy.ts` middleware for cookie-based request validation
+    - `app/actions/auth.ts` for login/logout server actions
+    - Environment variables: `ADMIN_USERNAME` and `ADMIN_PASSWORD`
+  - **Files Updated**:
+    - `package.json`: Removed @clerk/nextjs dependency
+    - `.gitignore`: Removed `/lib/generated/prisma` entry (cleanup)
+    - All admin API routes and AdminSidebar component
+  - **Status**: Custom auth system verified and working; Clerk completely removed from codebase; no build errors
+
