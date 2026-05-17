@@ -8,7 +8,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroller from "@/components/SmoothScroller";
 import IntroAnimation from "@/components/IntroAnimation";
 import { NavbarLogoRefProvider } from "@/contexts/NavbarLogoRef";
-import { ClerkProvider } from "@clerk/nextjs";
 
 
 
@@ -122,28 +121,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${openSans.variable} ${ttNeoris.variable} ${clarityCity.variable} antialiased font-body tracking-tight selection:bg-pharma-teal/10 selection:text-pharma-teal`}
-          suppressHydrationWarning
-        >
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          />
-           <NavbarLogoRefProvider>
-             <IntroAnimation />
-             <SmoothScroller />
-             <Navbar />
-             <main className="min-h-screen">
-               {children}
-             </main>
-             <ConditionalFooter />
-             <WhatsAppButton />
-           </NavbarLogoRefProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body
+        className={`${openSans.variable} ${ttNeoris.variable} ${clarityCity.variable} antialiased font-body tracking-tight selection:bg-pharma-teal/10 selection:text-pharma-teal`}
+        suppressHydrationWarning
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        <NavbarLogoRefProvider>
+          <IntroAnimation />
+          <SmoothScroller />
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <ConditionalFooter />
+          <WhatsAppButton />
+        </NavbarLogoRefProvider>
+      </body>
+    </html>
   );
 }

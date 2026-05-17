@@ -173,6 +173,7 @@ export default function IntroAnimation() {
             width={140}
             height={48}
             className="w-[90px] md:w-[140px] h-auto object-contain"
+            style={{ height: 'auto' }}
             priority
           />
         </div>
@@ -192,6 +193,7 @@ export default function IntroAnimation() {
             width={1330}
             height={419}
             className="w-[140px] md:w-[240px] h-auto object-contain mix-blend-multiply"
+            style={{ height: 'auto' }}
             priority
           />
         </div>

@@ -356,3 +356,12 @@ Refined the "Core Solutions" section background to ensure decorative elements (i
   - **Status**:      Contact page is functional and ready for use as the primary enquiry form
   - **Next Steps**:  Prepare for final production deployment
 
+### RECAP — [2026-05-17] - Browser Console Warning Fixes
+  - **Fixed Warning 1**: Added `data-scroll-behavior="smooth"` attribute to `<html>` element in `app/layout.tsx` to signal intentional smooth scrolling and silence Next.js warning.
+  - **Fixed Warning 2**: Resolved image aspect ratio warning by adding explicit style props (`style={{ width: 'auto' }}` and `style={{ height: 'auto' }}`) to logo and hero images:
+    - `components/Navbar.tsx`: Added `style={{ width: 'auto' }}` to logo Image
+    - `components/IntroAnimation.tsx`: Added `style={{ height: 'auto' }}` to hero images (logo and text wordmark)
+  - **Result**: Both browser console warnings eliminated; site now provides clean developer experience.
+  - **Files Modified**: `app/layout.tsx`, `components/Navbar.tsx`, `components/IntroAnimation.tsx`
+  - **Status**: Console warnings resolved; site ready for deployment
+
