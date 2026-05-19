@@ -5,9 +5,13 @@ Last updated: 2026-05-19 (RECAP)
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Advanced SEO, Auth, and Enquiry Form Valdation COMPLETE.** Standardized website layout, metadata, custom session auth, and multi-step enquiry B2B forms with strict dynamic validation. Prefilled and formatted Indian country codes, added regex constraints for email and GSTIN numbers, and fixed viewport scrolls on category selection. All systems connected to Neon DB and verified with Resend verification.
+**Admin Panel Refactor, SEO, Auth, and Enquiry Form Validation COMPLETE.** Standardized website layout, metadata, custom session auth, B2B enquiry forms with validation, and a minimalistic Admin Overview dashboard. All systems connected to Neon DB and verified with Resend verification.
 
 ## Task History
+- **Admin Overview Dashboard & Sidebar Cleanup (2026-05-19)**:
+    - Created a minimalistic dashboard at `/admin/overview` detailing key counts, recent leads, and channel statuses.
+    - Removed the settings option from the Admin Sidebar panel and updated the Overview navigation destination.
+    - Updated main `/admin` route to redirect directly to the new overview page.
 - **Enquiry Form Validation & Checkbox Refinement (2026-05-19)**:
     - Added dynamic client-side form validation for required fields, phone numbers (+91 pattern), email formats, and Indian GST patterns.
     - Resolved accessibility/viewport jumping by adding `relative` CSS positioning to checkbox labels to frame focused screen-reader elements.

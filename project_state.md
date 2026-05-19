@@ -16,6 +16,10 @@ Last updated: 2026-05-19 (RECAP)
 3.  **API Dynamic Routing & Email Setup**:
     - Configured dynamic recipient handling via `CONTACT_RECIPIENT_EMAIL` env variable with fallback to `info@hplco.in`.
     - Verified Resend domain onboarding for `hplco.in` and confirmed Zoho user setup for `info@hplco.in`.
+4.  **Admin Panel Refactor**:
+    - Created a clean, minimalistic Admin Overview dashboard (`/admin/overview`) displaying stats cards (Total Enquiries, New/Unread, Manufacturers, Distributors), recent enquiries, and a custom leads breakdown progress bar.
+    - Updated the Admin Sidebar navigation to route Overview to the new dashboard and removed the Settings page entry.
+    - Configured `/admin` root route to redirect directly to `/admin/overview`.
 
 ## RECAP: 2026-04-11
 
