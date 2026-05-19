@@ -44,7 +44,7 @@ const INITIAL_FORM_DATA: FormData = {
   role: null,
   companyName: "",
   contactName: "",
-  phone: "",
+  phone: "+91",
   email: "",
   drugLicense: "",
   productCategories: [],

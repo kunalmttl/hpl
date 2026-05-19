@@ -69,7 +69,7 @@ const structuredData = {
       "@id": "https://www.hplco.in",
       "url": "https://www.hplco.in",
       "telephone": "+91-0731-6056001",
-      "email": "hindustanpharma1@yahoo.com",
+      "email": "info@hplco.in",
       "priceRange": "Contact for Quotes",
       "address": {
         "@type": "PostalAddress",

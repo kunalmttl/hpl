@@ -128,7 +128,7 @@ export default function Footer() {
               >
                 <motion.div variants={itemVariants}><ContactItem icon={<MapPin size={16} />} text="MR 9 Rd, RamKrishna Bagh, Khajrana, Indore, MP 452016" /></motion.div>
                 <motion.div variants={itemVariants}><ContactItem icon={<Phone size={16} />} text="0731 605 6001" /></motion.div>
-                <motion.div variants={itemVariants}><ContactItem icon={<Mail size={16} />} text="hindustanpharma1@yahoo.com" /></motion.div>
+                <motion.div variants={itemVariants}><ContactItem icon={<Mail size={16} />} text="info@hplco.in" /></motion.div>
               </motion.div>
           </motion.div>
 

@@ -1,4 +1,5 @@
 # HPL Project - Essential Agent Guidance
+- always use filesystem mcp server for writing or editing files.
 
 ## Key Commands
 - `npm run dev` - Start development server (http://localhost:3000)

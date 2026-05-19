@@ -92,10 +92,11 @@ export function RequirementsStep({
           </p>
           <div className="flex flex-wrap gap-2">
             {["Tablets & Capsules", "Injectables", "Syrups & Liquids", "Ointments & Creams", "FMCG / OTC", "Surgical"].map((category) => (
-              <label key={category} className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 
-                {formData.productCategories?.includes(category)
+              <label key={category} className={`relative flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border cursor-pointer transition-all duration-200 ${
+                formData.productCategories?.includes(category)
                   ? 'bg-[#0e7c6e] border-[#0e7c6e] text-white'
-                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'}"
+                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'
+              }`}
               >
                 <input
                   type="checkbox"

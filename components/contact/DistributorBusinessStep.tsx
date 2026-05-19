@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FormField } from "./FormField";
 import { ContactInput } from "@/components/ContactInput";
@@ -19,6 +20,37 @@ export function DistributorBusinessStep({
   onNext, 
   onBack 
 }: DistributorBusinessStepProps) {
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleContinue = () => {
+    const tempErrors: { [key: string]: string } = {};
+
+    // Validate Drug License
+    if (!formData.drugLicense || !formData.drugLicense.trim()) {
+      tempErrors.drugLicense = "Drug license number is required";
+    } else if (formData.drugLicense.trim().length < 3) {
+      tempErrors.drugLicense = "Please enter a valid drug license number";
+    }
+
+    // Validate GST Number
+    const cleanedGst = (formData.gstNo || "").trim().toUpperCase();
+    if (!cleanedGst) {
+      tempErrors.gstNo = "GST number is required";
+    } else if (cleanedGst.length !== 15) {
+      tempErrors.gstNo = "GST number must be exactly 15 characters";
+    } else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(cleanedGst)) {
+      tempErrors.gstNo = "Invalid GST format (e.g. 23ABCDE1234F1Z5)";
+    } else {
+      // Update with cleaned uppercase GST
+      onFieldUpdate("gstNo", cleanedGst);
+    }
+
+    setErrors(tempErrors);
+
+    if (Object.keys(tempErrors).length === 0) {
+      onNext();
+    }
+  };
   
   const toggleCategory = (category: string) => {
     onFieldUpdate("preferredCategories", 
@@ -46,19 +78,25 @@ export function DistributorBusinessStep({
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <FormField label="Drug License Number" required>
+          <FormField label="Drug License Number" required error={errors.drugLicense}>
             <ContactInput
               label="Form 20B / 21B"
               value={formData.drugLicense}
-              onChange={(e) => onFieldUpdate("drugLicense", e.target.value)}
+              onChange={(e) => {
+                onFieldUpdate("drugLicense", e.target.value);
+                if (errors.drugLicense) setErrors(prev => ({ ...prev, drugLicense: "" }));
+              }}
             />
           </FormField>
 
-          <FormField label="GST Number" required>
+          <FormField label="GST Number" required error={errors.gstNo}>
             <ContactInput
               label="23XXXXXXXXXXXZX"
               value={formData.gstNo}
-              onChange={(e) => onFieldUpdate("gstNo", e.target.value)}
+              onChange={(e) => {
+                onFieldUpdate("gstNo", e.target.value);
+                if (errors.gstNo) setErrors(prev => ({ ...prev, gstNo: "" }));
+              }}
             />
           </FormField>
         </div>
@@ -91,10 +129,11 @@ export function DistributorBusinessStep({
           </p>
           <div className="flex flex-wrap gap-2">
             {["Tablets & Capsules", "Injectables", "Syrups & Liquids", "Ointments & Creams", "FMCG / OTC", "Surgical"].map((category) => (
-              <label key={category} className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 
-                {formData.preferredCategories.includes(category)
+              <label key={category} className={`relative flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border cursor-pointer transition-all duration-200 ${
+                formData.preferredCategories.includes(category)
                   ? 'bg-[#0e7c6e] border-[#0e7c6e] text-white'
-                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'}"
+                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'
+              }`}
               >
                 <input
                   type="checkbox"
@@ -127,7 +166,7 @@ export function DistributorBusinessStep({
           Back
         </button>
         <button
-          onClick={onNext}
+          onClick={handleContinue}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0e7c6e] text-white text-sm font-semibold hover:bg-[#0b6b5e] transition-all duration-200"
         >
           Continue

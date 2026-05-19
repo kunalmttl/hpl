@@ -1,6 +1,21 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
 
-Last updated: 2026-04-19 (RECAP)
+Last updated: 2026-05-19 (RECAP)
+
+## RECAP: 2026-05-19
+
+1.  **Form Validation**:
+    - Implemented progressive client-side input validation on the B2B enquiry multi-step form stepper.
+    - Set default prefill of phone number to `+91` and added auto-prefixing from 10-digit raw numeric input. Enforced validation of exactly 10 digits after `+91`.
+    - Added regex validation for standard Indian GSTIN format (15 characters) and email addresses.
+    - Attached form errors inline dynamically to all fields under the `<FormField>` component.
+2.  **Category Checkbox Scroll Fix**:
+    - Added `relative` positioning context to checkboxes labels across `ManufacturerBusinessStep`, `DistributorBusinessStep`, and `RequirementsStep`.
+    - Fixed absolute coordinates reference for screen-reader-only `<input>` elements, which previously caused the window viewport to scroll to the top on focus.
+    - Cleaned up string template styling to apply active checkbox styles properly.
+3.  **API Dynamic Routing & Email Setup**:
+    - Configured dynamic recipient handling via `CONTACT_RECIPIENT_EMAIL` env variable with fallback to `info@hplco.in`.
+    - Verified Resend domain onboarding for `hplco.in` and confirmed Zoho user setup for `info@hplco.in`.
 
 ## RECAP: 2026-04-11
 
@@ -21,6 +36,7 @@ Last updated: 2026-04-19 (RECAP)
 - [x] SEO Title & Keyword Refinement (Removed redundancy, added Consignee focus)
 - [x] Branding: Circled Favicon & Apple Icon
 - [x] Contact3 Page Development (Multi-step enquiry form wizard with improved UX)
+- [x] Contact Enquiry Form Validation & Category Scroll Fix (Completed client-side validations and focused element layout context fixes)
 - [x] API Endpoint Fix (Proper data persistence to Neon DB via Prisma)
 - [x] Final Lighthouse Audit
       | Feature | Status | Notes |

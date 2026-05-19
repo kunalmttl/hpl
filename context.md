@@ -1,13 +1,17 @@
 # Project Context: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-04-19 (RECAP)
+Last updated: 2026-05-19 (RECAP)
 
 ## Active Project
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Advanced SEO Strategy & Branding Refinement COMPLETE.** Standardized all website titles for a premium feel (focusing on "C&F Agent" and "Consignee Agent"). Implemented deep structured data (JSON-LD) and high-fidelity branding assets including a premium circled favicon. Site is optimized for high-authority pharmaceutical distribution searches in Madhya Pradesh.
+**Advanced SEO, Auth, and Enquiry Form Valdation COMPLETE.** Standardized website layout, metadata, custom session auth, and multi-step enquiry B2B forms with strict dynamic validation. Prefilled and formatted Indian country codes, added regex constraints for email and GSTIN numbers, and fixed viewport scrolls on category selection. All systems connected to Neon DB and verified with Resend verification.
 
 ## Task History
+- **Enquiry Form Validation & Checkbox Refinement (2026-05-19)**:
+    - Added dynamic client-side form validation for required fields, phone numbers (+91 pattern), email formats, and Indian GST patterns.
+    - Resolved accessibility/viewport jumping by adding `relative` CSS positioning to checkbox labels to frame focused screen-reader elements.
+    - Verified live Resend configuration and linked dynamic routing configuration in dynamic API handlers.
 - **SEO Title & Keyword Refinement (2026-04-19)**: 
     - Standardized all titles to remove redundancy between "CFA" and "C&F Agent".
     - Integrated "Consignee Agent" as a primary keyword across all metadata.

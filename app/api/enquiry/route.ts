@@ -85,12 +85,14 @@ async function sendEmails(data: z.infer<typeof enquirySchema>) {
     headers: { "X-Entity-Ref-ID": Date.now().toString() },
   };
 
+  const recipient = process.env.CONTACT_RECIPIENT_EMAIL || "info@hplco.in";
+
   await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${RESEND_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       ...basePayload,
-      to: ["hindustanpharma1@yahoo.com"],
+      to: [recipient],
       subject: `New ${roleLabel} Enquiry: ${data.companyName}`,
       html: ownerBody,
     }),

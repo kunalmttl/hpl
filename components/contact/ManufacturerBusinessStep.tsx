@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FormField } from "./FormField";
 import { ContactInput } from "@/components/ContactInput";
@@ -19,6 +20,23 @@ export function ManufacturerBusinessStep({
   onNext, 
   onBack 
 }: ManufacturerBusinessStepProps) {
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleContinue = () => {
+    const tempErrors: { [key: string]: string } = {};
+
+    if (!formData.drugLicense || !formData.drugLicense.trim()) {
+      tempErrors.drugLicense = "Drug license number is required";
+    } else if (formData.drugLicense.trim().length < 3) {
+      tempErrors.drugLicense = "Please enter a valid drug license number";
+    }
+
+    setErrors(tempErrors);
+
+    if (Object.keys(tempErrors).length === 0) {
+      onNext();
+    }
+  };
   
   const toggleCategory = (category: string) => {
     onFieldUpdate("productCategories", 
@@ -46,11 +64,14 @@ export function ManufacturerBusinessStep({
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <FormField label="Drug License Number" required>
+          <FormField label="Drug License Number" required error={errors.drugLicense}>
             <ContactInput
               label="e.g. MP/XX/XXXXX"
               value={formData.drugLicense}
-              onChange={(e) => onFieldUpdate("drugLicense", e.target.value)}
+              onChange={(e) => {
+                onFieldUpdate("drugLicense", e.target.value);
+                if (errors.drugLicense) setErrors(prev => ({ ...prev, drugLicense: "" }));
+              }}
             />
           </FormField>
 
@@ -73,10 +94,11 @@ export function ManufacturerBusinessStep({
           </p>
           <div className="flex flex-wrap gap-2">
             {["Tablets & Capsules", "Injectables", "Syrups & Liquids", "Ointments & Creams", "FMCG / OTC", "Surgical"].map((category) => (
-              <label key={category} className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 
-                {formData.productCategories.includes(category)
+              <label key={category} className={`relative flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border cursor-pointer transition-all duration-200 ${
+                formData.productCategories.includes(category)
                   ? 'bg-[#0e7c6e] border-[#0e7c6e] text-white'
-                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'}"
+                  : 'border-border text-muted-foreground hover:border-[#0e7c6e]/50 hover:text-foreground'
+              }`}
               >
                 <input
                   type="checkbox"
@@ -117,7 +139,7 @@ export function ManufacturerBusinessStep({
           Back
         </button>
         <button
-          onClick={onNext}
+          onClick={handleContinue}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0e7c6e] text-white text-sm font-semibold hover:bg-[#0b6b5e] transition-all duration-200"
         >
           Continue
