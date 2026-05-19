@@ -65,11 +65,11 @@ const structuredData = {
       "@type": "LocalBusiness",
       "name": "Hindustan Pharma Logistics",
       "alternateName": "HPL",
-      "image": "/og-image.png",
+      "image": "https://www.hplco.in/og-image.png",
       "@id": "https://www.hplco.in",
       "url": "https://www.hplco.in",
       "telephone": "+91-0731-6056001",
-      "email": "info@hplco.in",
+      "email": "hindustanpharma1@yahoo.com",
       "priceRange": "Contact for Quotes",
       "address": {
         "@type": "PostalAddress",
@@ -90,15 +90,42 @@ const structuredData = {
         "opens": "10:00",
         "closes": "18:00"
       },
-      "description": "C&F agent, super stockist and consignee agent for pharma manufacturers in Madhya Pradesh. Serving 60+ manufacturers since 2009.",
+      "description": "Hindustan Pharma Logistics is a trusted C&F agent, super stockist and consignee agent for pharma manufacturers in Madhya Pradesh. Based in Indore since 2009, serving 60+ manufacturers across 12+ districts.",
       "foundingDate": "2009",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 20
+      },
       "areaServed": {
         "@type": "State",
         "name": "Madhya Pradesh"
       },
       "sameAs": [
-        "https://www.linkedin.com/company/hindustanpharmalogistics/"
+        "https://www.linkedin.com/company/hindustanpharmalogistics/",
+        "https://www.justdial.com/Indore/Hindustan-Pharma-Logistics-C-F-And-Consignee-Agent-Near-Robot-Square1314-Sunderbagh-Khajrana/0731PX731-X731-230208181640-F2C2_BZDET",
+        "https://www.tradeindia.com/hindustan-pharma-logistics-8904499/"
       ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.hplco.in/#organization",
+      "name": "Hindustan Pharma Logistics",
+      "alternateName": "HPL",
+      "url": "https://www.hplco.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.hplco.in/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-0731-6056001",
+        "contactType": "customer service",
+        "email": "hindustanpharma1@yahoo.com",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      }
     },
     {
       "@type": "BreadcrumbList",

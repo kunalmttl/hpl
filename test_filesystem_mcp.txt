@@ -1,0 +1,6 @@
+This is a test file to verify the write capabilities of the filesystem MCP server.
+Let's see how fast it writes and if there's any lag.
+Initial line 1.
+Initial line 2.
+This line has been modified during the edit test.
+Initial line 3.

@@ -1,6 +1,23 @@
 # Project State: Hindustan Pharma Logistics (HPL) Website
 
-Last updated: 2026-05-19 (RECAP)
+Last updated: 2026-05-20 (RECAP)
+
+## RECAP: 2026-05-20
+
+1.  **Peak SEO Implementation**:
+    - **Technical Hardening**: Added security headers (HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy) to `next.config.ts`. Updated `robots.ts` to disallow `/admin/` and `/login`.
+    - **Structured Data Enrichment**: Expanded `layout.tsx` JSON-LD with full `Organization` schema (logo, contactPoint, availableLanguage), enriched `LocalBusiness` with `numberOfEmployees`, detailed description, expanded `sameAs` (LinkedIn, Justdial, TradeIndia). Fixed email to `hindustanpharma1@yahoo.com`. Fixed image URL to absolute.
+    - **Page Schema Expansion**: Added 4 more FAQ entries to FAQPage schema (7 total), added 2 new Service schemas (Consignee Agent, Hindustan Drug House) — now 4 services total.
+    - **H1 Keyword Optimization**: Rewrote H1 from "Central India's Trusted Pharma Partner" to "Central India's Trusted C&F Agent & Pharma Partner" to include the #1 money keyword.
+    - **Below-Fold SEO Content**: Created `SEOContentSection.tsx` — server-rendered component with ~1000 words of crawlable text covering About HPL, 4 services (C&F Agency, Super Stockist, Consignee Agent, Drug House), 12-district service area map, 6 trust pillars, and a CTA.
+    - **FAQ Accordion**: Created `FAQSection.tsx` — visible, interactive FAQ matching the JSON-LD schema. 7 questions targeting Tier 1–3 keywords with Framer Motion expand/collapse.
+    - **Contact Page SEO**: Added intro paragraph for crawlable context, contact info strip (Address, Phone, Email+Hours), and Google Maps embed (lazy-loaded iframe).
+    - **Image Alt Optimization**: Updated `CoreSolutionCard.tsx` with `altText` prop. Set keyword-rich alt text for all 4 service infographics. Updated `BrandCarousel.tsx` from generic "HPL Environment" to descriptive alt.
+    - **Duplicate Page Cleanup**: Deleted `/contact2` and `/contact3` directories entirely (were duplicate forms with same canonical).
+2.  **Google Business Profile (GBP)**:
+    - **Status**: GBP exists but was set up by an employee's account. Owner currently does not have access.
+    - **TODO**: Regain access to the GBP account, verify business, add all 4 services as products, upload 10+ photos, and write 750-char description.
+    - **Priority**: 🔴 Critical — GBP is the #1 local SEO signal.
 
 ## RECAP: 2026-05-19
 

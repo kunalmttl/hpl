@@ -172,7 +172,7 @@ const OrbitCard = ({
       >
         <Image
           src={src}
-          alt="HPL Environment"
+          alt="Hindustan Pharma Logistics warehouse and operations facility in Indore, Madhya Pradesh"
           fill
           sizes="(max-width: 768px) 112px, 160px"
           className="object-cover grayscale-[0.1] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 ease-out"

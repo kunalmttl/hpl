@@ -10,6 +10,9 @@ const HeroNetworkMap = dynamic(() => import("@/components/HeroNetworkMap"), { ss
 const TeamSection = dynamic(() => import("@/components/TeamSection"), { ssr: false });
 const BrandConveyor = dynamic(() => import("@/components/BrandConveyor"), { ssr: false });
 
+import { SEOContentSection } from "@/components/SEOContentSection";
+import { FAQSection } from "@/components/FAQSection";
+
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -37,6 +40,7 @@ const SERVICES_DATA = [
     icon: Warehouse,
     accentColor: "var(--color-pharma-teal)",
     accentBg: "rgba(15, 118, 110, 0.1)",
+    altText: "C&F agency warehouse and inventory management for pharma manufacturers in Indore, Madhya Pradesh",
   },
   {
     title: "Super Stockist",
@@ -45,6 +49,7 @@ const SERVICES_DATA = [
     icon: Truck,
     accentColor: "var(--color-blue-500)",
     accentBg: "rgba(59, 130, 246, 0.1)",
+    altText: "Pharma super stockist distribution network across 12+ districts of Madhya Pradesh",
   },
   {
     title: "Consignee Agent",
@@ -53,6 +58,7 @@ const SERVICES_DATA = [
     icon: ShieldCheck,
     accentColor: "var(--color-amber-500)",
     accentBg: "rgba(245, 158, 11, 0.1)",
+    altText: "Consignee agent services — receiving and dispatching pharmaceutical products across Central India",
   },
   {
     title: "Hindustan Drug House",
@@ -61,6 +67,7 @@ const SERVICES_DATA = [
     icon: Zap,
     accentColor: "var(--color-rose-500)",
     accentBg: "rgba(244, 63, 94, 0.1)",
+    altText: "Hindustan Drug House direct pharma supply to chemists in Dawa Bazaar, Indore",
   },
 ];
 
@@ -320,7 +327,8 @@ export function HomeContent() {
               className="text-3xl sm:text-4xl md:text-6xl lg:text-[64px] font-bold text-slate-900 tracking-tight leading-[1.05] mb-6"
               segments={[
                 { text: "Central India's Trusted", br: true },
-                { text: "Pharma Partner", className: "text-pharma-teal" }
+                { text: "C&F Agent", className: "text-pharma-teal" },
+                { text: " & Pharma Partner" }
               ]}
               once={false}
             />
@@ -498,6 +506,7 @@ export function HomeContent() {
               icon={service.icon}
               accentColor={service.accentColor}
               accentBg={service.accentBg}
+              altText={service.altText}
               index={i}
             />
           ))}
@@ -660,6 +669,12 @@ export function HomeContent() {
       <section id="testimonials">
         <TestimonialsCarousel />
       </section>
+
+      {/* SEO CONTENT — Server-rendered text for Google indexing */}
+      <SEOContentSection />
+
+      {/* FAQ ACCORDION — Matches FAQPage JSON-LD schema */}
+      <FAQSection />
 
     </div>
   );

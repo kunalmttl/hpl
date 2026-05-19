@@ -14,6 +14,7 @@ interface CoreSolutionCardProps {
   accentColor: string;
   accentBg: string;
   index: number;
+  altText?: string;
 }
 
 const cardVariants: Variants = {
@@ -74,6 +75,7 @@ export function CoreSolutionCard({
   accentColor,
   accentBg,
   index,
+  altText,
 }: CoreSolutionCardProps) {
 
   return (
@@ -110,7 +112,7 @@ export function CoreSolutionCard({
         >
           <Image
             src={image}
-            alt={`${title} infographic`}
+            alt={altText || `${title} — pharmaceutical logistics service by Hindustan Pharma Logistics in Indore`}
             fill
             className="object-contain drop-shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.1] group-hover:-translate-y-4"
             sizes="(max-width: 768px) 100vw, 50vw"
