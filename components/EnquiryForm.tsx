@@ -260,7 +260,7 @@ export function EnquiryForm() {
           Tell us about your company
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
-          We'll use this to understand your distribution requirements.
+          We&apos;ll use this to understand your distribution requirements.
         </p>
       </div>
 
@@ -328,7 +328,7 @@ export function EnquiryForm() {
           Tell us about your business
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
-          We'll match you with suitable manufacturers from our network.
+          We&apos;ll match you with suitable manufacturers from our network.
         </p>
       </div>
 

@@ -6,9 +6,10 @@ import { FormField } from "./FormField";
 import { ContactInput } from "@/components/ContactInput";
 import { ContactSelect } from "@/components/ContactSelect";
 import { ContactTextarea } from "@/components/ContactTextarea";
+import { FormData } from "./EnquiryFormV2";
 
 interface ContactInfoStepProps {
-  formData: any;
+  formData: FormData;
   onFieldUpdate: (field: string, value: unknown) => void;
   onNext: () => void;
   onBack: () => void;
@@ -78,7 +79,7 @@ export function ContactInfoStep({
             Tell us about your company
           </h2>
           <p className="text-sm text-slate-500">
-            We'll use this to understand your requirements better.
+            We&apos;ll use this to understand your requirements better.
           </p>
         </div>
 

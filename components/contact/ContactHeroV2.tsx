@@ -53,7 +53,7 @@ export function ContactHeroV2() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-lg text-slate-500 font-medium font-subtext leading-relaxed px-4 max-w-2xl mx-auto"
         >
-          Our Indore HQ is at the heart of MP's pharmaceutical corridor. 
+          Our Indore HQ is at the heart of MP&apos;s pharmaceutical corridor. 
           Reach out for C&F agency, super stockist distribution, and verified pharmaceutical partnerships.
         </motion.p>
         

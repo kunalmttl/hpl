@@ -127,6 +127,7 @@ export function EnquiriesClient({ initialEnquiries, initialStats }: Props) {
 
       {/* ── Detail drawer (fixed right panel) ───────────────────────────── */}
       <DetailDrawer
+        key={selectedEnquiry?.id || "none"}
         enquiry={selectedEnquiry}
         enquiries={filtered}
         onClose={() => setSelectedId(null)}

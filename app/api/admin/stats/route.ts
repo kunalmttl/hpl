@@ -12,9 +12,9 @@ export async function GET() {
 
     const stats = {
       total:         rows.reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
-      newCount:      rows.filter((r: any) => r.status === "new").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
-      manufacturers: rows.filter((r: any) => r.role === "manufacturer").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
-      distributors:  rows.filter((r: any) => r.role === "distributor").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      newCount:      rows.filter((r: typeof rows[number]) => r.status === "new").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      manufacturers: rows.filter((r: typeof rows[number]) => r.role === "manufacturer").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
+      distributors:  rows.filter((r: typeof rows[number]) => r.role === "distributor").reduce((s: number, r: typeof rows[number]) => s + r._count._all, 0),
 
       };
 

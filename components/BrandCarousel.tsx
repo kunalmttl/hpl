@@ -7,6 +7,7 @@ import {
   useSpring,
   useTime, 
   useTransform,
+  MotionValue,
 } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
@@ -90,7 +91,7 @@ const OrbitCard = ({
   src: string, 
   index: number, 
   total: number, 
-  rotation: any, 
+  rotation: MotionValue<number>, 
   side?: "left" | "right", 
   radius?: number,
   isMobile?: boolean

@@ -158,7 +158,7 @@ const floatingVariant: Variants = {
     scale: 0.8,
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
-  visible: (custom: any) => ({ 
+  visible: (custom?: { isIntroDone?: boolean; delay?: number }) => ({ 
     opacity: 1, 
     scale: 1,
     transition: { 
@@ -167,7 +167,7 @@ const floatingVariant: Variants = {
       delay: (custom?.isIntroDone ?? true) ? (custom?.delay || 0) : 0 
     }
   }),
-  animate: (custom: any) => ({
+  animate: (custom?: { isIntroDone?: boolean; delay?: number }) => ({
     y: (custom?.isIntroDone ?? true) ? [0, -15, 0] : 0,
     transition: {
       duration: 5,
@@ -633,7 +633,7 @@ export function HomeContent() {
               <Truck size={24}/>
             </motion.div>
             <motion.h4 variants={itemSlideUp} className="font-bold text-slate-900 text-lg mb-2">1. Manufacturer Ships</motion.h4>
-            <motion.p variants={itemSlideUp} className="text-[15px] text-slate-600 leading-relaxed font-subtext">The manufacturer dispatches stock to HPL's warehouse in Khajrana, Indore — with all documentation and challans in order.</motion.p>
+            <motion.p variants={itemSlideUp} className="text-[15px] text-slate-600 leading-relaxed font-subtext">The manufacturer dispatches stock to HPL&apos;s warehouse in Khajrana, Indore — with all documentation and challans in order.</motion.p>
           </motion.div>
 
           {/* Center Card */}

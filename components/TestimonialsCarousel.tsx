@@ -112,15 +112,7 @@ export default function TestimonialsCarousel() {
   const cardControls = useAnimationControls();
   const layersControls = useAnimationControls();
   
-  // Handle Phase Transitions
-  useEffect(() => {
-    if (isIntroDone && inView && phase === "hidden") {
-      runIntroSequence();
-    }
-  }, [isIntroDone, inView, phase]);
-
-
-  const runIntroSequence = async () => {
+  const runIntroSequence = useCallback(async () => {
     // 1. Envelope Up
     setPhase("envelope-up");
     await envelopeControls.start({
@@ -162,7 +154,14 @@ export default function TestimonialsCarousel() {
     // 3. Carousel Phase — card stays at full opacity so fan card can
     // pick up from the exact same visual position with no gap
     setPhase("carousel");
-  };
+  }, [envelopeControls, cardControls, layersControls]);
+
+  // Handle Phase Transitions
+  useEffect(() => {
+    if (isIntroDone && inView && phase === "hidden") {
+      runIntroSequence();
+    }
+  }, [isIntroDone, inView, phase, runIntroSequence]);
 
   // Auto-advance logic
   useEffect(() => {
@@ -453,7 +452,7 @@ const TestimonialCard = memo(({ data }: { data: Testimonial }) => {
       </div>
 
       <p className="text-slate-600 text-sm leading-relaxed mt-4 italic font-body max-h-[4.5rem] overflow-hidden line-clamp-3">
-        "{data.quote}"
+        &ldquo;{data.quote}&rdquo;
       </p>
     </div>
   );

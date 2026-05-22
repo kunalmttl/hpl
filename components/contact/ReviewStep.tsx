@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 
+import { FormData } from "./EnquiryFormV2";
+
 interface ReviewStepProps {
-  formData: any;
+  formData: FormData;
   onFieldUpdate: (field: string, value: unknown) => void;
   onNext: () => void;
   onBack: () => void;

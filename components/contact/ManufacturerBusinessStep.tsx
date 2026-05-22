@@ -6,9 +6,10 @@ import { FormField } from "./FormField";
 import { ContactInput } from "@/components/ContactInput";
 import { ContactSelect } from "@/components/ContactSelect";
 import { ContactTextarea } from "@/components/ContactTextarea";
+import { FormData } from "./EnquiryFormV2";
 
 interface ManufacturerBusinessStepProps {
-  formData: any;
+  formData: FormData;
   onFieldUpdate: (field: string, value: unknown) => void;
   onNext: () => void;
   onBack: () => void;

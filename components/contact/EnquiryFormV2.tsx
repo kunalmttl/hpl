@@ -12,9 +12,9 @@ import { FormStepper } from "./FormStepper";
 import { SubmitButton } from "./SubmitButton";
 
 // Types
-type Role = "manufacturer" | "distributor" | null;
+export type Role = "manufacturer" | "distributor" | null;
 
-interface FormData {
+export interface FormData {
   role: Role;
   // Contact Info (universal)
   companyName: string;

@@ -61,29 +61,9 @@ export function DetailDrawer({
   onStatusChange,
 }: DetailDrawerProps) {
   const [savingStatus, setSavingStatus] = useState<string | null>(null);
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState(enquiry?.note ?? "");
   const [noteSaved, setNoteSaved] = useState(false);
   const [savingNote, setSavingNote] = useState(false);
-
-  // Sync note field when enquiry changes
-  useEffect(() => {
-    if (enquiry) {
-      setNote(enquiry.note ?? "");
-      setNoteSaved(false);
-    }
-  }, [enquiry?.id]);
-
-  // Keyboard: Escape to close, ArrowLeft/Right to navigate
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (!enquiry) return;
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") handleNav("prev");
-      if (e.key === "ArrowRight") handleNav("next");
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [enquiry, enquiries]);
 
   const currentIndex = enquiry ? enquiries.findIndex((e) => e.id === enquiry.id) : -1;
   const hasPrev = currentIndex > 0;
@@ -95,6 +75,18 @@ export function DetailDrawer({
     if (dir === "prev" && idx > 0) onSelect(enquiries[idx - 1].id);
     if (dir === "next" && idx < enquiries.length - 1) onSelect(enquiries[idx + 1].id);
   }, [enquiry, enquiries, onSelect]);
+
+  // Keyboard: Escape to close, ArrowLeft/Right to navigate
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (!enquiry) return;
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") handleNav("prev");
+      if (e.key === "ArrowRight") handleNav("next");
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [enquiry, enquiries, onClose, handleNav]);
 
   // Update status via API
   const handleStatusChange = async (newStatus: string) => {
