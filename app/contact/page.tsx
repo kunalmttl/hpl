@@ -93,8 +93,9 @@ export default function ContactPage() {
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Office</p>
                 <p className="text-sm text-foreground leading-relaxed">
-                  RamKrishna Bagh, Khajrana<br />
-                  MR 9 Road, Indore, MP 452016
+                  First Floor, 3-4-5, MR 9 Rd,<br />
+                  Opp. Mahek Vatika Garden, RamKrishna Bagh,<br />
+                  Khajrana, Indore, MP 452010
                 </p>
               </div>
 
@@ -119,7 +120,7 @@ export default function ContactPage() {
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Email &amp; Hours</p>
                 <a href="mailto:hindustanpharma1@yahoo.com" className="text-sm text-foreground hover:text-[#0e7c6e] transition-colors">hindustanpharma1@yahoo.com</a>
-                <p className="text-sm text-muted-foreground">Mon – Sat, 10 am – 6 pm</p>
+                <p className="text-sm text-muted-foreground">Mon – Sat, 10 am – 6:30 pm</p>
               </div>
             </div>
           </div>
@@ -129,7 +130,7 @@ export default function ContactPage() {
         <section className="border-t border-border/50" aria-label="HPL Office Location on Google Maps">
           <iframe
             title="Hindustan Pharma Logistics - Office Location in Khajrana, Indore"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.5!2d75.8756!3d22.6826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQwJzU3LjQiTiA3NcKwNTInMzIuMiJF!5e0!3m2!1sen!2sin!4v1700000000000"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.540131495908!2d75.9083201!3d22.740256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962e3d3b7a5bf57%3A0xb3a827560a8a6493!2sHindustan%20Pharma%20Logistics!5e0!3m2!1sen!2sin!4v1700000000000"
             width="100%"
             height="350"
             style={{ border: 0 }}

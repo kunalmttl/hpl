@@ -73,22 +73,22 @@ const structuredData = {
       "priceRange": "Contact for Quotes",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "RamKrishna Bagh, Khajrana, MR 9 Road",
+        "streetAddress": "First Floor, 3-4-5, MR 9 Road, opposite Mahek Vatika Garden, RamKrishna Bagh, Khajrana",
         "addressLocality": "Indore",
         "addressRegion": "Madhya Pradesh",
-        "postalCode": "452016",
+        "postalCode": "452010",
         "addressCountry": "IN"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "22.6826",
-        "longitude": "75.8756"
+        "latitude": "22.740256",
+        "longitude": "75.9083201"
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         "opens": "10:00",
-        "closes": "18:00"
+        "closes": "18:30"
       },
       "description": "Hindustan Pharma Logistics is a trusted C&F agent, super stockist and consignee agent for pharma manufacturers in Madhya Pradesh. Based in Indore since 2009, serving 60+ manufacturers across 12+ districts.",
       "foundingDate": "2009",
@@ -103,7 +103,8 @@ const structuredData = {
       "sameAs": [
         "https://www.linkedin.com/company/hindustanpharmalogistics/",
         "https://www.justdial.com/Indore/Hindustan-Pharma-Logistics-C-F-And-Consignee-Agent-Near-Robot-Square1314-Sunderbagh-Khajrana/0731PX731-X731-230208181640-F2C2_BZDET",
-        "https://www.tradeindia.com/hindustan-pharma-logistics-8904499/"
+        "https://www.tradeindia.com/hindustan-pharma-logistics-8904499/",
+        "https://maps.google.com/?cid=12952865769213892787"
       ]
     },
     {

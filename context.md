@@ -1,13 +1,19 @@
 # Project Context: Hindustan Pharma Logistics (HPL) Website
-Last updated: 2026-05-19 (RECAP)
+Last updated: 2026-05-22 (RECAP)
 
 ## Active Project
 Hindustan Pharma Logistics (HPL) landing page and core platform.
 
 ## Current Goal
-**Admin Panel Refactor, SEO, Auth, and Enquiry Form Validation COMPLETE.** Standardized website layout, metadata, custom session auth, B2B enquiry forms with validation, and a minimalistic Admin Overview dashboard. All systems connected to Neon DB and verified with Resend verification.
+**Peak SEO Strategy & Google Business Profile (GBP) Alignment COMPLETE.** Standardized NAP details (pincode 452010), coordinates, maps iframe, and email configurations across the site to align perfectly with the verified Google Business Profile. Footer restored and OG image optimized.
 
 ## Task History
+- **Google Business Profile & NAP Refactor (2026-05-22)**:
+    - Updated global `LocalBusiness` JSON-LD schema, footer address text, and contact page location strip to match the verified Google Business Profile address: `First Floor, 3-4-5, MR 9 Road, opposite Mahek Vatika Garden, RamKrishna Bagh, Khajrana, Indore, MP 452010`.
+    - Added Google Maps place listing profile URL (`cid=12952865769213892787`) to the `sameAs` array in layout schema.
+    - Updated contact page Google Maps embed to use the exact business listing CID iframe source.
+    - Restored corrupted `Footer.tsx` from git HEAD logs and resolved email inconsistency globally using `hindustanpharma1@yahoo.com`.
+    - Resized and compressed the OG Image (`public/og-image.png`) from 642 KB to an optimized 50 KB file.
 - **Admin Overview Dashboard & Sidebar Cleanup (2026-05-19)**:
     - Created a minimalistic dashboard at `/admin/overview` detailing key counts, recent leads, and channel statuses.
     - Removed the settings option from the Admin Sidebar panel and updated the Overview navigation destination.
