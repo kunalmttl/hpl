@@ -2,6 +2,20 @@
 
 Last updated: 2026-05-22
 
+## RECAP: 2026-05-22 (Workflow Cards Refactor)
+
+1.  **Workflow Cards Layout**:
+    - Refactored cards in the "From Manufacturer to Market" section from absolute positioning (which caused text overlap/clipping on desktop) to a modern, responsive, side-by-side flex layout on desktop (`md:flex-row`).
+    - Stacks cleanly on mobile devices.
+2.  **Visual & Color Accents**:
+    - Added distinctive top-border lines matching the supply chain stages (Blue for Transit/Manufacturer Ships, Teal for Store & Manage, Amber for Dispatch/Market) to improve visual aesthetics and align with brand coloring.
+    - Upgraded icons to match corresponding color themes (`w-12 h-12` and `w-14 h-14` premium containers).
+3.  **Framer Motion Interactive Hover Animations**:
+    - Implemented `whileHover` spring animations (`stiffness: 200`, `damping: 18`) to smoothly straighten, scale up, elevate, and increase z-index on hover.
+4.  **Entrance Stagger & Wave Curve**:
+    - Calibrated card entrance variants to align their default/resting heights and slight rotations, creating a gentle wave layout along the background animated connecting paths.
+    - Verified build passes with 0 compilation errors.
+
 ## RECAP: 2026-05-22 (Peak SEO Finalization)
 
 1.  **Google Business Profile & NAP Alignment**:

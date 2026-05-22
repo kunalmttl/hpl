@@ -72,9 +72,9 @@ const SERVICES_DATA = [
 ];
 
 const cardVariantsLeft: Variants = {
-  hidden: { opacity: 0, x: -40, rotate: -15, y: 40 },
+  hidden: { opacity: 0, x: -40, rotate: -8, y: 40 },
   visible: { 
-    opacity: 1, x: 0, rotate: -6, y: 20,
+    opacity: 1, x: 0, rotate: -1.5, y: 16,
     transition: {
       duration: 0.8,
       ease: [0.16, 1, 0.3, 1],
@@ -85,9 +85,9 @@ const cardVariantsLeft: Variants = {
 };
 
 const cardVariantsCenter: Variants = {
-  hidden: { opacity: 0, scale: 0.8, y: 0 },
+  hidden: { opacity: 0, scale: 0.8, y: 40 },
   visible: { 
-    opacity: 1, scale: 1, y: -20,
+    opacity: 1, scale: 1, y: -16,
     transition: {
       type: "spring",
       stiffness: 100,
@@ -99,9 +99,9 @@ const cardVariantsCenter: Variants = {
 };
 
 const cardVariantsRight: Variants = {
-  hidden: { opacity: 0, x: 40, rotate: 15, y: 40 },
+  hidden: { opacity: 0, x: 40, rotate: 8, y: 40 },
   visible: { 
-    opacity: 1, x: 0, rotate: 6, y: 20,
+    opacity: 1, x: 0, rotate: 1.5, y: 16,
     transition: {
       duration: 0.8,
       ease: [0.16, 1, 0.3, 1],
@@ -622,14 +622,17 @@ export function HomeContent() {
           custom={isIntroDone}
           initial="hidden"
           animate={isWorkflowInView ? "visible" : "hidden"}
-          className="flex flex-col md:flex-row items-center justify-center gap-6 max-w-6xl w-full relative min-h-[550px] md:min-h-[400px] z-10"
+          className="flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-6xl w-full relative z-10 mt-10 px-4"
         >
           {/* Left Card */}
           <motion.div 
             variants={cardVariantsLeft}
-            className="md:absolute md:left-[10%] lg:left-[15%] z-10 w-full md:w-[300px] p-8 hover:translate-y-[-5px] hover:rotate-0 hover:z-40 transition-all duration-300 bg-white/50 backdrop-blur-sm rounded-[24px] border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] cursor-default"
+            whileHover={{ y: -10, rotate: 0, scale: 1.03, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="relative flex-1 w-full md:max-w-[340px] p-8 bg-white/80 backdrop-blur-sm rounded-[24px] border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] cursor-default overflow-hidden group"
           >
-            <motion.div variants={itemPop} className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 text-slate-600 shadow-sm border border-slate-100">
+            <div className="absolute top-0 left-0 w-full h-[6px] bg-blue-500" />
+            <motion.div variants={itemPop} className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6 text-blue-600 shadow-sm border border-blue-100/50">
               <Truck size={24}/>
             </motion.div>
             <motion.h4 variants={itemSlideUp} className="font-bold text-slate-900 text-lg mb-2">1. Manufacturer Ships</motion.h4>
@@ -639,9 +642,12 @@ export function HomeContent() {
           {/* Center Card */}
           <motion.div 
             variants={cardVariantsCenter}
-            className="md:absolute z-30 w-full md:w-[320px] p-8 hover:translate-y-[-30px] hover:scale-[1.02] transition-all duration-300 bg-white rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-50 cursor-default"
+            whileHover={{ y: -26, scale: 1.05, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="relative flex-1 w-full md:max-w-[350px] p-8 bg-white rounded-[24px] border border-slate-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.08)] cursor-default overflow-hidden group z-20"
           >
-            <motion.div variants={itemPop} className="w-14 h-14 rounded-full bg-pharma-teal/10 flex items-center justify-center mb-6 text-pharma-teal">
+            <div className="absolute top-0 left-0 w-full h-[6px] bg-pharma-teal" />
+            <motion.div variants={itemPop} className="w-14 h-14 rounded-xl bg-pharma-teal/10 flex items-center justify-center mb-6 text-pharma-teal shadow-sm border border-pharma-teal/20">
               <Warehouse size={28}/>
             </motion.div>
             <motion.h4 variants={itemSlideUp} className="font-bold text-slate-900 text-xl mb-3">2. We Store & Manage</motion.h4>
@@ -651,9 +657,12 @@ export function HomeContent() {
           {/* Right Card */}
           <motion.div 
             variants={cardVariantsRight}
-            className="md:absolute md:right-[10%] lg:right-[15%] z-10 w-full md:w-[300px] p-8 hover:translate-y-[-5px] hover:rotate-0 hover:z-40 transition-all duration-300 bg-white/50 backdrop-blur-sm rounded-[24px] border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] cursor-default"
+            whileHover={{ y: -10, rotate: 0, scale: 1.03, zIndex: 40 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="relative flex-1 w-full md:max-w-[340px] p-8 bg-white/80 backdrop-blur-sm rounded-[24px] border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] cursor-default overflow-hidden group"
           >
-            <motion.div variants={itemPop} className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 text-slate-600 shadow-sm border border-slate-100">
+            <div className="absolute top-0 left-0 w-full h-[6px] bg-amber-500" />
+            <motion.div variants={itemPop} className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-6 text-amber-500 shadow-sm border border-amber-100/50">
               <Globe size={24}/>
             </motion.div>
             <motion.h4 variants={itemSlideUp} className="font-bold text-slate-900 text-lg mb-2">3. We Dispatch</motion.h4>
