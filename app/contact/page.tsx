@@ -62,7 +62,7 @@ export default function ContactPage() {
         <ContactHero />
 
         {/* ── Intro paragraph for SEO ─────────────────────────── */}
-        <section className="pt-12 pb-6">
+        <section className="pb-6">
           <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24 max-w-5xl">
             <div className="rounded-2xl border border-teal-500/10 bg-gradient-to-br from-teal-500/5 to-slate-500/5 p-6 md:p-8 backdrop-blur-sm shadow-sm max-w-3xl mx-auto text-center transition-all duration-300 hover:border-teal-500/20">
               <p className="text-sm md:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed font-subtext max-w-2xl mx-auto">
@@ -85,7 +85,7 @@ export default function ContactPage() {
         <section className="py-16 bg-gradient-to-b from-transparent to-muted/20 border-t border-border/50">
           <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24 max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
+
               {/* Address Card */}
               <div className="group relative rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0e7c6e]/40 hover:shadow-md">
                 <div className="flex items-start gap-4">
