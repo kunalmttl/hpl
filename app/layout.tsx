@@ -8,6 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroller from "@/components/SmoothScroller";
 import IntroAnimation from "@/components/IntroAnimation";
 import { NavbarLogoRefProvider } from "@/contexts/NavbarLogoRef";
+import { Analytics } from '@vercel/analytics/next';
 
 
 
@@ -168,6 +169,7 @@ export default function RootLayout({
           <ConditionalFooter />
           <WhatsAppButton />
         </NavbarLogoRefProvider>
+        <Analytics />
       </body>
     </html>
   );
