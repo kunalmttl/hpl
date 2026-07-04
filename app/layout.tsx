@@ -9,6 +9,7 @@ import SmoothScroller from "@/components/SmoothScroller";
 import IntroAnimation from "@/components/IntroAnimation";
 import { NavbarLogoRefProvider } from "@/contexts/NavbarLogoRef";
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 
@@ -170,6 +171,7 @@ export default function RootLayout({
           <WhatsAppButton />
         </NavbarLogoRefProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
