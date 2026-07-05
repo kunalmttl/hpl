@@ -161,6 +161,20 @@ export default function ContactPage() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span className="text-xs font-semibold text-foreground">Verified Location</span>
               </div>
+              
+              {/* Get Directions Button */}
+              <a
+                href="https://maps.app.goo.gl/7MjNCYrdkNSgRuLr5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-4 right-4 z-10 bg-[#0e7c6e] hover:bg-[#0d6b5f] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-300 flex items-center gap-2 group-hover:shadow-lg"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Get Directions
+              </a>
+
               <iframe
                 title="Hindustan Pharma Logistics - Office Location in Khajrana, Indore"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.540131495908!2d75.9083201!3d22.740256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962e3d3b7a5bf57%3A0xb3a827560a8a6493!2sHindustan%20Pharma%20Logistics!5e0!3m2!1sen!2sin!4v1700000000000"
