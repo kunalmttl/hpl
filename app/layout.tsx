@@ -17,18 +17,24 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const ttNeoris = localFont({
   src: "../fonts/TT Neoris Trial Medium.ttf",
   variable: "--font-tt-neoris",
   weight: "500",
+  display: "swap",
+  preload: true,
 });
 
 const clarityCity = localFont({
   src: "../fonts/ClarityCity-Thin.ttf",
   variable: "--font-clarity-city",
   weight: "100",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -152,6 +158,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to speed up Google Fonts (Open Sans) */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        {/* Preconnect to Vercel analytics/insights endpoints */}
+        <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+        {/* Preload the hero logo (LCP candidate — above the fold) */}
+        <link rel="preload" as="image" href="/logo.webp" type="image/webp" />
+        {/* Preload the intro animation wordmark */}
+        <link rel="preload" as="image" href="/hpl_text.png" type="image/png" />
+      </head>
       <body
         className={`${openSans.variable} ${ttNeoris.variable} ${clarityCity.variable} antialiased font-body tracking-tight selection:bg-pharma-teal/10 selection:text-pharma-teal`}
         suppressHydrationWarning

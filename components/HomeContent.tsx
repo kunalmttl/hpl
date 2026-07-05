@@ -4,11 +4,14 @@ import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-const TestimonialsCarousel = dynamic(() => import("@/components/TestimonialsCarousel"), { ssr: false });
-const BrandCarousel = dynamic(() => import("@/components/BrandCarousel"), { ssr: false });
-const HeroNetworkMap = dynamic(() => import("@/components/HeroNetworkMap"), { ssr: false });
-const TeamSection = dynamic(() => import("@/components/TeamSection"), { ssr: false });
-const BrandConveyor = dynamic(() => import("@/components/BrandConveyor"), { ssr: false });
+// HeroNetworkMap is above-the-fold — import statically so it SSR-renders immediately
+import { HeroNetworkMap } from "@/components/HeroNetworkMap";
+
+// Below-the-fold components: dynamic import without ssr:false so they SSR and hydrate client-side
+const TestimonialsCarousel = dynamic(() => import("@/components/TestimonialsCarousel"));
+const BrandCarousel = dynamic(() => import("@/components/BrandCarousel"));
+const TeamSection = dynamic(() => import("@/components/TeamSection"));
+const BrandConveyor = dynamic(() => import("@/components/BrandConveyor"));
 
 import { SEOContentSection } from "@/components/SEOContentSection";
 import { FAQSection } from "@/components/FAQSection";
@@ -36,7 +39,7 @@ const SERVICES_DATA = [
   {
     title: "C&F Agency",
     desc: "We store, manage, and bill stock on behalf of pharma manufacturers. Your inventory, our warehouse, ERP-tracked.",
-    image: "/infographics/cf-agency.png",
+    image: "/infographics/cf-agency.webp",
     icon: Warehouse,
     accentColor: "var(--color-pharma-teal)",
     accentBg: "rgba(15, 118, 110, 0.1)",
@@ -45,7 +48,7 @@ const SERVICES_DATA = [
   {
     title: "Super Stockist",
     desc: "HPL buys and holds stock directly, then distributes to sub-stockists and chemists across 12+ districts of Madhya Pradesh.",
-    image: "/infographics/super-stockist.png",
+    image: "/infographics/super-stockist.webp",
     icon: Truck,
     accentColor: "var(--color-blue-500)",
     accentBg: "rgba(59, 130, 246, 0.1)",
@@ -54,7 +57,7 @@ const SERVICES_DATA = [
   {
     title: "Consignee Agent",
     desc: "We act as the manufacturer's local representative — receiving goods, managing documentation, and coordinating dispatch to buyers in MP.",
-    image: "/infographics/consignee-agent.png",
+    image: "/infographics/consignee-agent.webp",
     icon: ShieldCheck,
     accentColor: "var(--color-amber-500)",
     accentBg: "rgba(245, 158, 11, 0.1)",
@@ -63,7 +66,7 @@ const SERVICES_DATA = [
   {
     title: "Hindustan Drug House",
     desc: "HPL's own distribution brand — directly supplying chemists and pharmacies in Indore's Dawa Bazaar and surrounding areas.",
-    image: "/infographics/drug-house.png",
+    image: "/infographics/drug-house.webp",
     icon: Zap,
     accentColor: "var(--color-rose-500)",
     accentBg: "rgba(244, 63, 94, 0.1)",

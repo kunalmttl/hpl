@@ -114,6 +114,7 @@ export function CoreSolutionCard({
             src={image}
             alt={altText || `${title} — pharmaceutical logistics service by Hindustan Pharma Logistics in Indore`}
             fill
+            loading="lazy"
             className="object-contain drop-shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.1] group-hover:-translate-y-4"
             sizes="(max-width: 768px) 100vw, 50vw"
           />

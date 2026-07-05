@@ -99,7 +99,7 @@ export default function Navbar() {
             }}
           >
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="HPL Logistics"
               width={100}
               height={32}

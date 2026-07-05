@@ -7,6 +7,7 @@ import {
   useSpring,
   useTime, 
   useTransform,
+  useInView,
   MotionValue,
 } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -175,6 +176,7 @@ const OrbitCard = ({
           src={src}
           alt="Hindustan Pharma Logistics warehouse and operations facility in Indore, Madhya Pradesh"
           fill
+          loading="lazy"
           sizes="(max-width: 768px) 112px, 160px"
           className="object-cover grayscale-[0.1] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 ease-out"
         />
@@ -188,6 +190,7 @@ const OrbitCard = ({
 export const BrandCarousel = () => {
   const [mounted, setMounted] = React.useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "200px" });
   
   React.useEffect(() => {
     setMounted(true);
@@ -246,7 +249,7 @@ export const BrandCarousel = () => {
 
       {/* Left Sphere - Pushed far off-edge on mobile to stay clear of text */}
       <div className="absolute left-[-150px] md:left-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
-        {mounted && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        {mounted && isInView && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <OrbitCard 
             key={`left-${i}`}
             src={images[i]} 
@@ -262,7 +265,7 @@ export const BrandCarousel = () => {
 
       {/* Right Sphere - Pushed far off-edge on mobile to stay clear of text */}
       <div className="absolute right-[-150px] md:right-0 top-1/2 -translate-y-1/2 w-0 h-0 z-10">
-        {mounted && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        {mounted && isInView && [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <OrbitCard 
             key={`right-${i}`}
             src={images[(i + 8) % 12]} 
@@ -281,7 +284,7 @@ export const BrandCarousel = () => {
         variants={centralContentVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-100px" }}
+        viewport={{ once: true, margin: "-100px" }}
         className="relative z-20 text-center px-8 md:px-10 max-w-[95vw] md:max-w-5xl bg-transparent md:bg-transparent backdrop-blur-none py-4 md:py-16 rounded-none md:rounded-[4rem] pointer-events-none"
       >
         <motion.div variants={headingFadeUp}>

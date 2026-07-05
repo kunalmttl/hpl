@@ -92,6 +92,7 @@ export const TeamSection = () => {
                 src={member.image} 
                 alt={member.name} 
                 fill
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
