@@ -37,12 +37,12 @@ export const BrandConveyor = () => {
       />
 
       <motion.div
-        className="flex whitespace-nowrap gap-16 md:gap-24 items-center"
+        className="flex whitespace-nowrap gap-16 md:gap-24 items-center will-change-transform"
         animate={{
           x: [0, "-33.33%"],
         }}
         transition={{
-          duration: 40, // Slightly slower for more premium feel
+          duration: 40,
           repeat: Infinity,
           ease: "linear",
         }}

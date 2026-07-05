@@ -168,7 +168,7 @@ export default function IntroAnimation() {
           style={{ opacity: 0, transform: "scale(0)" }}
         >
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="HPL Logo Icon"
             width={140}
             height={48}
